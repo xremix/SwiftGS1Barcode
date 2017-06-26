@@ -63,3 +63,6 @@ https://www.gs1.at/fileadmin/user_upload/Liste_GS1_Austria_Application_Identifie
 
 #### CocoaPod
 https://www.appcoda.com/cocoapods-making-guide/
+
+
+![Analytics](https://ga-beacon.appspot.com/UA-40522413-9/SwiftGS1Barcode/readme?pixel)
