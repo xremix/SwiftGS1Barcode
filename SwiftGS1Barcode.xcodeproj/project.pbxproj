@@ -22,6 +22,8 @@
 		64754D181F011B9700B22B62 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 64754D171F011B9700B22B62 /* README.md */; };
 		64AE611D1F01081800F3B9C0 /* SwiftGS1Barcode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64AE61131F01081800F3B9C0 /* SwiftGS1Barcode.framework */; };
 		64AE61241F01081800F3B9C0 /* SwiftGS1Barcode.h in Headers */ = {isa = PBXBuildFile; fileRef = 64AE61161F01081800F3B9C0 /* SwiftGS1Barcode.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		64DD17361F014E1400F10103 /* GS1Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DD17351F014E1400F10103 /* GS1Node.swift */; };
+		64DD17381F014F8700F10103 /* GS1NodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DD17371F014F8700F10103 /* GS1NodeTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,8 @@
 		64AE61171F01081800F3B9C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64AE611C1F01081800F3B9C0 /* SwiftGS1BarcodeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftGS1BarcodeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		64AE61231F01081800F3B9C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		64DD17351F014E1400F10103 /* GS1Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GS1Node.swift; sourceTree = "<group>"; };
+		64DD17371F014F8700F10103 /* GS1NodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GS1NodeTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,12 +103,13 @@
 			children = (
 				64AE61161F01081800F3B9C0 /* SwiftGS1Barcode.h */,
 				64AE61171F01081800F3B9C0 /* Info.plist */,
-				64754CFD1F010A1000B22B62 /* GS1Barcode.swift */,
-				64754CFF1F010E8400B22B62 /* BarcodeParser.swift */,
 				64754D011F010E9100B22B62 /* Barcode.swift */,
+				64754CFF1F010E8400B22B62 /* BarcodeParser.swift */,
+				64754D071F010ECA00B22B62 /* DateExtension.swift */,
+				64754CFD1F010A1000B22B62 /* GS1Barcode.swift */,
+				64DD17351F014E1400F10103 /* GS1Node.swift */,
 				64754D031F010EA000B22B62 /* SimpleBarcode.swift */,
 				64754D051F010EBB00B22B62 /* StringExtension.swift */,
-				64754D071F010ECA00B22B62 /* DateExtension.swift */,
 			);
 			path = SwiftGS1Barcode;
 			sourceTree = "<group>";
@@ -114,10 +119,11 @@
 			children = (
 				64AE61231F01081800F3B9C0 /* Info.plist */,
 				64754D0B1F01103C00B22B62 /* BarcodeParserTests.swift */,
-				64754D0F1F01106500B22B62 /* SimpleBarcodeTests.swift */,
-				64754D111F01106D00B22B62 /* GS1BarcodeTests.swift */,
-				64754D131F01107500B22B62 /* StringTests.swift */,
 				64754D151F01107B00B22B62 /* DateTests.swift */,
+				64754D111F01106D00B22B62 /* GS1BarcodeTests.swift */,
+				64DD17371F014F8700F10103 /* GS1NodeTests.swift */,
+				64754D0F1F01106500B22B62 /* SimpleBarcodeTests.swift */,
+				64754D131F01107500B22B62 /* StringTests.swift */,
 			);
 			path = SwiftGS1BarcodeTests;
 			sourceTree = "<group>";
@@ -237,6 +243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				64754D041F010EA000B22B62 /* SimpleBarcode.swift in Sources */,
+				64DD17361F014E1400F10103 /* GS1Node.swift in Sources */,
 				64754D081F010ECA00B22B62 /* DateExtension.swift in Sources */,
 				64754CFE1F010A1000B22B62 /* GS1Barcode.swift in Sources */,
 				64754D181F011B9700B22B62 /* README.md in Sources */,
@@ -253,6 +260,7 @@
 				64754D161F01107B00B22B62 /* DateTests.swift in Sources */,
 				64754D141F01107500B22B62 /* StringTests.swift in Sources */,
 				64754D0C1F01103C00B22B62 /* BarcodeParserTests.swift in Sources */,
+				64DD17381F014F8700F10103 /* GS1NodeTests.swift in Sources */,
 				64754D121F01106D00B22B62 /* GS1BarcodeTests.swift in Sources */,
 				64754D101F01106500B22B62 /* SimpleBarcodeTests.swift in Sources */,
 			);

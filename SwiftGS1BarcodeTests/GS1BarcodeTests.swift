@@ -21,21 +21,22 @@ class GS1BarcodeTests: XCTestCase {
         super.tearDown()
         barcode = nil
     }
-    
+
     func testExample() {
         let barcode = GS1Barcode(raw: "01001234670210133001\u{1D}2110066600")
         XCTAssert(barcode.validate())
+        
         XCTAssertNotNil(barcode.gtin)
         XCTAssertEqual(barcode.gtin, "00123467021013")
         XCTAssertNil(barcode.lotNumber)
-        
         XCTAssertNotNil(barcode.amount)
         XCTAssertNotNil(barcode.serialNumber)
+        
         XCTAssertEqual(barcode.amount, 1)
         XCTAssertEqual(barcode.gtin, "00123467021013")
         XCTAssertEqual(barcode.serialNumber, "10066600")
     }
-    
+
     func testEmptyBarcode(){
         barcode = GS1Barcode(raw: "")
         
@@ -54,7 +55,7 @@ class GS1BarcodeTests: XCTestCase {
         XCTAssertNotEqual(barcode.gtin, "")
         XCTAssertEqual(barcode.gtin, "10123467042022")
     }
-    
+
     func testGETINIndicator(){
         XCTAssertNotNil(barcode.gtinIndicatorDigit)
         XCTAssertEqual(barcode.gtinIndicatorDigit, 1)
@@ -88,11 +89,21 @@ class GS1BarcodeTests: XCTestCase {
     }
     
     func testExpirationDate(){
-        XCTAssertNotNil(barcode.nodes.expirationDateNode.rawValue)
+        XCTAssertNotNil(barcode.nodes.expirationDateNode.originalValue)
         XCTAssertNotNil(barcode.expirationDate)
         XCTAssertEqual(barcode.expirationDate, NSDate.from(year: 2021, month: 1, day: 31))
     }
     func testValidate(){
         XCTAssert(barcode.validate())
     }
+    
+    func testValidateNewBarcode(){
+        let b = GS1Barcode()
+        XCTAssertFalse(b.validate())
+    }
+    func testValidateEmptyBarcode(){
+        let b = GS1Barcode(raw: "")
+        XCTAssertFalse(b.validate())
+    }
+    
 }
