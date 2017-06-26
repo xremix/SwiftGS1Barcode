@@ -57,5 +57,4 @@ class BarcodeParserTests: XCTestCase {
         XCTAssertEqual(node.intValue, nil)
         XCTAssertEqual(node.dateValue, nil)
     }
-    
 }
