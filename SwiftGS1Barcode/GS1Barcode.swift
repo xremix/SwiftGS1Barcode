@@ -13,7 +13,7 @@ struct GS1Nodes{
     var gtinNode = GS1Node("01", length: 14, type: .String)
     var gtinIndicatorDigitNode = GS1Node("01", length: 1, type: .Int)
     var lotNumberNode = GS1Node("10", length: 20, type: .String, dynamicLength: true)
-    var expirationDateNode = GS1Node("17", length: 6, type: .Date)
+    var expirationDateNode = GS1Node(dateIdentifier: "17")
     var serialNumberNode = GS1Node("21", length: 20, type: .String, dynamicLength: true)
     var amountNode = GS1Node("30", length: 8, type: .Int, dynamicLength: true)
 }
