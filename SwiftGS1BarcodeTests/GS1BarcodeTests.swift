@@ -76,7 +76,7 @@ class GS1BarcodeTests: XCTestCase {
     }
     
     func testExpirationDate(){
-        XCTAssertNotNil(barcode.nodes.expirationDateNode.originalValue)
+        XCTAssertNotNil(barcode.nodeDictionary["expirationDate"]!.originalValue)
         XCTAssertNotNil(barcode.expirationDate)
         XCTAssertEqual(barcode.expirationDate, NSDate.from(year: 2021, month: 1, day: 31))
     }
@@ -114,7 +114,7 @@ class GS1BarcodeTests: XCTestCase {
     func testPerformance(){
         
         measure {
-            for _ in 0...1000{
+            for _ in 0...500{
                 _ = GS1Barcode(raw: "01101234670420223005\u{1d}172101311010022247")
             }
         }

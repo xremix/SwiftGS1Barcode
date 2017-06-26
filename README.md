@@ -44,6 +44,9 @@ Currently implementing:
 Other properties can be extended pretty easily. **You** can contribute yourself, or open an [issue](https://github.com/xremix/SwiftGS1Barcode/issues/new).
 
 
+#### Speed
+Parsing 500 barcodes takes 0.258ms right now.
+
 ## Installation
 ### CocoaPods
 You can install the library to you project using [CocoaPods](https://cocoapods.org). Add the following code to your `Podfile`:
