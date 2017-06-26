@@ -24,6 +24,7 @@
 		64AE61241F01081800F3B9C0 /* SwiftGS1Barcode.h in Headers */ = {isa = PBXBuildFile; fileRef = 64AE61161F01081800F3B9C0 /* SwiftGS1Barcode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64DD17361F014E1400F10103 /* GS1Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DD17351F014E1400F10103 /* GS1Node.swift */; };
 		64DD17381F014F8700F10103 /* GS1NodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DD17371F014F8700F10103 /* GS1NodeTests.swift */; };
+		E28E99891F01ABC50093C02B /* GS1BarcodeNodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28E99881F01ABC50093C02B /* GS1BarcodeNodeTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		64AE61231F01081800F3B9C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64DD17351F014E1400F10103 /* GS1Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GS1Node.swift; sourceTree = "<group>"; };
 		64DD17371F014F8700F10103 /* GS1NodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GS1NodeTests.swift; sourceTree = "<group>"; };
+		E28E99881F01ABC50093C02B /* GS1BarcodeNodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GS1BarcodeNodeTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 				64DD17371F014F8700F10103 /* GS1NodeTests.swift */,
 				64754D0F1F01106500B22B62 /* SimpleBarcodeTests.swift */,
 				64754D131F01107500B22B62 /* StringTests.swift */,
+				E28E99881F01ABC50093C02B /* GS1BarcodeNodeTests.swift */,
 			);
 			path = SwiftGS1BarcodeTests;
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 				64754D161F01107B00B22B62 /* DateTests.swift in Sources */,
 				64754D141F01107500B22B62 /* StringTests.swift in Sources */,
 				64754D0C1F01103C00B22B62 /* BarcodeParserTests.swift in Sources */,
+				E28E99891F01ABC50093C02B /* GS1BarcodeNodeTests.swift in Sources */,
 				64DD17381F014F8700F10103 /* GS1NodeTests.swift in Sources */,
 				64754D121F01106D00B22B62 /* GS1BarcodeTests.swift in Sources */,
 				64754D101F01106500B22B62 /* SimpleBarcodeTests.swift in Sources */,
