@@ -47,11 +47,11 @@ You can add the project as a git `submodule`. Simply drag the `SwiftGS1Barcode.x
 
 ## Deployment Steps
 - Run Unit Tests
+- Lint Podfile using `pod lib lint`
 - Update Version in `Project Settings` and `Pod Specs`
 - Push Code to Git
 - Create Release on Git
-- `pod lib lint`
-- `pod trunk push SwiftGS1Barcode.podspec`
+- Push code to CocoaPods using `pod trunk push SwiftGS1Barcode.podspec`
 
 ## Resources
 A couple of resources, used for this project.
