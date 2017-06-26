@@ -47,14 +47,14 @@ struct GS1Nodes{
 }
 
 public class GS1Barcode: NSObject, Barcode {
-    var raw: String?
+    public var raw: String?
     var nodes = GS1Nodes()
     
-    var gtin: String?{ get {return nodes.gtinNode.value} }
-    var lotNumber: String?{ get {return nodes.lotNumberNode.value} }
-    var expirationDate: NSDate?{ get {return nodes.expirationDateNode.dateValue} }
-    var serialNumber: String?{ get {return nodes.serialNumberNode.value} }
-    var amount: Int?{ get {return nodes.amountNode.intValue} }
+    public var gtin: String?{ get {return nodes.gtinNode.value} }
+    public var lotNumber: String?{ get {return nodes.lotNumberNode.value} }
+    public var expirationDate: NSDate?{ get {return nodes.expirationDateNode.dateValue} }
+    public var serialNumber: String?{ get {return nodes.serialNumberNode.value} }
+    public var amount: Int?{ get {return nodes.amountNode.intValue} }
     
     required override public init() {
         super.init()
@@ -64,6 +64,11 @@ public class GS1Barcode: NSObject, Barcode {
         self.raw = raw
         _ = parse()
     }
+    
+    // TODO implement validateGS1QuantityRule?
+    // TODO implement hasQuantityTag?
+    // TODO implement isLot
+    
     func validate() -> Bool {
         return gtin != nil
     }
