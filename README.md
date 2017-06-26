@@ -21,6 +21,7 @@ print(barcode.lotNumber)
 Currently only the following properties are available and do get parsed
 
 - `GTIN`
+- `GtinIndicatorDigit`
 - `lotNumber`
 - `expirationDate`
 - `serialNumber`

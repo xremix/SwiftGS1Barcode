@@ -22,7 +22,7 @@ class BarcodeParserTests: XCTestCase {
     }
     
     func testGtinPraser(){
-        var node = GS1Node(identifier: "01", type: .GTIN)
+        var node = GS1Node(identifier: "01", type: .FixedLengthBased, fixedValue: 14)
         node = GS1BarcodeParser.parseGS1Node(node: node, data: "010012349993333001")
         XCTAssertEqual(node.value, "00123499933330")
     }

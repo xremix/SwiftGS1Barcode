@@ -9,24 +9,22 @@
 import UIKit
 
 enum GS1Type: String{
-    case GTIN
+    case FixedLengthBased
+    case FixedLengthBasedInt
     case GroupSeperatorBased
     case GroupSeperatorBasedInt
     case Date
     var description: String{
         return self.rawValue
     }
-    var fixedValueLength: Int?{
-        if self == .GTIN{
-            return 14
-        }
-        return nil
-    }
 }
 
 class GS1Node: NSObject{
     var identifier: String
     var type: GS1Type
+    var fixedValueLength: Int?
+    
+    // Values
     var value: String?
     var rawValue: Any?
     var dateValue: NSDate?{ return rawValue as? NSDate }
@@ -36,13 +34,22 @@ class GS1Node: NSObject{
         self.identifier = identifier
         self.type = type
     }
+    init(identifier: String, type: GS1Type, fixedValue: Int){
+        self.identifier = identifier
+        self.type = type
+        self.fixedValueLength = fixedValue
+    }
 }
 
 struct GS1Nodes{
-    var gtinNode = GS1Node(identifier: "01", type: .GTIN)
+    var gtinNode = GS1Node(identifier: "01", type: .FixedLengthBased, fixedValue: 14)
+    var gtinIndicatorDigitNode = GS1Node(identifier: "01", type: .FixedLengthBasedInt, fixedValue: 1)
+    // TODO should have maximum of 20
     var lotNumberNode = GS1Node(identifier: "10", type: .GroupSeperatorBased)
     var expirationDateNode = GS1Node(identifier: "17", type: .Date)
+    // TODO should have maximum of 20
     var serialNumberNode = GS1Node(identifier: "21", type: .GroupSeperatorBased)
+    // TODO should have maximum of 8 characters
     var amountNode = GS1Node(identifier: "30", type: .GroupSeperatorBasedInt)
 }
 
@@ -55,6 +62,7 @@ public class GS1Barcode: NSObject, Barcode {
     public var expirationDate: NSDate?{ get {return nodes.expirationDateNode.dateValue} }
     public var serialNumber: String?{ get {return nodes.serialNumberNode.value} }
     public var amount: Int?{ get {return nodes.amountNode.intValue} }
+    public var gtinIndicatorDigit: Int? {get {return nodes.gtinIndicatorDigitNode.intValue}}
     
     required override public init() {
         super.init()
@@ -64,10 +72,6 @@ public class GS1Barcode: NSObject, Barcode {
         self.raw = raw
         _ = parse()
     }
-    
-    // TODO implement validateGS1QuantityRule?
-    // TODO implement hasQuantityTag?
-    // TODO implement isLot
     
     func validate() -> Bool {
         return gtin != nil
@@ -84,6 +88,7 @@ public class GS1Barcode: NSObject, Barcode {
                 
                 if(data!.startsWith(nodes.gtinNode.identifier)){
                     nodes.gtinNode = GS1BarcodeParser.parseGS1Node(node: nodes.gtinNode, data: data!)
+                    nodes.gtinIndicatorDigitNode = GS1BarcodeParser.parseGS1Node(node: nodes.gtinIndicatorDigitNode, data: data!)
                     data =  GS1BarcodeParser.reduce(data: data, by: nodes.gtinNode)
                 }else if(data!.startsWith(nodes.lotNumberNode.identifier)){
                     nodes.lotNumberNode = GS1BarcodeParser.parseGS1Node(node: nodes.lotNumberNode, data: data!)

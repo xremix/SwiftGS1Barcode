@@ -23,10 +23,6 @@ public class GS1BarcodeParser: NSObject {
     static func parseGS1Node(node: GS1Node, data: String)->GS1Node{
         print("Parsing node of type \(node.type.description) with identifier \(node.identifier)")
         switch node.type {
-        case .GTIN:
-            node.value = data.substring(node.identifier.length, length: node.type.fixedValueLength!)
-            //            GETINIndicatorDigit
-            break
         case .GroupSeperatorBased, .GroupSeperatorBasedInt:
             if !data.contains("\u{1D}") {
                 node.value =  data.substring(from: node.identifier.length)
@@ -39,7 +35,6 @@ public class GS1BarcodeParser: NSObject {
             if node.type == .GroupSeperatorBasedInt{
                 node.rawValue = Int(node.value!)
             }
-            
         case .Date:
             node.rawValue = NSDate.from(
                 year: Int("20" + data.substring(2, length: 2)),
@@ -47,6 +42,18 @@ public class GS1BarcodeParser: NSObject {
                 day: Int(data.substring(6, length: 2))
             )
             node.value = data.substring(2, length: 6)
+        default:
+            // GTIN, GTINIndicatorDigit, etc.
+            if node.fixedValueLength != nil{
+                node.value = data.substring(node.identifier.length, length: node.fixedValueLength!)
+                if node.type == .FixedLengthBasedInt && node.value != nil{
+                    node.rawValue = Int(node.value!)
+                }
+            }else{
+                // TODO throw error here?
+                node.value = data.substring(from: node.identifier.length)
+            }
+            
         }
         if node.rawValue == nil{
             node.rawValue = node.value
