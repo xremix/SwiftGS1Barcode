@@ -55,55 +55,6 @@ public class GS1BarcodeParser: NSObject {
         }else{
             node.stringValue = nodeData
         }
-//        switch node.type {
-//        case GS1Type.Date:
-//            node.dateValue = NSDate.from(
-//                year: Int("20" + nodeData.substring(to: 2)),
-//                month: Int(nodeData.substring(2, length: 2)),
-//                day: Int(nodeData.substring(4, length: 2))
-//            )
-//        default:
-//            node.stringValue = nodeData
-//        }
-        
-        
-        
-//        switch node.type {
-//        case .GroupSeperatorBased, .GroupSeperatorBasedInt:
-//            if !data.contains("\u{1D}") {
-//                node.value =  data.substring(from: node.identifier.length)
-//            }else{
-//                let toi = data.index(of: "\u{1D}")
-//                let to = data.distance(from: data.startIndex, to: toi ?? data.startIndex)
-//                
-//                node.value = data.substring(node.identifier.length, to: to)
-//            }
-//            if node.type == .GroupSeperatorBasedInt{
-//                node.rawValue = Int(node.value!)
-//            }
-//        case .Date:
-//            node.rawValue = NSDate.from(
-//                year: Int("20" + data.substring(2, length: 2)),
-//                month: Int(data.substring(4, length: 2)),
-//                day: Int(data.substring(6, length: 2))
-//            )
-//            node.value = data.substring(2, length: 6)
-//        default:
-//            // GTIN, GTINIndicatorDigit, etc.
-//            if node.fixedValueLength != nil{
-//                node.value = data.substring(node.identifier.length, length: node.fixedValueLength!)
-//                if node.type == .FixedLengthBasedInt && node.value != nil{
-//                    node.rawValue = Int(node.value!)
-//                }
-//            }else{
-//                // TODO throw error here?
-//                node.value = data.substring(from: node.identifier.length)
-//            }
-//            
-//        }
-//        if node.rawValue == nil{
-//            node.rawValue = node.value
-//        }
         return node
     }
 }

@@ -42,4 +42,7 @@ class GS1Node: NSObject{
         self.init(identifier, length: length, type: type)
         self.dynamicLength = dynamicLength
     }
+    convenience init(dateIdentifier identifier: String){
+        self.init(identifier, length: 6, type: .Date)
+    }
 }
