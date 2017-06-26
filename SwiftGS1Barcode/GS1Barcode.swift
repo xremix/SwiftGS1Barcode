@@ -9,6 +9,7 @@
 import UIKit
 
 // Struct used in the GS1 Barcode Class
+// TODO think about getting rid of this and use a key value pair
 struct GS1Nodes{
     var gtinNode = GS1Node("01", length: 14, type: .String)
     var gtinIndicatorDigitNode = GS1Node("01", length: 1, type: .Int)
