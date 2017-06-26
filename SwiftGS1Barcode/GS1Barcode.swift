@@ -89,6 +89,8 @@ public class GS1Barcode: NSObject, Barcode {
                     data = data!.substring(from: 1)
                 }
                 
+                // Checking the nodes by it's identifier and passing it to the Barcode Parser to get the value and cut the data 
+                
                 // Do not change the order!
                 if(data!.startsWith(nodes.gtinNode.identifier)){
                     nodes.gtinNode = GS1BarcodeParser.parseGS1Node(node: nodes.gtinNode, data: data!)

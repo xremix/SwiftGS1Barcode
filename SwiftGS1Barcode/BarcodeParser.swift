@@ -23,6 +23,11 @@ public class GS1BarcodeParser: NSObject {
     static func parseGS1Node(node: GS1Node, data: String)->GS1Node{
         print("Parsing node with identifier \(node.identifier) of type \(String(describing: node.type?.description))")
         
+        if !data.startsWith(node.identifier){
+            print("Passed invalid Node with wrong node identifier")
+            return node
+        }
+        
         // Get Pure Data by removing the identifier
         var nodeData = data
         nodeData = nodeData.substring(from: node.identifier.length)

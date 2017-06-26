@@ -41,8 +41,7 @@ class BarcodeParserTests: XCTestCase {
         XCTAssertEqual(node.dateValue, nil)
     }
     func testGroupSeperatorBased(){
-        // TODO What? why is this 03 and not 30?
-        var node = GS1Node("03", length: 8, type: .String, dynamicLength: true)
+        var node = GS1Node("30", length: 8, type: .String, dynamicLength: true)
         node = GS1BarcodeParser.parseGS1Node(node: node, data: "3001\u{1D}12341234")
         XCTAssertEqual(node.originalValue, "01")
         XCTAssertEqual(node.stringValue, "01")
@@ -50,7 +49,7 @@ class BarcodeParserTests: XCTestCase {
         XCTAssertEqual(node.dateValue, nil)
     }
     func testGroupSeperatorBasedEndOfString(){
-        var node = GS1Node("03", length: 8, type: .String, dynamicLength: true)
+        var node = GS1Node("30", length: 8, type: .String, dynamicLength: true)
         node = GS1BarcodeParser.parseGS1Node(node: node, data: "3001")
         XCTAssertEqual(node.originalValue, "01")
         XCTAssertEqual(node.stringValue, "01")
