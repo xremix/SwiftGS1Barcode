@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'SwiftGS1Barcode'
-  s.version          = '0.0.3'
+  s.version          = '0.1.0'
   s.summary          = 'A GS1 Barcode Library and Parser for Swift'
  
   s.description      = <<-DESC
