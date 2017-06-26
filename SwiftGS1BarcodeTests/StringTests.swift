@@ -27,27 +27,33 @@ class StringTests: XCTestCase {
     func testSubstringFromLength() {
         XCTAssertEqual(testString.substring(0, length: 5), "Hallo")
         XCTAssertEqual(testString.substring(1, length: 5), "allo ")
+        XCTAssertEqual(testString, "Hallo Welt") // Test Integration
     }
     func testSubstringFromTo() {
         XCTAssertEqual(testString.substring(0, to: 5), "Hallo")
         XCTAssertEqual(testString.substring(1, to: 5), "allo")
+        XCTAssertEqual(testString, "Hallo Welt") // Test Integration
     }
     func testSubstringFrom() {
         XCTAssertEqual(testString.substring(from: 0), "Hallo Welt")
         XCTAssertEqual(testString.substring(from: 1), "allo Welt")
+        XCTAssertEqual(testString, "Hallo Welt") // Test Integration
     }
     func testSubstringTo() {
         XCTAssertEqual(testString.substring(from: 0), testString)
         XCTAssertEqual(testString.substring(from: 6), "Welt")
         XCTAssertEqual(testString.substring(from: testString.length), "")
+        XCTAssertEqual(testString, "Hallo Welt") // Test Integration
     }
     func testSubstringToString() {
         XCTAssertEqual(testString.substring(to: "Welt"), "Hallo ")
         XCTAssertEqual(testString.substring(to: "Hallo Welt"), "")
+        XCTAssertEqual(testString, "Hallo Welt") // Test Integration
     }
     func testStartsWith(){
         XCTAssert(testString.startsWith("Hallo"))
         XCTAssert(!testString.startsWith("Welt"))
+        XCTAssertEqual(testString, "Hallo Welt") // Test Integration
     }
     
     func testIndexOfOptions(){
