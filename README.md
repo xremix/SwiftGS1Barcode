@@ -5,7 +5,8 @@ A GS1 Barcode Library and Parser for Swift Edit
 https://github.com/xremix/SwiftGS1Barcode
 
 ## Deployment Steps
-- Update Version
+- Run Unit Tests
+- Update Version in `Project Settings` and `Pod Specs`
 - Push Code to Git
 - Create Release on Git
 - `pod lib lint`

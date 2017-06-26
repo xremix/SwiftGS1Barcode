@@ -56,10 +56,10 @@ public class GS1Barcode: NSObject, Barcode {
     var serialNumber: String?{ get {return nodes.serialNumberNode.value} }
     var amount: Int?{ get {return nodes.amountNode.intValue} }
     
-    required override init() {
+    required override public init() {
         super.init()
     }
-    required init(raw: String) {
+    required public init(raw: String) {
         super.init()
         self.raw = raw
         _ = parse()
