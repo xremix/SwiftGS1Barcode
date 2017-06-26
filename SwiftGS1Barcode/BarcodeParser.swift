@@ -10,7 +10,6 @@ import UIKit
 
 public class GS1BarcodeParser: NSObject {
     static func reduce(data: String?, by node: GS1Node)->String?{
-        
         if data == nil{
             return data
         }
@@ -22,7 +21,7 @@ public class GS1BarcodeParser: NSObject {
         return data!.substring(from: length)
     }
     static func parseGS1Node(node: GS1Node, data: String)->GS1Node{
-//        print("Parsing node of type \(node.type.description) with identifier \(node.identifier)")
+        print("Parsing node with identifier \(node.identifier) of type \(String(describing: node.type?.description))")
         
         // Get Pure Data by removing the identifier
         var nodeData = data

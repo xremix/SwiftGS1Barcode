@@ -96,4 +96,14 @@ class GS1BarcodeTests: XCTestCase {
     func testValidate(){
         XCTAssert(barcode.validate())
     }
+    
+    func testValidateNewBarcode(){
+        let b = GS1Barcode()
+        XCTAssertFalse(b.validate())
+    }
+    func testValidateEmptyBarcode(){
+        let b = GS1Barcode(raw: "")
+        XCTAssertFalse(b.validate())
+    }
+    
 }

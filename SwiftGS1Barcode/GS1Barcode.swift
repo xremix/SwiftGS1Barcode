@@ -8,45 +8,7 @@
 
 import UIKit
 
-
-enum GS1Type: String{
-    case Date
-    case String
-    case Int
-    var description: String{
-        return self.rawValue
-    }
-}
-
-class GS1Node: NSObject{
-    var identifier: String
-    var maxLength: Int
-    var dynamicLength: Bool = false
-    
-    var type: GS1Type?
-    
-    var originalValue: String?
-    var dateValue: NSDate?
-    var intValue: Int?
-    
-    var stringValue: String?
-    
-    init(_ identifier: String, length: Int){
-        self.identifier = identifier
-        self.maxLength = length
-    }
-    convenience init(_ identifier: String, length: Int, type: GS1Type){
-        self.init(identifier, length: length)
-        self.type = type
-    }
-    convenience init(_ identifier: String, length: Int, type: GS1Type, dynamicLength: Bool){
-        self.init(identifier, length: length, type: type)
-        self.dynamicLength = dynamicLength
-    }
-}
-
-
-
+// Struct used in the GS1 Barcode Class
 struct GS1Nodes{
     var gtinNode = GS1Node("01", length: 14, type: .String)
     var gtinIndicatorDigitNode = GS1Node("01", length: 1, type: .Int)
@@ -54,21 +16,14 @@ struct GS1Nodes{
     var expirationDateNode = GS1Node("17", length: 6, type: .Date)
     var serialNumberNode = GS1Node("21", length: 20, type: .String, dynamicLength: true)
     var amountNode = GS1Node("30", length: 8, type: .Int, dynamicLength: true)
-    //    var gtinNode = GS1Node(identifier: "01", type: .FixedLengthBased, fixedValue: 14)
-    //    var gtinIndicatorDigitNode = GS1Node(identifier: "01", type: .FixedLengthBasedInt, fixedValue: 1)
-    //    // TODO should have maximum of 20
-    //    var lotNumberNode = GS1Node(identifier: "10", type: .GroupSeperatorBased)
-    //    var expirationDateNode = GS1Node(identifier: "17", type: .Date)
-    //    // TODO should have maximum of 20
-    //    var serialNumberNode = GS1Node(identifier: "21", type: .GroupSeperatorBased)
-    //    // TODO should have maximum of 8 characters
-    //    var amountNode = GS1Node(identifier: "30", type: .GroupSeperatorBasedInt)
 }
 
 public class GS1Barcode: NSObject, Barcode {
     public var raw: String?
+    private var parseSuccessFull: Bool = false
     var nodes = GS1Nodes()
     
+    // Mapping for User Friendly Usage
     public var gtin: String?{ get {return nodes.gtinNode.stringValue} }
     public var lotNumber: String?{ get {return nodes.lotNumberNode.stringValue} }
     public var expirationDate: NSDate?{ get {return nodes.expirationDateNode.dateValue} }
@@ -85,11 +40,13 @@ public class GS1Barcode: NSObject, Barcode {
         _ = parse()
     }
     
+    // Validating if the barcode got parsed correctly
     func validate() -> Bool {
-        return gtin != nil
+        return parseSuccessFull && raw != "" && raw != nil
     }
     
     func parse() ->Bool{
+        self.parseSuccessFull = false
         var data = raw
         
         if data != nil{
@@ -120,6 +77,7 @@ public class GS1Barcode: NSObject, Barcode {
                 }
             }
         }
+        self.parseSuccessFull = true
         return true
     }
 }
