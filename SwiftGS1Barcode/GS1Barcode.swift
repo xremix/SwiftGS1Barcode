@@ -8,10 +8,6 @@
 
 import UIKit
 
-class GS1BarcodePretty: GS1Barcode{
-    
-}
-
 enum GS1Type: String{
     case GTIN
     case GroupSeperatorBased
@@ -50,7 +46,7 @@ struct GS1Nodes{
     var amountNode = GS1Node(identifier: "30", type: .GroupSeperatorBasedInt)
 }
 
-class GS1Barcode: NSObject, Barcode {
+public class GS1Barcode: NSObject, Barcode {
     var raw: String?
     var nodes = GS1Nodes()
     

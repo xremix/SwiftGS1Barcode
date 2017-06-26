@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GS1BarcodeParser: NSObject {
+public class GS1BarcodeParser: NSObject {
     static func reduce(data: String?, by node: GS1Node)->String?{
         if data == nil{
             return data

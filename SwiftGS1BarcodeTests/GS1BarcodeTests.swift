@@ -1,6 +1,6 @@
 //
-//  SwiftGS1BarcodeTests.swift
-//  SwiftGS1BarcodeTests
+//  GS1BarcodeTests.swift
+//  SwiftGS1Barcode
 //
 //  Created by Toni Hoffmann on 26.06.17.
 //  Copyright © 2017 Toni Hoffmann. All rights reserved.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import SwiftGS1Barcode
 
-class SwiftGS1BarcodeTests: XCTestCase {
+class GS1BarcodeTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
