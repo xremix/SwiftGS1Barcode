@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		64754CFE1F010A1000B22B62 /* GS1Barcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64754CFD1F010A1000B22B62 /* GS1Barcode.swift */; };
 		64AE611D1F01081800F3B9C0 /* SwiftGS1Barcode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64AE61131F01081800F3B9C0 /* SwiftGS1Barcode.framework */; };
 		64AE61221F01081800F3B9C0 /* SwiftGS1BarcodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AE61211F01081800F3B9C0 /* SwiftGS1BarcodeTests.swift */; };
 		64AE61241F01081800F3B9C0 /* SwiftGS1Barcode.h in Headers */ = {isa = PBXBuildFile; fileRef = 64AE61161F01081800F3B9C0 /* SwiftGS1Barcode.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -23,6 +24,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		64754CFD1F010A1000B22B62 /* GS1Barcode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GS1Barcode.swift; sourceTree = "<group>"; };
 		64AE61131F01081800F3B9C0 /* SwiftGS1Barcode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftGS1Barcode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		64AE61161F01081800F3B9C0 /* SwiftGS1Barcode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftGS1Barcode.h; sourceTree = "<group>"; };
 		64AE61171F01081800F3B9C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 			children = (
 				64AE61161F01081800F3B9C0 /* SwiftGS1Barcode.h */,
 				64AE61171F01081800F3B9C0 /* Info.plist */,
+				64754CFD1F010A1000B22B62 /* GS1Barcode.swift */,
 			);
 			path = SwiftGS1Barcode;
 			sourceTree = "<group>";
@@ -149,6 +152,7 @@
 					64AE61121F01081800F3B9C0 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = T564M5W3X3;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 					64AE611B1F01081800F3B9C0 = {
@@ -198,6 +202,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64754CFE1F010A1000B22B62 /* GS1Barcode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,6 +329,7 @@
 		64AE61281F01081800F3B9C0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = T564M5W3X3;
@@ -336,6 +342,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = de.xremix.SwiftGS1Barcode;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -343,6 +350,7 @@
 		64AE61291F01081800F3B9C0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = T564M5W3X3;
@@ -362,6 +370,7 @@
 		64AE612B1F01081800F3B9C0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = T564M5W3X3;
 				INFOPLIST_FILE = SwiftGS1BarcodeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -374,6 +383,7 @@
 		64AE612C1F01081800F3B9C0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = T564M5W3X3;
 				INFOPLIST_FILE = SwiftGS1BarcodeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -402,6 +412,7 @@
 				64AE61291F01081800F3B9C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		64AE612A1F01081800F3B9C0 /* Build configuration list for PBXNativeTarget "SwiftGS1BarcodeTests" */ = {
 			isa = XCConfigurationList;
@@ -410,6 +421,7 @@
 				64AE612C1F01081800F3B9C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
