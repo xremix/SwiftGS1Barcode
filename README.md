@@ -18,7 +18,7 @@ print(barcode.lotNumber)
 ```
 
 ### Available Properties
-Currently only the following properties are available and do get parsed
+**!Attention!** Currently only the following properties are available and do get parsed
 
 - `GTIN`
 - `GtinIndicatorDigit`
@@ -27,7 +27,7 @@ Currently only the following properties are available and do get parsed
 - `serialNumber`
 - `amount`
 
-Other properties can be extended pretty easily. *You* can contribute yourself, or open an [issue](https://github.com/xremix/SwiftGS1Barcode/issues/new).
+Other properties can be extended pretty easily. **You** can contribute yourself, or open an [issue](https://github.com/xremix/SwiftGS1Barcode/issues/new).
 
 
 ## Installation
@@ -42,8 +42,8 @@ pod 'SwiftGS1Barcode', :git => 'https://github.com/xremix/SwiftGS1Barcode', :bra
 ```
 
 ### Manually
-You can add the project as a git `submodule`. Simply drag the `SwiftGS1Barcode.xcodeproj` file into your Xcode project.
-* Don't forget to add the framework in your application target *
+You can add the project as a git `submodule`. Simply drag the `SwiftGS1Barcode.xcodeproj` file into your Xcode project.  
+**Don't forget to add the framework in your application target**
 
 
 ## Deployment Steps
