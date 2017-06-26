@@ -16,7 +16,7 @@ public class GS1BarcodeParser: NSObject {
         }
         
         var length = (node.originalValue?.length ?? 0) + (node.identifier.length)
-        if node.dynamicLength{
+        if node.dynamicLength && data!.length > length{
             length += 1
         }
         return data!.substring(from: length)
