@@ -16,8 +16,9 @@ public class GS1Barcode: NSObject, Barcode {
     private var parseSuccessFull: Bool = false
     //    var nodes = GS1Nodes()
     var nodeDictionary = [
-        "gtin": GS1Node("01", length: 14, type: .String),
+        // ATTENTION! NEVER CHANGE THE ORDER
         "gtinIndicatorDigit": GS1Node("01", length: 1, type: .Int),
+        "gtin": GS1Node("01", length: 14, type: .String),
         "lotNumber": GS1Node("10", length: 20, type: .String, dynamicLength: true),
         "expirationDate": GS1Node(dateIdentifier: "17"),
         "serialNumber": GS1Node("21", length: 20, type: .String, dynamicLength: true),
@@ -72,7 +73,9 @@ public class GS1Barcode: NSObject, Barcode {
     func parseNode(node: inout GS1Node, data: inout String)->Bool{
         if(data.startsWith(node.identifier)){
             node = GS1BarcodeParser.parseGS1Node(node: node, data: data)
-            data =  GS1BarcodeParser.reduce(data: data, by: node)!
+            if  node.identifier != "gtinIndicatorDigit"{
+                data =  GS1BarcodeParser.reduce(data: data, by: node)!
+            }
             return true
         }
         return false
@@ -91,21 +94,21 @@ public class GS1Barcode: NSObject, Barcode {
                 // Checking the nodes by it's identifier and passing it to the Barcode Parser to get the value and cut the data
                 
                 var foundOne = false
-                if(data!.startsWith(nodeDictionary["gtin"]!.identifier)){
-                    nodeDictionary["gtin"]! = GS1BarcodeParser.parseGS1Node(node: nodeDictionary["gtin"]!, data: data!)
-                    nodeDictionary["gtinIndicatorDigit"]! = GS1BarcodeParser.parseGS1Node(node: nodeDictionary["gtinIndicatorDigit"]!, data: data!)
-                    data =  GS1BarcodeParser.reduce(data: data, by: nodeDictionary["gtin"]!)
-                    foundOne = true
-                }else{
+//                if(data!.startsWith(nodeDictionary["gtin"]!.identifier)){
+//                    nodeDictionary["gtin"]! = GS1BarcodeParser.parseGS1Node(node: nodeDictionary["gtin"]!, data: data!)
+//                    nodeDictionary["gtinIndicatorDigit"]! = GS1BarcodeParser.parseGS1Node(node: nodeDictionary["gtinIndicatorDigit"]!, data: data!)
+//                    data =  GS1BarcodeParser.reduce(data: data, by: nodeDictionary["gtin"]!)
+//                    foundOne = true
+//                }else{
                     for nodeKey in nodeDictionary.keys{
-                        if nodeKey != "gtin" && nodeKey != "gtinIndicatorDigit"{
+//                        if nodeKey != "gtin" && nodeKey != "gtinIndicatorDigit"{
                             if(parseNode(node: &nodeDictionary[nodeKey]!, data: &data!)){
                                 foundOne = true
                                 continue
                             }
-                        }
+//                        }
                     }
-                }
+//                }
                 
                 
                 if !foundOne{
