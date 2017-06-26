@@ -112,19 +112,19 @@ class GS1BarcodeTests: XCTestCase {
     
     
     // Experimental Support
-    
-//    func testserialShippingContainerCodeNode(){
-//        //var serialShippingContainerCodeNode = GS1Node("0", length: 18, type: .String)
-//        barcode = GS1Barcode(raw: "02123456789012345678901234567890")
-//        XCTAssertNotNil(barcode.serialShippingContainerCode)
-//        // XCTAssertEqual(barcode.serialShippingContainerCode, "")
-//    }
-//    func testgtinOfContainedTradeItemsNode(){
-//        //var gtinOfContainedTradeItemsNode = GS1Node("2", length: 14, type: .String)
-//        barcode = GS1Barcode(raw: "22123456789012345678901234567890")
-//        XCTAssertNotNil(barcode.gtinOfContainedTradeItems)
-//        // XCTAssertEqual(barcode.gtinOfContainedTradeItems, "")
-//    }
+    //TODO There should be a test with the identifier starting, but also another one starting with a different identifier at first
+    func testserialShippingContainerCodeNode(){
+        //var serialShippingContainerCodeNode = GS1Node("00", length: 18, type: .String)
+        barcode = GS1Barcode(raw: "002123456789012345678901234567890")
+        XCTAssertNotNil(barcode.serialShippingContainerCode)
+        // XCTAssertEqual(barcode.serialShippingContainerCode, "")
+    }
+    func testgtinOfContainedTradeItemsNode(){
+        //var gtinOfContainedTradeItemsNode = GS1Node("02", length: 14, type: .String)
+        barcode = GS1Barcode(raw: "022123456789012345678901234567890")
+        XCTAssertNotNil(barcode.gtinOfContainedTradeItems)
+        // XCTAssertEqual(barcode.gtinOfContainedTradeItems, "")
+    }
     func testproductionDateNode(){
         //var productionDateNode = GS1Node(dateIdentifier: "11")
         barcode = GS1Barcode(raw: "11210110")

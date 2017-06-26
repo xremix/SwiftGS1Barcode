@@ -18,8 +18,6 @@ struct GS1Nodes{
     var amountNode = GS1Node("30", length: 8, type: .Int, dynamicLength: true)
     
     // Experimental Support
-    //    var serialShippingContainerCodeNode = GS1Node("0", length: 18, type: .String)
-    //    var gtinOfContainedTradeItemsNode = GS1Node("2", length: 14, type: .String)
     var productionDateNode = GS1Node(dateIdentifier: "11")
     var dueDateNode = GS1Node(dateIdentifier: "12")
     var packagingDateNode = GS1Node(dateIdentifier: "13")
@@ -27,6 +25,9 @@ struct GS1Nodes{
     var productVariantNode = GS1Node("20", length: 2, type: .String)
     var secondaryDataFieldsNode = GS1Node("22", length:29, type: .String, dynamicLength:true)
     var numberOfUnitsContainedNode = GS1Node("37", length:8, type: .String, dynamicLength:true)
+    
+    var serialShippingContainerCodeNode = GS1Node("00", length: 18, type: .String)
+    var gtinOfContainedTradeItemsNode = GS1Node("02", length: 14, type: .String)
 }
 
 public class GS1Barcode: NSObject, Barcode {
@@ -43,6 +44,8 @@ public class GS1Barcode: NSObject, Barcode {
     public var gtinIndicatorDigit: Int? {get {return nodes.gtinIndicatorDigitNode.intValue}}
     
     // Experimental Support
+    public var serialShippingContainerCode: String? {get{return nodes.serialShippingContainerCodeNode.stringValue}}
+    public var gtinOfContainedTradeItems: String? {get{return nodes.gtinOfContainedTradeItemsNode.stringValue}}
     public var productionDate: NSDate? {get{return nodes.productionDateNode.dateValue}}
     public var dueDate: NSDate? {get{return nodes.dueDateNode.dateValue}}
     public var packagingDate: NSDate? {get{return nodes.packagingDateNode.dateValue}}
@@ -51,9 +54,6 @@ public class GS1Barcode: NSObject, Barcode {
     public var secondaryDataFields: String? {get{return nodes.secondaryDataFieldsNode.stringValue}}
     public var numberOfUnitsContained: String? {get{return nodes.numberOfUnitsContainedNode.stringValue}}
     
-    // Super Experimental Support
-    //    public var serialShippingContainerCode: String? {get{return nodes.serialShippingContainerCodeNode.stringValue}}
-    //    public var gtinOfContainedTradeItems: String? {get{return nodes.gtinOfContainedTradeItemsNode.stringValue}}
     
     required override public init() {
         super.init()
@@ -88,6 +88,7 @@ public class GS1Barcode: NSObject, Barcode {
                     data = data!.substring(from: 1)
                 }
                 
+                // Do not change the order!
                 if(data!.startsWith(nodes.gtinNode.identifier)){
                     nodes.gtinNode = GS1BarcodeParser.parseGS1Node(node: nodes.gtinNode, data: data!)
                     nodes.gtinIndicatorDigitNode = GS1BarcodeParser.parseGS1Node(node: nodes.gtinIndicatorDigitNode, data: data!)
@@ -98,6 +99,9 @@ public class GS1Barcode: NSObject, Barcode {
                 else if parseNode(node: &nodes.serialNumberNode, data: &data!){}
                 else if parseNode(node: &nodes.amountNode, data: &data!){}
                     // Experimental Support
+                    
+                else if(parseNode(node: &nodes.serialShippingContainerCodeNode, data: &data!)){}
+                else if(parseNode(node: &nodes.gtinOfContainedTradeItemsNode, data: &data!)){}
                 else if(parseNode(node: &nodes.productionDateNode, data: &data!)){}
                 else if(parseNode(node: &nodes.dueDateNode, data: &data!)){}
                 else if(parseNode(node: &nodes.packagingDateNode, data: &data!)){}
@@ -105,9 +109,6 @@ public class GS1Barcode: NSObject, Barcode {
                 else if(parseNode(node: &nodes.productVariantNode, data: &data!)){}
                 else if(parseNode(node: &nodes.secondaryDataFieldsNode, data: &data!)){}
                 else if(parseNode(node: &nodes.numberOfUnitsContainedNode, data: &data!)){}
-                    // Supper Experimental Support
-                    //                else if(parseNode(node: &nodes.serialShippingContainerCodeNode, data: &data!)){}
-                    //                else if(parseNode(node: &nodes.gtinOfContainedTradeItemsNode, data: &data!)){}
                 else{
                     print("Do not know identifier. Canceling Parsing")
                     return false
