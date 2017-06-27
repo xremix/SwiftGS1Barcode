@@ -9,6 +9,7 @@ This project is mostly a wraper around the complex logic of parsing GS1 Barcode 
 
 ## Usage
 Parsing is as simple as
+
 ```
 let gs1Barcode = "01101234670417283002\u{1D}1721103110S123456"
 let barcode = GS1Barcode(raw: gs1Barcode)
@@ -22,30 +23,26 @@ print(barcode.lotNumber) // S123456
 ### Available Properties
 **!Attention!** Currently only the following properties are available and do get parsed
 
-- `GTIN`
-- `GtinIndicatorDigit`
-- `lotNumber`
-- `expirationDate`
-- `serialNumber`
-- `amount`
 
-Currently implementing:
-- `productionDate`
-- `dueDate`
-- `packagingDate`
-- `bestBeforeDate`
-- `productVariant`
-- `secondaryDataFields`
-- `numberOfUnitsContained`
-- `serialShippingContainerCode`
-- `gtinOfContainedTradeItems`
+| Application Identifier | ID           |
+| ------------------ |:-------------:|
+| GTIN               | 01  |
+| GtinIndicatorDigit | 01  |
+| lotNumber (batchNumber) | 10  |
+| expirationDate     | 17  |
+| serialNumber       | 21  |
+| amount (quantity)  | 30  |
+| productionDate     | 11  |
+| dueDate            | 12  |
+| packagingDate      | 13  |
+| bestBeforeDate     | 15  |
+| productVariant     | 20  |
+| secondaryDataFields | 22  |
+| numberOfUnitsContained | 37  |
+| serialShippingContainerCode |  00 |
+| gtinOfContainedTradeItems | 02  |
 
-
-Other properties can be extended pretty easily. **You** can contribute yourself, or open an [issue](https://github.com/xremix/SwiftGS1Barcode/issues/new).
-
-
-#### Speed
-Parsing 500 barcodes takes 0.258ms right now.
+Other properties can be extended pretty easily. **You** can contribute yourself, or open an [issue](https://github.com/xremix/SwiftGS1Barcode/issues/new) if there is something missing for you.
 
 ## Installation
 ### CocoaPods
