@@ -34,8 +34,8 @@ _ = barcode.parse()
 
 | Application Identifier | ID           |
 | ------------------ |:-------------:|
-| GTIN               | 01  |
-| GtinIndicatorDigit | 01  |
+| gtin               | 01  |
+| gtinIndicatorDigit | 01  |
 | lotNumber (batchNumber) | 10  |
 | expirationDate     | 17  |
 | serialNumber       | 21  |
