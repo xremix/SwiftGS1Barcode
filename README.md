@@ -29,8 +29,23 @@ print(barcode.lotNumber) // S123456
 - `serialNumber`
 - `amount`
 
+Currently implementing:
+- `productionDate`
+- `dueDate`
+- `packagingDate`
+- `bestBeforeDate`
+- `productVariant`
+- `secondaryDataFields`
+- `numberOfUnitsContained`
+- `serialShippingContainerCode`
+- `gtinOfContainedTradeItems`
+
+
 Other properties can be extended pretty easily. **You** can contribute yourself, or open an [issue](https://github.com/xremix/SwiftGS1Barcode/issues/new).
 
+
+#### Speed
+Parsing 500 barcodes takes 0.258ms right now.
 
 ## Installation
 ### CocoaPods

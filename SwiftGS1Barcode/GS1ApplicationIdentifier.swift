@@ -1,5 +1,5 @@
 //
-//  GS1Node.swift
+//  GS1ApplicationIdentifier.swift
 //  SwiftGS1Barcode
 //
 //  Created by Toni Hoffmann on 26.06.17.
@@ -17,7 +17,7 @@ enum GS1Type: String{
     }
 }
 
-class GS1Node: NSObject{
+class GS1ApplicationIdentifier: NSObject{
     var identifier: String
     var maxLength: Int
     var dynamicLength: Bool = false
