@@ -9,7 +9,7 @@
 import UIKit
 
 public class GS1BarcodeParser: NSObject {
-    static func reduce(data: String?, by node: GS1Node)->String?{
+    static func reduce(data: String?, by node: GS1ApplicationIdentifier)->String?{
         if data == nil{
             return data
         }
@@ -20,8 +20,13 @@ public class GS1BarcodeParser: NSObject {
         }
         return data!.substring(from: length)
     }
-    static func parseGS1Node(node: GS1Node, data: String)->GS1Node{
+    static func parseGS1ApplicationIdentifier(node: GS1ApplicationIdentifier, data: String)->GS1ApplicationIdentifier{
         print("Parsing node with identifier \(node.identifier) of type \(String(describing: node.type?.description))")
+        
+        if !data.startsWith(node.identifier){
+            print("Passed invalid Node with wrong node identifier")
+            return node
+        }
         
         // Get Pure Data by removing the identifier
         var nodeData = data
