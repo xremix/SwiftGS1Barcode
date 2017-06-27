@@ -17,7 +17,7 @@ enum GS1ApplicationIdentifierType: String{
     }
 }
 
-class GS1ApplicationIdentifier: NSObject{
+public class GS1ApplicationIdentifier: NSObject{
     var identifier: String
     var maxLength: Int
     var dynamicLength: Bool = false
