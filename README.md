@@ -34,21 +34,21 @@ _ = barcode.parse()
 
 | Application Identifier | ID           |
 | ------------------ |:-------------:|
+| serialShippingContainerCode |  00 |
 | gtin               | 01  |
 | gtinIndicatorDigit | 01  |
+| gtinOfContainedTradeItems | 02  |
 | lotNumber (batchNumber) | 10  |
-| expirationDate     | 17  |
-| serialNumber       | 21  |
-| amount (quantity)  | 30  |
 | productionDate     | 11  |
 | dueDate            | 12  |
 | packagingDate      | 13  |
 | bestBeforeDate     | 15  |
+| expirationDate     | 17  |
 | productVariant     | 20  |
+| serialNumber       | 21  |
 | secondaryDataFields | 22  |
+| amount (quantity)  | 30  |
 | numberOfUnitsContained | 37  |
-| serialShippingContainerCode |  00 |
-| gtinOfContainedTradeItems | 02  |
 
 Other properties can be extended pretty easily. **You** can contribute yourself, or open an [issue](https://github.com/xremix/SwiftGS1Barcode/issues/new) if there is something missing for you.
 
