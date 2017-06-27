@@ -66,11 +66,11 @@ public class GS1Barcode: NSObject, Barcode {
     }
     
     // Validating if the barcode got parsed correctly
-    func validate() -> Bool {
+    public func validate() -> Bool {
         return lastParseSuccessfull && raw != "" && raw != nil
     }
     
-    func parseNode(node: inout GS1ApplicationIdentifier, data: inout String)->Bool{
+    private func parseNode(node: inout GS1ApplicationIdentifier, data: inout String)->Bool{
         if(data.startsWith(node.identifier)){
             node = GS1BarcodeParser.parseGS1ApplicationIdentifier(node: node, data: data)
             // Fixes issue where two nodes have the same identifier
@@ -84,7 +84,7 @@ public class GS1Barcode: NSObject, Barcode {
         return false
     }
     
-    func parse() ->Bool{
+    public func parse() ->Bool{
         self.lastParseSuccessfull = false
         var data = raw
         
