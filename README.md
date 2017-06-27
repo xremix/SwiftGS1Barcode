@@ -9,7 +9,10 @@ This project is mostly a wraper around the complex logic of parsing GS1 Barcode 
 
 ## Usage
 Parsing is as simple as
-```
+
+```Swift
+import SwiftGS1Barcode
+// ...
 let gs1Barcode = "01101234670417283002\u{1D}1721103110S123456"
 let barcode = GS1Barcode(raw: gs1Barcode)
 
@@ -18,34 +21,63 @@ print(barcode.amount) // 2
 print(barcode.expirationDate) // 31.10.2021
 print(barcode.lotNumber) // S123456
 ```
+##### Advanced Usage
+
+To seperate the parsing from initializing I'd recommend a code like
+
+```Swift
+import SwiftGS1Barcode
+// ...
+let gs1BarcodeText = "01101234670417283002\u{1D}1721103110S123456"
+let barcode = GS1Barcode()
+barcode.raw = gs1BarcodeText
+_ = barcode.parse()
+```
+
+To parse **custom Application Identifiers** use the following code
+
+```Swift
+import SwiftGS1Barcode
+// ...
+let gs1BarcodeText = "90HelloWorld\u{1D}01101234670417283002\u{1D}1721103110S123456"
+let barcode = GS1Barcode()
+barcode.applicationIdentifiers["custom1"] = GS1ApplicationIdentifier("90", length: 30, type: .String, dynamicLength: true)
+barcode.raw = gs1BarcodeText
+_ = barcode.parse()
+print(barcode.applicationIdentifiers["custom1"]!.stringValue)
+```
 
 ### Available Properties
 **!Attention!** Currently only the following properties are available and do get parsed
 
-- `GTIN`
-- `GtinIndicatorDigit`
-- `lotNumber`
-- `expirationDate`
-- `serialNumber`
-- `amount`
 
-Currently implementing:
-- `productionDate`
-- `dueDate`
-- `packagingDate`
-- `bestBeforeDate`
-- `productVariant`
-- `secondaryDataFields`
-- `numberOfUnitsContained`
-- `serialShippingContainerCode`
-- `gtinOfContainedTradeItems`
+| Application Identifier | ID           |
+| ------------------ |:-------------:|
+| serialShippingContainerCode |  00 |
+| gtin               | 01  |
+| gtinIndicatorDigit | 01  |
+| gtinOfContainedTradeItems | 02  |
+| lotNumber (batchNumber) | 10  |
+| productionDate     | 11  |
+| dueDate            | 12  |
+| packagingDate      | 13  |
+| bestBeforeDate     | 15  |
+| expirationDate     | 17  |
+| productVariant     | 20  |
+| serialNumber       | 21  |
+| secondaryDataFields | 22  |
+| amount (quantity)  | 30  |
+| numberOfUnitsContained | 37  |
 
+Other properties can be extended pretty easily. **You** can contribute yourself, or open an [issue](https://github.com/xremix/SwiftGS1Barcode/issues/new) if there is something missing for you.
 
-Other properties can be extended pretty easily. **You** can contribute yourself, or open an [issue](https://github.com/xremix/SwiftGS1Barcode/issues/new).
+### Initializers
 
-
-#### Speed
-Parsing 500 barcodes takes 0.258ms right now.
+| Initializer | Description           |
+| ------------------ |:-------------:|
+| `Barcode()` |  Creates plain Barcode |
+| `Barcode(raw: String)` |  Creates Barcode with raw data and parses it |
+| `Barcode(raw: String, customApplicationIdentifiers: [String: GS1ApplicationIdentifier])` |  Creates Barcode with raw data, custom AIs and parses it |
 
 ## Installation
 ### CocoaPods

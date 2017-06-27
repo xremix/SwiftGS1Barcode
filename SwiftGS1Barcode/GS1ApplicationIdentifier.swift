@@ -8,41 +8,41 @@
 
 import UIKit
 
-enum GS1Type: String{
+public enum GS1ApplicationIdentifierType: String{
     case Date
     case String
     case Int
     var description: String{
         return self.rawValue
     }
+    public init(){self.init()}
 }
 
-class GS1ApplicationIdentifier: NSObject{
-    var identifier: String
-    var maxLength: Int
-    var dynamicLength: Bool = false
+public class GS1ApplicationIdentifier: NSObject{
+    public var identifier: String
+    public var maxLength: Int
+    public var dynamicLength: Bool = false
     
-    var type: GS1Type?
+    public var type: GS1ApplicationIdentifierType?
     
-    var originalValue: String?
-    var dateValue: NSDate?
-    var intValue: Int?
+    public var originalValue: String?
+    public var dateValue: NSDate?
+    public var intValue: Int?
+    public var stringValue: String?
     
-    var stringValue: String?
-    
-    init(_ identifier: String, length: Int){
+    public init(_ identifier: String, length: Int){
         self.identifier = identifier
         self.maxLength = length
     }
-    convenience init(_ identifier: String, length: Int, type: GS1Type){
+    public convenience init(_ identifier: String, length: Int, type: GS1ApplicationIdentifierType){
         self.init(identifier, length: length)
         self.type = type
     }
-    convenience init(_ identifier: String, length: Int, type: GS1Type, dynamicLength: Bool){
+    public convenience init(_ identifier: String, length: Int, type: GS1ApplicationIdentifierType, dynamicLength: Bool){
         self.init(identifier, length: length, type: type)
         self.dynamicLength = dynamicLength
     }
-    convenience init(dateIdentifier identifier: String){
+    public convenience init(dateIdentifier identifier: String){
         self.init(identifier, length: 6, type: .Date)
     }
 }

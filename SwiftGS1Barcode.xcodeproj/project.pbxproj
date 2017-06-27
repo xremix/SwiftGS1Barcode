@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6413187C1F023B0700F9C4DF /* GS1BarcodeAdvancedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6413187B1F023B0700F9C4DF /* GS1BarcodeAdvancedTests.swift */; };
 		64754CFE1F010A1000B22B62 /* GS1Barcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64754CFD1F010A1000B22B62 /* GS1Barcode.swift */; };
 		64754D001F010E8400B22B62 /* BarcodeParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64754CFF1F010E8400B22B62 /* BarcodeParser.swift */; };
 		64754D021F010E9100B22B62 /* Barcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64754D011F010E9100B22B62 /* Barcode.swift */; };
@@ -19,7 +20,6 @@
 		64754D121F01106D00B22B62 /* GS1BarcodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64754D111F01106D00B22B62 /* GS1BarcodeTests.swift */; };
 		64754D141F01107500B22B62 /* StringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64754D131F01107500B22B62 /* StringTests.swift */; };
 		64754D161F01107B00B22B62 /* DateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64754D151F01107B00B22B62 /* DateTests.swift */; };
-		64754D181F011B9700B22B62 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 64754D171F011B9700B22B62 /* README.md */; };
 		64AE611D1F01081800F3B9C0 /* SwiftGS1Barcode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64AE61131F01081800F3B9C0 /* SwiftGS1Barcode.framework */; };
 		64AE61241F01081800F3B9C0 /* SwiftGS1Barcode.h in Headers */ = {isa = PBXBuildFile; fileRef = 64AE61161F01081800F3B9C0 /* SwiftGS1Barcode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64DD17361F014E1400F10103 /* GS1ApplicationIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DD17351F014E1400F10103 /* GS1ApplicationIdentifier.swift */; };
@@ -38,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6413187B1F023B0700F9C4DF /* GS1BarcodeAdvancedTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GS1BarcodeAdvancedTests.swift; sourceTree = "<group>"; };
 		64754CFD1F010A1000B22B62 /* GS1Barcode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GS1Barcode.swift; sourceTree = "<group>"; };
 		64754CFF1F010E8400B22B62 /* BarcodeParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarcodeParser.swift; sourceTree = "<group>"; };
 		64754D011F010E9100B22B62 /* Barcode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Barcode.swift; sourceTree = "<group>"; };
@@ -127,6 +128,7 @@
 				64754D0F1F01106500B22B62 /* SimpleBarcodeTests.swift */,
 				64754D131F01107500B22B62 /* StringTests.swift */,
 				E28E99881F01ABC50093C02B /* GS1BarcodeNodeTests.swift */,
+				6413187B1F023B0700F9C4DF /* GS1BarcodeAdvancedTests.swift */,
 			);
 			path = SwiftGS1BarcodeTests;
 			sourceTree = "<group>";
@@ -249,7 +251,6 @@
 				64DD17361F014E1400F10103 /* GS1ApplicationIdentifier.swift in Sources */,
 				64754D081F010ECA00B22B62 /* DateExtension.swift in Sources */,
 				64754CFE1F010A1000B22B62 /* GS1Barcode.swift in Sources */,
-				64754D181F011B9700B22B62 /* README.md in Sources */,
 				64754D061F010EBB00B22B62 /* StringExtension.swift in Sources */,
 				64754D001F010E8400B22B62 /* BarcodeParser.swift in Sources */,
 				64754D021F010E9100B22B62 /* Barcode.swift in Sources */,
@@ -264,6 +265,7 @@
 				64754D141F01107500B22B62 /* StringTests.swift in Sources */,
 				64754D0C1F01103C00B22B62 /* BarcodeParserTests.swift in Sources */,
 				E28E99891F01ABC50093C02B /* GS1BarcodeNodeTests.swift in Sources */,
+				6413187C1F023B0700F9C4DF /* GS1BarcodeAdvancedTests.swift in Sources */,
 				64DD17381F014F8700F10103 /* GS1ApplicationIdentifierTests.swift in Sources */,
 				64754D121F01106D00B22B62 /* GS1BarcodeTests.swift in Sources */,
 				64754D101F01106500B22B62 /* SimpleBarcodeTests.swift in Sources */,

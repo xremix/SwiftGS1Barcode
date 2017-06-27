@@ -33,7 +33,7 @@ public class GS1BarcodeParser: NSObject {
         nodeData = nodeData.substring(from: node.identifier.length)
         
         
-        // Cut to Group Seperator
+        // Cut data by Group Seperator, if dynamic length item and has a GS.
         if node.dynamicLength && nodeData.index(of: "\u{1D}") != nil {
             let toi = nodeData.index(of: "\u{1D}")
             let to = nodeData.distance(from: nodeData.startIndex, to: toi ?? nodeData.startIndex)
@@ -48,16 +48,17 @@ public class GS1BarcodeParser: NSObject {
         // Set original value to the value of the content
         node.originalValue = nodeData
         
-        if node.type == GS1Type.Date{
+        // Parsing nodeData, based on the node Type
+        if node.type == GS1ApplicationIdentifierType.Date && nodeData.length >= 6{ // Parsing 6 Chars to date
             
             node.dateValue = NSDate.from(
                 year: Int("20" + nodeData.substring(to: 2)),
                 month: Int(nodeData.substring(2, length: 2)),
                 day: Int(nodeData.substring(4, length: 2))
             )
-        }else if(node.type == GS1Type.Int){
+        }else if(node.type == GS1ApplicationIdentifierType.Int){ // Parsing value to Integer
             node.intValue = Int(nodeData)
-        }else{
+        }else{ // Taking the data left and just putting it into the string value
             node.stringValue = nodeData
         }
         return node

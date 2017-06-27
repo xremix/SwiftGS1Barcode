@@ -110,21 +110,6 @@ class GS1BarcodeTests: XCTestCase {
         XCTAssertFalse(b.validate())
     }
     
-    func testGtinNodeOrder(){
-        var index = 0
-        var indexGtin = 0
-        
-        for node in GS1Barcode().applicationIdentifiers{
-            index += 1
-            if node.key == "gtinIndicatorDigit"{
-                indexGtin = index
-            }else if node.key == "gtin"{
-                XCTAssert(indexGtin < index)
-            }
-            
-        }
-    }
-    
     func testPerformance(){
         
         measure {
