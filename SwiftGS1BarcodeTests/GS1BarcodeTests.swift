@@ -81,7 +81,6 @@ class GS1BarcodeTests: XCTestCase {
         XCTAssertEqual(barcode.expirationDate, NSDate.from(year: 2021, month: 1, day: 31))
     }
     
-    
     func testGETINIndicatorDifferentValue(){
         barcode = GS1Barcode(raw: "01201234670420223005\u{1d}172101311010022247")
         XCTAssertNotNil(barcode.gtinIndicatorDigit)
@@ -118,6 +117,4 @@ class GS1BarcodeTests: XCTestCase {
             }
         }
     }
-    
-    
 }

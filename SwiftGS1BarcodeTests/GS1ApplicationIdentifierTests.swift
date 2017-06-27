@@ -19,17 +19,17 @@ class GS1ApplicationIdentifierTests: XCTestCase {
     }
     
     func testInitIdMaxLengthType() {
-        let node = GS1ApplicationIdentifier("id", length: 1, type: .Int)
+        let node = GS1ApplicationIdentifier("id", length: 1, type: .Numeric)
         XCTAssertEqual(node.identifier, "id")
         XCTAssertEqual(node.maxLength, 1)
-        XCTAssertEqual(node.type, .Int)
+        XCTAssertEqual(node.type, .Numeric)
     }
     
     func testInitIdMaxLengthTypeDynamicLength() {
-        let node = GS1ApplicationIdentifier("id", length: 1, type: .Int, dynamicLength: true)
+        let node = GS1ApplicationIdentifier("id", length: 1, type: .Numeric, dynamicLength: true)
         XCTAssertEqual(node.identifier, "id")
         XCTAssertEqual(node.maxLength, 1)
-        XCTAssertEqual(node.type, .Int)
+        XCTAssertEqual(node.type, .Numeric)
         XCTAssertEqual(node.dynamicLength, true)
     }
 }

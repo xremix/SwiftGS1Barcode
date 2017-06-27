@@ -13,7 +13,7 @@ public class GS1BarcodeParser: NSObject {
         if data == nil{
             return data
         }
-        
+        // TODO this should also include the maxlength of the identifier
         var length = (node.originalValue?.length ?? 0) + (node.identifier.length)
         if node.dynamicLength && data!.length > length{
             length += 1
@@ -56,7 +56,7 @@ public class GS1BarcodeParser: NSObject {
                 month: Int(nodeData.substring(2, length: 2)),
                 day: Int(nodeData.substring(4, length: 2))
             )
-        }else if(node.type == GS1ApplicationIdentifierType.Int){ // Parsing value to Integer
+        }else if(node.type == GS1ApplicationIdentifierType.Numeric){ // Parsing value to Integer
             node.intValue = Int(nodeData)
         }else{ // Taking the data left and just putting it into the string value
             node.stringValue = nodeData

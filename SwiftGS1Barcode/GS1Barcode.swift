@@ -16,21 +16,21 @@ public class GS1Barcode: NSObject, Barcode {
     
     // Dictionary containing all supported application identifiers
     public var applicationIdentifiers = [
-        "serialShippingContainerCode": GS1ApplicationIdentifier("00", length: 18, type: .String),
-        "gtinOfContainedTradeItems": GS1ApplicationIdentifier("02", length: 14, type: .String),
-        "gtinIndicatorDigit": GS1ApplicationIdentifier("01", length: 1, type: .Int),
-        "gtin": GS1ApplicationIdentifier("01", length: 14, type: .String),
-        "lotNumber": GS1ApplicationIdentifier("10", length: 20, type: .String, dynamicLength: true),
+        "serialShippingContainerCode": GS1ApplicationIdentifier("00", length: 18, type: .AlphaNumeric),
+        "gtinOfContainedTradeItems": GS1ApplicationIdentifier("02", length: 14, type: .AlphaNumeric),
+        "gtinIndicatorDigit": GS1ApplicationIdentifier("01", length: 1, type: .Numeric),
+        "gtin": GS1ApplicationIdentifier("01", length: 14, type: .AlphaNumeric),
+        "lotNumber": GS1ApplicationIdentifier("10", length: 20, type: .AlphaNumeric, dynamicLength: true),
         "productionDate": GS1ApplicationIdentifier(dateIdentifier: "11"),
         "dueDate": GS1ApplicationIdentifier(dateIdentifier: "12"),
         "packagingDate": GS1ApplicationIdentifier(dateIdentifier: "13"),
         "bestBeforeDate": GS1ApplicationIdentifier(dateIdentifier: "15"),
         "expirationDate": GS1ApplicationIdentifier(dateIdentifier: "17"),
-        "productVariant": GS1ApplicationIdentifier("20", length: 2, type: .String),
-        "serialNumber": GS1ApplicationIdentifier("21", length: 20, type: .String, dynamicLength: true),
-        "secondaryDataFields": GS1ApplicationIdentifier("22", length:29, type: .String, dynamicLength:true),
-        "amount": GS1ApplicationIdentifier("30", length: 8, type: .Int, dynamicLength: true),
-        "numberOfUnitsContained": GS1ApplicationIdentifier("37", length:8, type: .String, dynamicLength:true),
+        "productVariant": GS1ApplicationIdentifier("20", length: 2, type: .AlphaNumeric),
+        "serialNumber": GS1ApplicationIdentifier("21", length: 20, type: .AlphaNumeric, dynamicLength: true),
+        "secondaryDataFields": GS1ApplicationIdentifier("22", length:29, type: .AlphaNumeric, dynamicLength:true),
+        "amount": GS1ApplicationIdentifier("30", length: 8, type: .Numeric, dynamicLength: true),
+        "numberOfUnitsContained": GS1ApplicationIdentifier("37", length:8, type: .AlphaNumeric, dynamicLength:true),
         ]
     
     // Mapping for User Friendly Usage

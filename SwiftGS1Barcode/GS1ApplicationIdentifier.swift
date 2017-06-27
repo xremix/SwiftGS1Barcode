@@ -10,8 +10,8 @@ import UIKit
 
 public enum GS1ApplicationIdentifierType: String{
     case Date
-    case String
-    case Int
+    case AlphaNumeric
+    case Numeric
     var description: String{
         return self.rawValue
     }
