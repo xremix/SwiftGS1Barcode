@@ -8,13 +8,13 @@
 
 import UIKit
 
-// Struct used in the GS1 Barcode Class
-
 public class GS1Barcode: NSObject, Barcode {
+    // RAW Data of the barcode in a string
     public var raw: String?
+    // Stores if the last parsing was successfull
     private var lastParseSuccessfull: Bool = false
     
-    // All
+    // Dictionary containing all supported application identifiers
     var applicationIdentifiers = [
         "gtinIndicatorDigit": GS1ApplicationIdentifier("01", length: 1, type: .Int),
         "gtin": GS1ApplicationIdentifier("01", length: 14, type: .String),
@@ -34,6 +34,7 @@ public class GS1Barcode: NSObject, Barcode {
         "numberOfUnitsContained": GS1ApplicationIdentifier("37", length:8, type: .String, dynamicLength:true),
         
         ]
+    
     // Mapping for User Friendly Usage
     public var gtin: String?{ get {return applicationIdentifiers["gtin"]!.stringValue} }
     public var lotNumber: String?{ get {return applicationIdentifiers["lotNumber"]!.stringValue} }
@@ -41,7 +42,6 @@ public class GS1Barcode: NSObject, Barcode {
     public var serialNumber: String?{ get {return applicationIdentifiers["serialNumber"]!.stringValue} }
     public var amount: Int?{ get {return applicationIdentifiers["amount"]!.intValue} }
     public var gtinIndicatorDigit: Int? {get {return applicationIdentifiers["gtinIndicatorDigit"]!.intValue}}
-    
     // Experimental Support
     public var serialShippingContainerCode: String? {get{return applicationIdentifiers["serialShippingContainerCode"]!.stringValue}}
     public var gtinOfContainedTradeItems: String? {get{return applicationIdentifiers["gtinOfContainedTradeItems"]!.stringValue}}
@@ -57,6 +57,8 @@ public class GS1Barcode: NSObject, Barcode {
     required override public init() {
         super.init()
     }
+    
+    // Init barcode with string and parse it
     required public init(raw: String) {
         super.init()
         self.raw = raw

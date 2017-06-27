@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum GS1Type: String{
+enum GS1ApplicationIdentifierType: String{
     case Date
     case String
     case Int
@@ -22,7 +22,7 @@ class GS1ApplicationIdentifier: NSObject{
     var maxLength: Int
     var dynamicLength: Bool = false
     
-    var type: GS1Type?
+    var type: GS1ApplicationIdentifierType?
     
     var originalValue: String?
     var dateValue: NSDate?
@@ -34,11 +34,11 @@ class GS1ApplicationIdentifier: NSObject{
         self.identifier = identifier
         self.maxLength = length
     }
-    convenience init(_ identifier: String, length: Int, type: GS1Type){
+    convenience init(_ identifier: String, length: Int, type: GS1ApplicationIdentifierType){
         self.init(identifier, length: length)
         self.type = type
     }
-    convenience init(_ identifier: String, length: Int, type: GS1Type, dynamicLength: Bool){
+    convenience init(_ identifier: String, length: Int, type: GS1ApplicationIdentifierType, dynamicLength: Bool){
         self.init(identifier, length: length, type: type)
         self.dynamicLength = dynamicLength
     }
