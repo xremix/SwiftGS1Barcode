@@ -76,7 +76,7 @@ class GS1BarcodeTests: XCTestCase {
     }
     
     func testExpirationDate(){
-        XCTAssertNotNil(barcode.nodeDictionary["expirationDate"]!.originalValue)
+        XCTAssertNotNil(barcode.applicationIdentifiers["expirationDate"]!.originalValue)
         XCTAssertNotNil(barcode.expirationDate)
         XCTAssertEqual(barcode.expirationDate, NSDate.from(year: 2021, month: 1, day: 31))
     }
@@ -114,7 +114,7 @@ class GS1BarcodeTests: XCTestCase {
         var index = 0
         var indexGtin = 0
         
-        for node in GS1Barcode().nodeDictionary{
+        for node in GS1Barcode().applicationIdentifiers{
             index += 1
             if node.key == "gtinIndicatorDigit"{
                 indexGtin = index
