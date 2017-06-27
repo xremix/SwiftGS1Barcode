@@ -14,7 +14,6 @@ extension String{
         let end = self.index(start, offsetBy: length)
         let range = start..<end
         
-        
         return self.substring(with: range)  // play
     }
     func substring(_ from: Int, to: Int)->String{

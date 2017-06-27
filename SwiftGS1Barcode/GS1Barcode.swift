@@ -13,8 +13,8 @@ import UIKit
 public class GS1Barcode: NSObject, Barcode {
     public var raw: String?
     private var lastParseSuccessfull: Bool = false
-
-        // All
+    
+    // All
     var applicationIdentifiers = [
         "gtinIndicatorDigit": GS1ApplicationIdentifier("01", length: 1, type: .Int),
         "gtin": GS1ApplicationIdentifier("01", length: 14, type: .String),
