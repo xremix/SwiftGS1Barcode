@@ -11,6 +11,8 @@ This project is mostly a wraper around the complex logic of parsing GS1 Barcode 
 Parsing is as simple as
 
 ```Swift
+import SwiftGS1Barcode
+// ...
 let gs1Barcode = "01101234670417283002\u{1D}1721103110S123456"
 let barcode = GS1Barcode(raw: gs1Barcode)
 
@@ -24,6 +26,8 @@ print(barcode.lotNumber) // S123456
 To seperate the parsing from initializing I'd recommend a code like
 
 ```Swift
+import SwiftGS1Barcode
+// ...
 let gs1BarcodeText = "01101234670417283002\u{1D}1721103110S123456"
 let barcode = GS1Barcode()
 barcode.raw = gs1BarcodeText
@@ -33,7 +37,9 @@ _ = barcode.parse()
 To parse **custom Application Identifiers** use the following code
 
 ```Swift
-let gs1BarcodeText = "90HalloWelt\u{1D}01101234670417283002\u{1D}1721103110S123456"
+import SwiftGS1Barcode
+// ...
+let gs1BarcodeText = "90HelloWorld\u{1D}01101234670417283002\u{1D}1721103110S123456"
 let barcode = GS1Barcode()
 barcode.applicationIdentifiers["custom1"] = GS1ApplicationIdentifier("90", length: 30, type: .String, dynamicLength: true)
 barcode.raw = gs1BarcodeText
@@ -64,6 +70,14 @@ print(barcode.applicationIdentifiers["custom1"]!.stringValue)
 | numberOfUnitsContained | 37  |
 
 Other properties can be extended pretty easily. **You** can contribute yourself, or open an [issue](https://github.com/xremix/SwiftGS1Barcode/issues/new) if there is something missing for you.
+
+### Initializers
+
+| Initializer | Description           |
+| ------------------ |:-------------:|
+| `Barcode()` |  Creates plain Barcode |
+| `Barcode(raw: String)` |  Creates Barcode with raw data and parses it |
+| `Barcode(raw: String, customApplicationIdentifiers: [String: GS1ApplicationIdentifier])` |  Creates Barcode with raw data, custom AIs and parses it |
 
 ## Installation
 ### CocoaPods

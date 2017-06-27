@@ -13,7 +13,7 @@ class StringTests: XCTestCase {
     var testString: String = ""
     override func setUp() {
         super.setUp()
-        testString = "Hallo Welt"
+        testString = "Hello World"
     }
     
     override func tearDown() {
@@ -21,43 +21,43 @@ class StringTests: XCTestCase {
     }
     
     func testLength(){
-        XCTAssertEqual(testString.length, 10)
+        XCTAssertEqual(testString.length, 11)
     }
     
     func testSubstringFromLength() {
-        XCTAssertEqual(testString.substring(0, length: 5), "Hallo")
-        XCTAssertEqual(testString.substring(1, length: 5), "allo ")
-        XCTAssertEqual(testString, "Hallo Welt") // Test Integration
+        XCTAssertEqual(testString.substring(0, length: 5), "Hello")
+        XCTAssertEqual(testString.substring(1, length: 5), "ello ")
+        XCTAssertEqual(testString, "Hello World") // Test Integration
     }
     func testSubstringFromTo() {
-        XCTAssertEqual(testString.substring(0, to: 5), "Hallo")
-        XCTAssertEqual(testString.substring(1, to: 5), "allo")
-        XCTAssertEqual(testString, "Hallo Welt") // Test Integration
+        XCTAssertEqual(testString.substring(0, to: 5), "Hello")
+        XCTAssertEqual(testString.substring(1, to: 5), "ello")
+        XCTAssertEqual(testString, "Hello World") // Test Integration
     }
     func testSubstringFrom() {
-        XCTAssertEqual(testString.substring(from: 0), "Hallo Welt")
-        XCTAssertEqual(testString.substring(from: 1), "allo Welt")
-        XCTAssertEqual(testString, "Hallo Welt") // Test Integration
+        XCTAssertEqual(testString.substring(from: 0), "Hello World")
+        XCTAssertEqual(testString.substring(from: 1), "ello World")
+        XCTAssertEqual(testString, "Hello World") // Test Integration
     }
     func testSubstringTo() {
         XCTAssertEqual(testString.substring(from: 0), testString)
-        XCTAssertEqual(testString.substring(from: 6), "Welt")
+        XCTAssertEqual(testString.substring(from: 6), "World")
         XCTAssertEqual(testString.substring(from: testString.length), "")
-        XCTAssertEqual(testString, "Hallo Welt") // Test Integration
+        XCTAssertEqual(testString, "Hello World") // Test Integration
     }
     func testSubstringToString() {
-        XCTAssertEqual(testString.substring(to: "Welt"), "Hallo ")
-        XCTAssertEqual(testString.substring(to: "Hallo Welt"), "")
-        XCTAssertEqual(testString, "Hallo Welt") // Test Integration
+        XCTAssertEqual(testString.substring(to: "World"), "Hello ")
+        XCTAssertEqual(testString.substring(to: "Hello World"), "")
+        XCTAssertEqual(testString, "Hello World") // Test Integration
     }
     func testStartsWith(){
-        XCTAssert(testString.startsWith("Hallo"))
-        XCTAssert(!testString.startsWith("Welt"))
-        XCTAssertEqual(testString, "Hallo Welt") // Test Integration
+        XCTAssert(testString.startsWith("Hello"))
+        XCTAssert(!testString.startsWith("World"))
+        XCTAssertEqual(testString, "Hello World") // Test Integration
     }
     
     func testIndexOfOptions(){
-        //        testString.index(of: "Welt", options: co)
+        //        testString.index(of: "World", options: co)
     }
     
     func testPerformanceExample() {

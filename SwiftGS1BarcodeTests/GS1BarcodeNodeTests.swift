@@ -12,10 +12,81 @@ import XCTest
 
 class GS1BarcodeNodeTests: XCTestCase {
     
-    // TODO Write test for the Main Nodes as well
+    // Main AI Tests
+    func testgtinIndicatorDigit(){
+        // ("01", length: 1, type: .Int),
+        let barcode = GS1Barcode(raw: "01123456789012345")
+        XCTAssertNotNil(barcode.gtinIndicatorDigit)
+        XCTAssertEqual(barcode.gtinIndicatorDigit, 1)
+    }
+    func testgtin(){
+        // ("01", length: 14, type: .String),
+        let barcode = GS1Barcode(raw: "01123456789012345")
+        XCTAssertNotNil(barcode.gtin)
+        XCTAssertEqual(barcode.gtin, "12345678901234")
+    }
+    func testlotNumberShort(){
+        // ("10", length: 20, type: .String, dynamicLength: true),
+        let barcode = GS1Barcode(raw: "101")
+        XCTAssertNotNil(barcode.lotNumber)
+        XCTAssertEqual(barcode.lotNumber, "1")
+    }
+    func testlotNumberEmpty(){
+        // ("10", length: 20, type: .String, dynamicLength: true),
+        let barcode = GS1Barcode(raw: "10\u{1D}678901234567890")
+        XCTAssertNotNil(barcode.lotNumber)
+        XCTAssertEqual(barcode.lotNumber, "")
+    }
+    func testlotNumberMiddle(){
+        // ("10", length: 20, type: .String, dynamicLength: true),
+        let barcode = GS1Barcode(raw: "1012345\u{1D}678901234567890")
+        XCTAssertNotNil(barcode.lotNumber)
+        XCTAssertEqual(barcode.lotNumber, "12345")
+    }
+    func testlotNumberFull(){
+        // ("10", length: 20, type: .String, dynamicLength: true),
+        let barcode = GS1Barcode(raw: "1012345678901234567890")
+        XCTAssertNotNil(barcode.lotNumber)
+        XCTAssertEqual(barcode.lotNumber, "12345678901234567890")
+    }
+    func testlotNumberLarge(){
+        // ("10", length: 20, type: .String, dynamicLength: true),
+        let barcode = GS1Barcode(raw: "1012345678901234567890123")
+        XCTAssertNotNil(barcode.lotNumber)
+        XCTAssertEqual(barcode.lotNumber, "12345678901234567890")
+    }
+    func testexpirationDate(){
+        // (dateIdentifier: "17"),
+        let barcode = GS1Barcode(raw: "17210110")
+        XCTAssertNotNil(barcode.expirationDate)
+        XCTAssertEqual(barcode.expirationDate,  NSDate.from(year: 2021, month: 1, day: 10))
+    }
+    func testserialNumber(){
+        // ("21", length: 20, type: .String, dynamicLength: true),
+        let barcode = GS1Barcode(raw: "21")
+        XCTAssertNotNil(barcode.serialNumber)
+        XCTAssertEqual(barcode.serialNumber, "")
+    }
+    func testamount(){
+        // ("30", length: 8, type: .Int, dynamicLength: true),
+        let barcode = GS1Barcode(raw: "3010")
+        XCTAssertNotNil(barcode.amount)
+        XCTAssertEqual(barcode.amount, 10)
+    }
+    func testamountMiddle(){
+        // ("30", length: 8, type: .Int, dynamicLength: true),
+        let barcode = GS1Barcode(raw: "301010\u{1D}")
+        XCTAssertNotNil(barcode.amount)
+        XCTAssertEqual(barcode.amount, 1010)
+    }
+    func testamountFull(){
+        // ("30", length: 8, type: .Int, dynamicLength: true),
+        let barcode = GS1Barcode(raw: "3012345678")
+        XCTAssertNotNil(barcode.amount)
+        XCTAssertEqual(barcode.amount, 12345678)
+    }
     
-    
-    // Experimental Support
+    // Advanced AIs
     func testserialShippingContainerCodeNode(){
         // serialShippingContainerCode (00), Length:  18,
         let barcode = GS1Barcode(raw: "002123456789012345678901234567890")

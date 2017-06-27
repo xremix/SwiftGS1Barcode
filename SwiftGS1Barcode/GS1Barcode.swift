@@ -16,23 +16,21 @@ public class GS1Barcode: NSObject, Barcode {
     
     // Dictionary containing all supported application identifiers
     public var applicationIdentifiers = [
+        "serialShippingContainerCode": GS1ApplicationIdentifier("00", length: 18, type: .String),
+        "gtinOfContainedTradeItems": GS1ApplicationIdentifier("02", length: 14, type: .String),
         "gtinIndicatorDigit": GS1ApplicationIdentifier("01", length: 1, type: .Int),
         "gtin": GS1ApplicationIdentifier("01", length: 14, type: .String),
         "lotNumber": GS1ApplicationIdentifier("10", length: 20, type: .String, dynamicLength: true),
-        "expirationDate": GS1ApplicationIdentifier(dateIdentifier: "17"),
-        "serialNumber": GS1ApplicationIdentifier("21", length: 20, type: .String, dynamicLength: true),
-        "amount": GS1ApplicationIdentifier("30", length: 8, type: .Int, dynamicLength: true),
-        // Experimental Support
-        "serialShippingContainerCode": GS1ApplicationIdentifier("00", length: 18, type: .String),
-        "gtinOfContainedTradeItems": GS1ApplicationIdentifier("02", length: 14, type: .String),
         "productionDate": GS1ApplicationIdentifier(dateIdentifier: "11"),
         "dueDate": GS1ApplicationIdentifier(dateIdentifier: "12"),
         "packagingDate": GS1ApplicationIdentifier(dateIdentifier: "13"),
         "bestBeforeDate": GS1ApplicationIdentifier(dateIdentifier: "15"),
+        "expirationDate": GS1ApplicationIdentifier(dateIdentifier: "17"),
         "productVariant": GS1ApplicationIdentifier("20", length: 2, type: .String),
+        "serialNumber": GS1ApplicationIdentifier("21", length: 20, type: .String, dynamicLength: true),
         "secondaryDataFields": GS1ApplicationIdentifier("22", length:29, type: .String, dynamicLength:true),
+        "amount": GS1ApplicationIdentifier("30", length: 8, type: .Int, dynamicLength: true),
         "numberOfUnitsContained": GS1ApplicationIdentifier("37", length:8, type: .String, dynamicLength:true),
-        
         ]
     
     // Mapping for User Friendly Usage
@@ -42,7 +40,7 @@ public class GS1Barcode: NSObject, Barcode {
     public var serialNumber: String?{ get {return applicationIdentifiers["serialNumber"]!.stringValue} }
     public var amount: Int?{ get {return applicationIdentifiers["amount"]!.intValue} }
     public var gtinIndicatorDigit: Int? {get {return applicationIdentifiers["gtinIndicatorDigit"]!.intValue}}
-    // Experimental Support
+    // TODO Order could be changed to fit dictionary above
     public var serialShippingContainerCode: String? {get{return applicationIdentifiers["serialShippingContainerCode"]!.stringValue}}
     public var gtinOfContainedTradeItems: String? {get{return applicationIdentifiers["gtinOfContainedTradeItems"]!.stringValue}}
     public var productionDate: NSDate? {get{return applicationIdentifiers["productionDate"]!.dateValue}}
@@ -61,7 +59,21 @@ public class GS1Barcode: NSObject, Barcode {
     // Init barcode with string and parse it
     required public init(raw: String) {
         super.init()
+        // Setting Original Data
         self.raw = raw
+        // Parsing Barcode
+        _ = parse()
+    }
+    required public init(raw: String, customApplicationIdentifiers: [String: GS1ApplicationIdentifier]) {
+        super.init()
+        // Setting Original Data
+        self.raw = raw
+        
+        // Adding Custom Application Identifiers
+        for ai in customApplicationIdentifiers{
+            self.applicationIdentifiers[ai.key] = ai.value
+        }
+        // Parsing Barcode
         _ = parse()
     }
     
