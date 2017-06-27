@@ -15,7 +15,7 @@ public class GS1Barcode: NSObject, Barcode {
     private var lastParseSuccessfull: Bool = false
     
     // Dictionary containing all supported application identifiers
-    var applicationIdentifiers = [
+    public var applicationIdentifiers = [
         "gtinIndicatorDigit": GS1ApplicationIdentifier("01", length: 1, type: .Int),
         "gtin": GS1ApplicationIdentifier("01", length: 14, type: .String),
         "lotNumber": GS1ApplicationIdentifier("10", length: 20, type: .String, dynamicLength: true),
