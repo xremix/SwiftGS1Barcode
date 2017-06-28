@@ -56,8 +56,23 @@ class StringTests: XCTestCase {
         XCTAssertEqual(testString, "Hello World") // Test Integration
     }
     
-    func testIndexOfOptions(){
-        // TODO write this test
+    func testIndexOf(){
+        XCTAssertEqual(testString.index(of: "H"), testString.startIndex)
+    }
+    func testIndexOfLongString(){
+        XCTAssertEqual(testString.index(of: "Hello"), testString.startIndex)
+    }
+    func testIndexOfWrongString(){
+        XCTAssertEqual(testString.index(of: "x"), nil)
+    }
+    func testIndexOfEndString(){
+        XCTAssertEqual(testString.index(of: "World"), testString.index(testString.startIndex, offsetBy: 6))
+    }
+    func testIndexOfLowerCaseChar(){
+        XCTAssertEqual(testString.index(of: "h"), nil)
+    }
+    func testIndexOfLowerCaseString(){
+        XCTAssertEqual(testString.index(of: "hello"), nil)
     }
     
     func testPerformanceExample() {

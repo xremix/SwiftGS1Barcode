@@ -18,6 +18,7 @@ public class GS1Barcode: NSObject, Barcode {
     public var applicationIdentifiers = [
         "serialShippingContainerCode": GS1ApplicationIdentifier("00", length: 18, type: .AlphaNumeric),
         "gtin": GS1ApplicationIdentifier("01", length: 14, type: .AlphaNumeric),
+        // TODO Get rid of the gtinIndicatorDigit? This isn't an official AI
         "gtinIndicatorDigit": GS1ApplicationIdentifier("01", length: 1, type: .Numeric),
         "gtinOfContainedTradeItems": GS1ApplicationIdentifier("02", length: 14, type: .AlphaNumeric),
         "lotNumber": GS1ApplicationIdentifier("10", length: 20, type: .AlphaNumeric, dynamicLength: true),
