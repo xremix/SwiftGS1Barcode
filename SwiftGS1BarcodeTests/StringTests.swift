@@ -57,7 +57,7 @@ class StringTests: XCTestCase {
     }
     
     func testIndexOfOptions(){
-        //        testString.index(of: "World", options: co)
+        // TODO write this test
     }
     
     func testPerformanceExample() {

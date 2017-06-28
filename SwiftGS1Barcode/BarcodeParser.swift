@@ -9,58 +9,58 @@
 import UIKit
 
 public class GS1BarcodeParser: NSObject {
-    static func reduce(data: String?, by node: GS1ApplicationIdentifier)->String?{
+    static func reduce(data: String?, by ai: GS1ApplicationIdentifier)->String?{
         if data == nil{
             return data
         }
-        
-        var length = (node.originalValue?.length ?? 0) + (node.identifier.length)
-        if node.dynamicLength && data!.length > length{
+        // TODO this should also include the maxlength of the identifier
+        var length = (ai.originalValue?.length ?? 0) + (ai.identifier.length)
+        if ai.dynamicLength && data!.length > length{
             length += 1
         }
         return data!.substring(from: length)
     }
-    static func parseGS1ApplicationIdentifier(node: GS1ApplicationIdentifier, data: String)->GS1ApplicationIdentifier{
-        print("Parsing node with identifier \(node.identifier) of type \(String(describing: node.type?.description))")
+    static func parseGS1ApplicationIdentifier(_ ai: GS1ApplicationIdentifier, data: String)->GS1ApplicationIdentifier{
+        print("Parsing application identifier with identifier \(ai.identifier) of type \(String(describing: ai.type?.description))")
         
-        if !data.startsWith(node.identifier){
-            print("Passed invalid Node with wrong node identifier")
-            return node
+        if !data.startsWith(ai.identifier){
+            print("Passed invalid Application Identifier with wrong identifier")
+            return ai
         }
         
         // Get Pure Data by removing the identifier
-        var nodeData = data
-        nodeData = nodeData.substring(from: node.identifier.length)
+        var aiData = data
+        aiData = aiData.substring(from: ai.identifier.length)
         
         
         // Cut data by Group Seperator, if dynamic length item and has a GS.
-        if node.dynamicLength && nodeData.index(of: "\u{1D}") != nil {
-            let toi = nodeData.index(of: "\u{1D}")
-            let to = nodeData.distance(from: nodeData.startIndex, to: toi ?? nodeData.startIndex)
+        if ai.dynamicLength && aiData.index(of: "\u{1D}") != nil {
+            let toi = aiData.index(of: "\u{1D}")
+            let to = aiData.distance(from: aiData.startIndex, to: toi ?? aiData.startIndex)
             
-            nodeData = nodeData.substring(to: to)
+            aiData = aiData.substring(to: to)
         }
         // Cut to Max Length
-        if nodeData.length > node.maxLength{
-            nodeData = nodeData.substring(to: node.maxLength)
+        if aiData.length > ai.maxLength{
+            aiData = aiData.substring(to: ai.maxLength)
         }
         
         // Set original value to the value of the content
-        node.originalValue = nodeData
+        ai.originalValue = aiData
         
-        // Parsing nodeData, based on the node Type
-        if node.type == GS1ApplicationIdentifierType.Date && nodeData.length >= 6{ // Parsing 6 Chars to date
+        // Parsing aiData, based on the ai Type
+        if ai.type == GS1ApplicationIdentifierType.Date && aiData.length >= 6{ // Parsing 6 Chars to date
             
-            node.dateValue = NSDate.from(
-                year: Int("20" + nodeData.substring(to: 2)),
-                month: Int(nodeData.substring(2, length: 2)),
-                day: Int(nodeData.substring(4, length: 2))
+            ai.dateValue = NSDate.from(
+                year: Int("20" + aiData.substring(to: 2)),
+                month: Int(aiData.substring(2, length: 2)),
+                day: Int(aiData.substring(4, length: 2))
             )
-        }else if(node.type == GS1ApplicationIdentifierType.Int){ // Parsing value to Integer
-            node.intValue = Int(nodeData)
+        }else if(ai.type == GS1ApplicationIdentifierType.Numeric){ // Parsing value to Integer
+            ai.intValue = Int(aiData)
         }else{ // Taking the data left and just putting it into the string value
-            node.stringValue = nodeData
+            ai.stringValue = aiData
         }
-        return node
+        return ai
     }
 }

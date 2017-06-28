@@ -24,7 +24,7 @@ class GS1BarcodeAdvancedTests: XCTestCase {
     func testAddApplicationIdentifier(){
         let gs1BarcodeText = "90HelloWorld\u{1D}01101234670417283002\u{1D}1721103110S123456"
         let barcode = GS1Barcode()
-        barcode.applicationIdentifiers["custom1"] = GS1ApplicationIdentifier("90", length: 30, type: .String, dynamicLength: true)
+        barcode.applicationIdentifiers["custom1"] = GS1ApplicationIdentifier("90", length: 30, type: .AlphaNumeric, dynamicLength: true)
         barcode.raw = gs1BarcodeText
         _ = barcode.parse()
         print(barcode.applicationIdentifiers["custom1"]!.stringValue!)
@@ -36,8 +36,8 @@ class GS1BarcodeAdvancedTests: XCTestCase {
     
     func testCustomApplicationIdentifier(){
      let barcode = GS1Barcode(raw: "90HelloWorld\u{1D}91WorldHello\u{1D}01101234670417283002\u{1D}1721103110S123456", customApplicationIdentifiers: [
-        "custom1": GS1ApplicationIdentifier("90", length: 30, type: .String, dynamicLength: true),
-        "custom2": GS1ApplicationIdentifier("91", length: 30, type: .String, dynamicLength: true)
+        "custom1": GS1ApplicationIdentifier("90", length: 30, type: .AlphaNumeric, dynamicLength: true),
+        "custom2": GS1ApplicationIdentifier("91", length: 30, type: .AlphaNumeric, dynamicLength: true)
         ])
         
         XCTAssert(barcode.validate())
