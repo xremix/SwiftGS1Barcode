@@ -12,24 +12,24 @@ import XCTest
 class GS1ApplicationIdentifierTests: XCTestCase {
     
     func testInitIdMaxLength() {
-        let node = GS1ApplicationIdentifier("id", length: 1)
-        XCTAssertEqual(node.identifier, "id")
-        XCTAssertEqual(node.maxLength, 1)
-        XCTAssertEqual(node.type, nil)
+        let ai = GS1ApplicationIdentifier("id", length: 1)
+        XCTAssertEqual(ai.identifier, "id")
+        XCTAssertEqual(ai.maxLength, 1)
+        XCTAssertEqual(ai.type, nil)
     }
     
     func testInitIdMaxLengthType() {
-        let node = GS1ApplicationIdentifier("id", length: 1, type: .Numeric)
-        XCTAssertEqual(node.identifier, "id")
-        XCTAssertEqual(node.maxLength, 1)
-        XCTAssertEqual(node.type, .Numeric)
+        let ai = GS1ApplicationIdentifier("id", length: 1, type: .Numeric)
+        XCTAssertEqual(ai.identifier, "id")
+        XCTAssertEqual(ai.maxLength, 1)
+        XCTAssertEqual(ai.type, .Numeric)
     }
     
     func testInitIdMaxLengthTypeDynamicLength() {
-        let node = GS1ApplicationIdentifier("id", length: 1, type: .Numeric, dynamicLength: true)
-        XCTAssertEqual(node.identifier, "id")
-        XCTAssertEqual(node.maxLength, 1)
-        XCTAssertEqual(node.type, .Numeric)
-        XCTAssertEqual(node.dynamicLength, true)
+        let ai = GS1ApplicationIdentifier("id", length: 1, type: .Numeric, dynamicLength: true)
+        XCTAssertEqual(ai.identifier, "id")
+        XCTAssertEqual(ai.maxLength, 1)
+        XCTAssertEqual(ai.type, .Numeric)
+        XCTAssertEqual(ai.dynamicLength, true)
     }
 }

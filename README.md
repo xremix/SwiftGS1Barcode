@@ -7,7 +7,7 @@ A GS1 Barcode Library and Parser written in Swift
 
 This project is mostly a wraper around the complex logic of parsing GS1 Barcode Strings.
 
-## Usage
+## Getting started
 Parsing is as simple as
 
 ```Swift
@@ -17,11 +17,11 @@ let gs1Barcode = "01101234670417283002\u{1D}1721103110S123456"
 let barcode = GS1Barcode(raw: gs1Barcode)
 
 print(barcode.gtin) // 10123467041728
-print(barcode.amount) // 2
+print(barcode.countOfItems) // 2
 print(barcode.expirationDate) // 31.10.2021
 print(barcode.lotNumber) // S123456
 ```
-##### Advanced Usage
+#### Advanced Usage
 
 To seperate the parsing from initializing I'd recommend a code like
 
@@ -66,28 +66,36 @@ print(barcode.applicationIdentifiers["custom1"]!.stringValue)
 | productVariant     | 20  |
 | serialNumber       | 21  |
 | secondaryDataFields | 22  |
-| amount (quantity)  | 30  |
+| countOfItems  | 30  |
 | numberOfUnitsContained | 37  |
 
-Other properties can be extended pretty easily. **You** can contribute yourself, or open an [issue](https://github.com/xremix/SwiftGS1Barcode/issues/new) if there is something missing for you.
-
-### Initializers
-
-| Initializer | Description           |
-| ------------------ |:-------------:|
-| `Barcode()` |  Creates plain Barcode |
-| `Barcode(raw: String)` |  Creates Barcode with raw data and parses it |
-| `Barcode(raw: String, customApplicationIdentifiers: [String: GS1ApplicationIdentifier])` |  Creates Barcode with raw data, custom AIs and parses it |
+You can add custom application identifiers by adding them to the key / value dictionary:
+```Swift
+let barcode = GS1Barcode()
+barcode.applicationIdentifiers["custom1"] = GS1ApplicationIdentifier("90", length: 30, type: .String, dynamicLength: true)
+```
+They'll automatically get parsed by the `parse()` function.  
+**You can also simply contribute by yourself and add them to the `GS1BarcodeParser.swift` class**, or open an [issue](https://github.com/xremix/SwiftGS1Barcode/issues/new) if there is something missing for you.
 
 ## Installation
 ### CocoaPods
-You can install the library to you project using [CocoaPods](https://cocoapods.org). Add the following code to your `Podfile`:
+You can install [the library](https://cocoapods.org/pods/SwiftGS1Barcode) to your project by using [CocoaPods](https://cocoapods.org). Add the following code to your `Podfile`:
 ```
-pod 'SwiftGS1Barcode'
+platform :ios, '9.0'
+use_frameworks!
+
+target 'MyApp' do
+	pod 'SwiftGS1Barcode'
+end
 ```
-Alternative you can also add the direct Github URL: 
+Alternative you can also add the direct Github source (or a different branch): 
 ```
-pod 'SwiftGS1Barcode', :git => 'https://github.com/xremix/SwiftGS1Barcode', :branch => 'master'
+platform :ios, '9.0'
+use_frameworks!
+
+target 'MyApp' do
+	pod 'SwiftGS1Barcode', :git => 'https://github.com/xremix/SwiftGS1Barcode', :branch => 'master'
+end
 ```
 
 ### Manually

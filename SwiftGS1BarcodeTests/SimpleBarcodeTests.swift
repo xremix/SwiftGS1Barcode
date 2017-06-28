@@ -23,7 +23,13 @@ class SimpleBarcodeTests: XCTestCase {
     
     func testRaw(){
         simpleBarcode = SimpleBarcode(raw: "0120012345678909")
-        XCTAssert(simpleBarcode!.raw == "0120012345678909")
+        XCTAssertEqual(simpleBarcode!.raw, "0120012345678909")
+    }
+    
+    func testEmptyBarcode(){
+        simpleBarcode = SimpleBarcode(raw: "")
+        XCTAssertEqual(simpleBarcode!.raw, "")
+        XCTAssert(!simpleBarcode!.validate())
     }
     
     func testValidate() {
