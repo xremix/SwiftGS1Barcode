@@ -25,7 +25,7 @@ public class GS1ApplicationIdentifier: NSObject{
     
     public var type: GS1ApplicationIdentifierType?
     
-    public var originalValue: String?
+    public var rawValue: String?
     public var dateValue: NSDate?
     public var intValue: Int?
     public var stringValue: String?

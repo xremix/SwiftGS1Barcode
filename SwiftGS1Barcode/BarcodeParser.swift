@@ -14,7 +14,7 @@ public class GS1BarcodeParser: NSObject {
             return data
         }
         // TODO this should also include the maxlength of the identifier
-        var length = (ai.originalValue?.length ?? 0) + (ai.identifier.length)
+        var length = (ai.rawValue?.length ?? 0) + (ai.identifier.length)
         if ai.dynamicLength && data!.length > length{
             length += 1
         }
@@ -46,7 +46,7 @@ public class GS1BarcodeParser: NSObject {
         }
         
         // Set original value to the value of the content
-        ai.originalValue = aiData
+        ai.rawValue = aiData
         
         // Parsing aiData, based on the ai Type
         if ai.type == GS1ApplicationIdentifierType.Date && aiData.length >= 6{ // Parsing 6 Chars to date

@@ -36,7 +36,7 @@ class BarcodeParserTests: XCTestCase {
     func testAlphaNumericFixedLength(){
         var ai =  GS1ApplicationIdentifier("10", length: 10, type: .AlphaNumeric, dynamicLength: false)
         ai = GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: "1012345678901")
-        XCTAssertEqual(ai.originalValue, "1234567890")
+        XCTAssertEqual(ai.rawValue, "1234567890")
         XCTAssertEqual(ai.stringValue, "1234567890")
         XCTAssertEqual(ai.dateValue, nil)
         XCTAssertEqual(ai.intValue, nil)
@@ -44,7 +44,7 @@ class BarcodeParserTests: XCTestCase {
     func testAlphaNumericFixedLengthTooSmall(){
         var ai =  GS1ApplicationIdentifier("10", length: 10, type: .AlphaNumeric, dynamicLength: false)
         ai = GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: "1012")
-        XCTAssertEqual(ai.originalValue, "12")
+        XCTAssertEqual(ai.rawValue, "12")
         XCTAssertEqual(ai.stringValue, "12")
         XCTAssertEqual(ai.dateValue, nil)
         XCTAssertEqual(ai.intValue, nil)
@@ -52,7 +52,7 @@ class BarcodeParserTests: XCTestCase {
     func testAlphaNumericFixedLengthEmpty(){
         var ai =  GS1ApplicationIdentifier("10", length: 10, type: .AlphaNumeric, dynamicLength: false)
         ai = GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: "10")
-        XCTAssertEqual(ai.originalValue, "")
+        XCTAssertEqual(ai.rawValue, "")
         XCTAssertEqual(ai.stringValue, "")
         XCTAssertEqual(ai.dateValue, nil)
         XCTAssertEqual(ai.intValue, nil)
@@ -60,7 +60,7 @@ class BarcodeParserTests: XCTestCase {
     func testAlphaNumericDymamicLength(){
         var ai =  GS1ApplicationIdentifier("10", length: 5, type: .AlphaNumeric, dynamicLength: true)
         ai = GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: "101234\u{1D}1")
-        XCTAssertEqual(ai.originalValue, "1234")
+        XCTAssertEqual(ai.rawValue, "1234")
         XCTAssertEqual(ai.stringValue, "1234")
         XCTAssertEqual(ai.dateValue, nil)
         XCTAssertEqual(ai.intValue, nil)
@@ -68,7 +68,7 @@ class BarcodeParserTests: XCTestCase {
     func testAlphaNumericDymamicLengthMaxLength(){
         var ai =  GS1ApplicationIdentifier("10", length: 5, type: .AlphaNumeric, dynamicLength: true)
         ai = GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: "1012345\u{1D}1")
-        XCTAssertEqual(ai.originalValue, "12345")
+        XCTAssertEqual(ai.rawValue, "12345")
         XCTAssertEqual(ai.stringValue, "12345")
         XCTAssertEqual(ai.dateValue, nil)
         XCTAssertEqual(ai.intValue, nil)
@@ -76,7 +76,7 @@ class BarcodeParserTests: XCTestCase {
     func testAlphaNumericDymamicLengthTooLarge(){
         var ai =  GS1ApplicationIdentifier("10", length: 5, type: .AlphaNumeric, dynamicLength: true)
         ai = GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: "10123456\u{1D}1")
-        XCTAssertEqual(ai.originalValue, "12345")
+        XCTAssertEqual(ai.rawValue, "12345")
         XCTAssertEqual(ai.stringValue, "12345")
         XCTAssertEqual(ai.dateValue, nil)
         XCTAssertEqual(ai.intValue, nil)
@@ -84,14 +84,14 @@ class BarcodeParserTests: XCTestCase {
     func testGroupSeperatorBasedInt(){
         var ai =  GS1ApplicationIdentifier("30", length: 99, type: .Numeric, dynamicLength: true)
         ai = GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: "3001\u{1D}12341234")
-        XCTAssertEqual(ai.originalValue, "01")
+        XCTAssertEqual(ai.rawValue, "01")
         XCTAssertEqual(ai.intValue, 1)
         XCTAssertEqual(ai.dateValue, nil)
     }
     func testGroupSeperatorBased(){
         var ai = GS1ApplicationIdentifier("30", length: 8, type: .AlphaNumeric, dynamicLength: true)
         ai = GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: "3001\u{1D}12341234")
-        XCTAssertEqual(ai.originalValue, "01")
+        XCTAssertEqual(ai.rawValue, "01")
         XCTAssertEqual(ai.stringValue, "01")
         XCTAssertEqual(ai.intValue, nil)
         XCTAssertEqual(ai.dateValue, nil)
@@ -99,7 +99,7 @@ class BarcodeParserTests: XCTestCase {
     func testGroupSeperatorBasedEndOfString(){
         var ai = GS1ApplicationIdentifier("30", length: 8, type: .AlphaNumeric, dynamicLength: true)
         ai = GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: "3001")
-        XCTAssertEqual(ai.originalValue, "01")
+        XCTAssertEqual(ai.rawValue, "01")
         XCTAssertEqual(ai.stringValue, "01")
         XCTAssertEqual(ai.intValue, nil)
         XCTAssertEqual(ai.dateValue, nil)
