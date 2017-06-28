@@ -17,9 +17,9 @@ public class GS1Barcode: NSObject, Barcode {
     // Dictionary containing all supported application identifiers
     public var applicationIdentifiers = [
         "serialShippingContainerCode": GS1ApplicationIdentifier("00", length: 18, type: .AlphaNumeric),
-        "gtinOfContainedTradeItems": GS1ApplicationIdentifier("02", length: 14, type: .AlphaNumeric),
         "gtin": GS1ApplicationIdentifier("01", length: 14, type: .AlphaNumeric),
         "gtinIndicatorDigit": GS1ApplicationIdentifier("01", length: 1, type: .Numeric),
+        "gtinOfContainedTradeItems": GS1ApplicationIdentifier("02", length: 14, type: .AlphaNumeric),
         "lotNumber": GS1ApplicationIdentifier("10", length: 20, type: .AlphaNumeric, dynamicLength: true),
         "productionDate": GS1ApplicationIdentifier(dateIdentifier: "11"),
         "dueDate": GS1ApplicationIdentifier(dateIdentifier: "12"),
