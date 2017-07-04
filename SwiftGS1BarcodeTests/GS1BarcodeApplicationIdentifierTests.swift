@@ -7,10 +7,9 @@
 //
 
 import XCTest
+
 @testable import SwiftGS1Barcode
-
-
-class GS1BarcodeApplicationIdentifierTests: XCTestCase {
+class GS1BarcodeApplicationIdentifierTests: GS1BarcodeParserXCTestCase {
     
     // Main AI Tests
     func testgtinIndicatorDigit(){

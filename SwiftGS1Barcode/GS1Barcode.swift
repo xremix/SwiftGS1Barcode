@@ -122,7 +122,7 @@ public class GS1Barcode: NSObject, Barcode {
                 }
                 // If no ai was found return false and keep the lastParseSuccessfull to false -> This will make validate() fail as well
                 if !foundOne{
-                    print("Do not know identifier. Canceling Parsing")
+                    print("GS1Barcode Warning: Do not know identifier and cannot parse rest of the Barcode. Canceling barcode parsing")
                     return false
                 }
             }

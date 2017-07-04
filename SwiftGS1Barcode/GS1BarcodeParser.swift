@@ -9,11 +9,12 @@
 import UIKit
 
 public class GS1BarcodeParser: NSObject {
+    static var debugOutput = false
     static func reduce(data: String?, by ai: GS1ApplicationIdentifier)->String?{
         if data == nil{
             return data
         }
-        // TODO this should also include the maxlength of the identifier
+        
         var length = (ai.rawValue?.length ?? 0) + (ai.identifier.length)
         if ai.dynamicLength && data!.length > length{
             length += 1
@@ -21,10 +22,14 @@ public class GS1BarcodeParser: NSObject {
         return data!.substring(from: length)
     }
     static func parseGS1ApplicationIdentifier(_ ai: GS1ApplicationIdentifier, data: String)->GS1ApplicationIdentifier{
-        print("Parsing application identifier with identifier \(ai.identifier) of type \(String(describing: ai.type?.description))")
+        if debugOutput{
+            print("Parsing application identifier with identifier \(ai.identifier) of type \(String(describing: ai.type?.description))")
+        }
         
         if !data.startsWith(ai.identifier){
-            print("Passed invalid Application Identifier with wrong identifier")
+            if debugOutput{
+                print("Passed invalid Application Identifier with wrong identifier")
+            }
             return ai
         }
         
@@ -40,7 +45,7 @@ public class GS1BarcodeParser: NSObject {
             
             aiData = aiData.substring(to: to)
         }
-        // Cut to Max Length
+        // Cut to Max Length, if aiData still longer after the previous cutting.
         if aiData.length > ai.maxLength{
             aiData = aiData.substring(to: ai.maxLength)
         }
@@ -49,16 +54,19 @@ public class GS1BarcodeParser: NSObject {
         ai.rawValue = aiData
         
         // Parsing aiData, based on the ai Type
-        if ai.type == GS1ApplicationIdentifierType.Date && aiData.length >= 6{ // Parsing 6 Chars to date
-            
-            ai.dateValue = NSDate.from(
-                year: Int("20" + aiData.substring(to: 2)),
-                month: Int(aiData.substring(2, length: 2)),
-                day: Int(aiData.substring(4, length: 2))
-            )
+        if ai.type == GS1ApplicationIdentifierType.Date{ // Check if type is a date type and if there are 6 more chars available
+            // Parsing the next 6 chars to a NSDate
+            // TODO consider supporting multiple lengths here?!
+            if aiData.length >= 6{
+                ai.dateValue = NSDate.from(
+                    year: Int("20" + aiData.substring(to: 2)),
+                    month: Int(aiData.substring(2, length: 2)),
+                    day: Int(aiData.substring(4, length: 2))
+                )
+            }
         }else if(ai.type == GS1ApplicationIdentifierType.Numeric){ // Parsing value to Integer
             ai.intValue = Int(aiData)
-        }else{ // Taking the data left and just putting it into the string value
+        }else{ // Taking the data left and just putting it into the string value. Expecting that type is not Date and no Numeric. If it is date but not enough chars there, it would still put the content into the string
             ai.stringValue = aiData
         }
         return ai

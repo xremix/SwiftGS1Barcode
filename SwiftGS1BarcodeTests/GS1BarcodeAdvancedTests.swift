@@ -8,9 +8,10 @@
 
 import XCTest
 
+
 @testable import SwiftGS1Barcode
 
-class GS1BarcodeAdvancedTests: XCTestCase {
+class GS1BarcodeAdvancedTests: GS1BarcodeParserXCTestCase {
     
     func testParseLater(){
         let gs1BarcodeText = "01101234670417283002\u{1D}1721103110S123456"

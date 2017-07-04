@@ -7,9 +7,9 @@
 //
 
 import XCTest
-@testable import SwiftGS1Barcode
 
-class GS1BarcodeTests: XCTestCase {
+@testable import SwiftGS1Barcode
+class GS1BarcodeTests: GS1BarcodeParserXCTestCase {
     var barcode: GS1Barcode!
     override func setUp() {
         super.setUp()
@@ -109,8 +109,7 @@ class GS1BarcodeTests: XCTestCase {
         XCTAssertFalse(b.validate())
     }
     
-    func testPerformance(){
-        
+    func testPerformanceOfBarcodeParsing(){
         measure {
             for _ in 0...500{
                 _ = GS1Barcode(raw: "01101234670420223005\u{1d}172101311010022247")

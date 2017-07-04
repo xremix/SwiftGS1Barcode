@@ -7,12 +7,14 @@
 //
 
 import XCTest
+
 @testable import SwiftGS1Barcode
 
-class BarcodeParserTests: XCTestCase {
+class BarcodeParserTests: GS1BarcodeParserXCTestCase {
     
     override func setUp() {
         super.setUp()
+        GS1BarcodeParser.debugOutput = false
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
@@ -32,6 +34,14 @@ class BarcodeParserTests: XCTestCase {
         //        var ai = GS1ApplicationIdentifier(identifier: "01", type: .Date)
         ai = GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: "17210228")
         XCTAssertEqual(ai.dateValue, NSDate.from(year: 2021, month: 2, day: 28)) // 17
+    }
+    func testDatePraserNotEnoughData(){
+        var ai = GS1ApplicationIdentifier("17", length:6, type: .Date)
+        //        var ai = GS1ApplicationIdentifier(identifier: "01", type: .Date)
+        ai = GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: "172102")
+        XCTAssertNil(ai.dateValue)
+        XCTAssertEqual(ai.stringValue, nil)
+        XCTAssertEqual(ai.rawValue, "2102")
     }
     func testAlphaNumericFixedLength(){
         var ai =  GS1ApplicationIdentifier("10", length: 10, type: .AlphaNumeric, dynamicLength: false)
@@ -87,6 +97,22 @@ class BarcodeParserTests: XCTestCase {
         XCTAssertEqual(ai.rawValue, "01")
         XCTAssertEqual(ai.intValue, 1)
         XCTAssertEqual(ai.dateValue, nil)
+    }
+    func testNumeric(){
+        var ai =  GS1ApplicationIdentifier("30", length: 2, type: .Numeric, dynamicLength: false)
+        ai = GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: "3001\u{1D}12341234")
+        XCTAssertEqual(ai.rawValue, "01")
+        XCTAssertEqual(ai.intValue, 1)
+        XCTAssertEqual(ai.dateValue, nil)
+        XCTAssertEqual(ai.stringValue, nil)
+    }
+    func testNumericWithWrongChars(){
+        var ai =  GS1ApplicationIdentifier("30", length: 2, type: .Numeric, dynamicLength: false)
+        ai = GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: "30ab")
+        XCTAssertEqual(ai.rawValue, "ab")
+        XCTAssertEqual(ai.intValue, nil)
+        XCTAssertEqual(ai.dateValue, nil)
+        XCTAssertEqual(ai.stringValue, nil)
     }
     func testGroupSeperatorBased(){
         var ai = GS1ApplicationIdentifier("30", length: 8, type: .AlphaNumeric, dynamicLength: true)
