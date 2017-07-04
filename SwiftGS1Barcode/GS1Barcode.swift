@@ -17,9 +17,10 @@ public class GS1Barcode: NSObject, Barcode {
     // Dictionary containing all supported application identifiers
     public var applicationIdentifiers = [
         "serialShippingContainerCode": GS1ApplicationIdentifier("00", length: 18, type: .AlphaNumeric),
-        "gtinOfContainedTradeItems": GS1ApplicationIdentifier("02", length: 14, type: .AlphaNumeric),
         "gtin": GS1ApplicationIdentifier("01", length: 14, type: .AlphaNumeric),
+        // TODO Get rid of the gtinIndicatorDigit? This isn't an official AI
         "gtinIndicatorDigit": GS1ApplicationIdentifier("01", length: 1, type: .Numeric),
+        "gtinOfContainedTradeItems": GS1ApplicationIdentifier("02", length: 14, type: .AlphaNumeric),
         "lotNumber": GS1ApplicationIdentifier("10", length: 20, type: .AlphaNumeric, dynamicLength: true),
         "productionDate": GS1ApplicationIdentifier(dateIdentifier: "11"),
         "dueDate": GS1ApplicationIdentifier(dateIdentifier: "12"),
@@ -121,7 +122,7 @@ public class GS1Barcode: NSObject, Barcode {
                 }
                 // If no ai was found return false and keep the lastParseSuccessfull to false -> This will make validate() fail as well
                 if !foundOne{
-                    print("Do not know identifier. Canceling Parsing")
+                    print("GS1Barcode Warning: Do not know identifier and cannot parse rest of the Barcode. Canceling barcode parsing")
                     return false
                 }
             }
