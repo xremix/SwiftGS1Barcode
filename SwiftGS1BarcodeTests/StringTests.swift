@@ -56,6 +56,7 @@ class StringTests: XCTestCase {
         XCTAssertEqual(testString, "Hello World") // Test Integration
     }
     
+    // Tests for Index Of
     func testIndexOf(){
         XCTAssertEqual(testString.index(of: "H"), testString.startIndex)
     }
