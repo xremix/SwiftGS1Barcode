@@ -68,6 +68,8 @@ print(barcode.applicationIdentifiers["custom1"]!.stringValue)
 | countOfItems  | 30  |
 | numberOfUnitsContained | 37  |
 
+Experimental Support for `lotNumberN, additionalProductIdentification, customerPartNumber, madeToOrderVariationNumber, secondarySerialNumber, referenceToSourceEntity, productWeightInKgNoDecimal, productWeightInKgOnceDecimal, productWeightInKgTwoDecimal`
+
 You can add custom application identifiers by adding them to the key / value dictionary:
 ```Swift
 let barcode = GS1Barcode()
