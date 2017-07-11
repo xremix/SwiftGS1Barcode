@@ -12,12 +12,6 @@ import XCTest
 class GS1BarcodeApplicationIdentifierTests: GS1BarcodeParserXCTestCase {
     
     // Main AI Tests
-    func testgtinIndicatorDigit(){
-        // ("01", length: 1, type: .Int),
-        let barcode = GS1Barcode(raw: "01123456789012345")
-        XCTAssertNotNil(barcode.gtinIndicatorDigit)
-        XCTAssertEqual(barcode.gtinIndicatorDigit, 1)
-    }
     func testgtin(){
         // ("01", length: 14, type: .String),
         let barcode = GS1Barcode(raw: "01123456789012345")

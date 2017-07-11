@@ -55,7 +55,6 @@ print(barcode.applicationIdentifiers["custom1"]!.stringValue)
 | ------------------ |:-------------:|
 | serialShippingContainerCode |  00 |
 | gtin               | 01  |
-| gtinIndicatorDigit | 01  |
 | gtinOfContainedTradeItems | 02  |
 | lotNumber (batchNumber) | 10  |
 | productionDate     | 11  |
