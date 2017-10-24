@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'SwiftGS1Barcode'
-  s.version          = '0.3.5'
+  s.version          = '0.3.8'
   s.summary          = 'A GS1 Barcode Library and Parser for Swift'
  
   s.description      = <<-DESC
@@ -12,7 +12,7 @@ A GS1 Barcode Library and Parser for Swift. It allows to pass strings and valida
   s.author           = { 'Toni Hoffmann' => 'toni-hoffmann@xremix.de' }
   s.source           = { :git => 'https://github.com/xremix/SwiftGS1Barcode.git', :tag => s.version.to_s }
  
-  s.ios.deployment_target = '9.0'
+  s.ios.deployment_target = '8.0'
   s.source_files = 'SwiftGS1Barcode/*.swift'
  
 end

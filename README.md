@@ -2,10 +2,13 @@
 A GS1 Barcode Library and Parser written in Swift
 
 [![Language](https://img.shields.io/badge/language-swift%203-1b7cb9.svg)](https://img.shields.io/badge/language-swift%203-1b7cb9.svg)
-[![iOS](https://img.shields.io/badge/iOS-9.0%2B-1b7cb9.svg)](https://img.shields.io/badge/iOS-9.0%2B-1b7cb9.svg)
+[![iOS](https://img.shields.io/badge/iOS-8.0%2B-1b7cb9.svg)](https://img.shields.io/badge/iOS-9.0%2B-1b7cb9.svg)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/xremix/SwiftGS1Barcode/master/LICENSE)
 
-This project is mostly a wraper around the complex logic of parsing GS1 Barcode Strings.
+A Library to parse GS1 Barcode strings into a object and allows an easy access to the properties that a GS1 Barcode can have.  
+Supported is a large set of common Application Identifiers (GS1 Barcodes), but it can be easily extended on the fly to support any identifier needed.
+
+Contributions are most welcome.
 
 ## Getting started
 Parsing is as simple as
@@ -82,7 +85,7 @@ They'll automatically get parsed by the `parse()` function.
 ### CocoaPods
 You can install [the library](https://cocoapods.org/pods/SwiftGS1Barcode) to your project by using [CocoaPods](https://cocoapods.org). Add the following code to your `Podfile`:
 ```
-platform :ios, '9.0'
+platform :ios, '8.0'
 use_frameworks!
 
 target 'MyApp' do
@@ -91,7 +94,7 @@ end
 ```
 Alternative you can also add the direct Github source (or a different branch): 
 ```
-platform :ios, '9.0'
+platform :ios, '8.0'
 use_frameworks!
 
 target 'MyApp' do
