@@ -18,8 +18,6 @@ public class GS1Barcode: NSObject, Barcode {
     public var applicationIdentifiers = [
         "serialShippingContainerCode": GS1ApplicationIdentifier("00", length: 18, type: .AlphaNumeric),
         "gtin": GS1ApplicationIdentifier("01", length: 14, type: .AlphaNumeric),
-        // TODO Get rid of the gtinIndicatorDigit? This isn't an official AI
-        "gtinIndicatorDigit": GS1ApplicationIdentifier("01", length: 1, type: .Numeric),
         "gtinOfContainedTradeItems": GS1ApplicationIdentifier("02", length: 14, type: .AlphaNumeric),
         "lotNumber": GS1ApplicationIdentifier("10", length: 20, type: .AlphaNumeric, dynamicLength: true),
         "productionDate": GS1ApplicationIdentifier(dateIdentifier: "11"),
@@ -50,7 +48,6 @@ public class GS1Barcode: NSObject, Barcode {
     public var expirationDate: NSDate?{ get {return applicationIdentifiers["expirationDate"]!.dateValue} }
     public var serialNumber: String?{ get {return applicationIdentifiers["serialNumber"]!.stringValue} }
     public var countOfItems: Int?{ get {return applicationIdentifiers["countOfItems"]!.intValue} }
-    public var gtinIndicatorDigit: Int? {get {return applicationIdentifiers["gtinIndicatorDigit"]!.intValue}}
     // TODO Order could be changed to fit dictionary above
     public var serialShippingContainerCode: String? {get{return applicationIdentifiers["serialShippingContainerCode"]!.stringValue}}
     public var gtinOfContainedTradeItems: String? {get{return applicationIdentifiers["gtinOfContainedTradeItems"]!.stringValue}}
@@ -97,11 +94,6 @@ public class GS1Barcode: NSObject, Barcode {
         if(data.startsWith(ai.identifier)){
             let pai = GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: data)
             //            ai = GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: data)
-            // Fixes issue where two AIs have the same identifier (TODO: should maybe get rid of gtinIndicatorDigit)
-            if  pai.identifier == "01"{
-                let digit = GS1BarcodeParser.parseGS1ApplicationIdentifier(self.applicationIdentifiers["gtinIndicatorDigit"]!, data: data)
-                applicationIdentifiers["gtinIndicatorDigit"] = digit
-            }
             data =  GS1BarcodeParser.reduce(data: data, by: ai)!
             
             return true
@@ -122,15 +114,13 @@ public class GS1Barcode: NSObject, Barcode {
                 
                 // Checking the AIs by it's identifier and passing it to the Barcode Parser to get the value and cut the data
                 var foundOne = false
-                for (key, applicationIdentifier) in applicationIdentifiers {
+                for (_, applicationIdentifier) in applicationIdentifiers {
                     // Exclude the gtinIndicatorDigit, because it get's added later for the gtin identifier
-                    if key != "gtinIndicatorDigit"{
                         // If could parse ai, continue and do the loop once again
                         if(parseApplicationIdentifier(applicationIdentifier, data: &data!)){
                             foundOne = true
                             continue
                         }
-                    }
                 }
                 // If no ai was found return false and keep the lastParseSuccessfull to false -> This will make validate() fail as well
                 if !foundOne{
