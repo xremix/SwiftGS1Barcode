@@ -92,7 +92,7 @@ public class GS1Barcode: NSObject, Barcode {
     
     private func parseApplicationIdentifier(_ ai: GS1ApplicationIdentifier, data: inout String)->Bool{
         if(data.startsWith(ai.identifier)){
-            let pai = GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: data)
+            _ = GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: data)
             //            ai = GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: data)
             data =  GS1BarcodeParser.reduce(data: data, by: ai)!
             
