@@ -1,7 +1,7 @@
 # SwiftGS1Barcode
 A GS1 Barcode Library and Parser written in Swift
 
-[![Language](https://img.shields.io/badge/language-swift%203-1b7cb9.svg)](https://img.shields.io/badge/language-swift%203-1b7cb9.svg)
+[![Language](https://img.shields.io/badge/language-swift%204-1b7cb9.svg)](https://img.shields.io/badge/language-swift%204-1b7cb9.svg)
 [![iOS](https://img.shields.io/badge/iOS-8.0%2B-1b7cb9.svg)](https://img.shields.io/badge/iOS-9.0%2B-1b7cb9.svg)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/xremix/SwiftGS1Barcode/master/LICENSE)
 
@@ -58,7 +58,6 @@ print(barcode.applicationIdentifiers["custom1"]!.stringValue)
 | ------------------ |:-------------:|
 | serialShippingContainerCode |  00 |
 | gtin               | 01  |
-| gtinIndicatorDigit | 01  |
 | gtinOfContainedTradeItems | 02  |
 | lotNumber (batchNumber) | 10  |
 | productionDate     | 11  |
@@ -71,6 +70,8 @@ print(barcode.applicationIdentifiers["custom1"]!.stringValue)
 | secondaryDataFields | 22  |
 | countOfItems  | 30  |
 | numberOfUnitsContained | 37  |
+
+Experimental Support for `lotNumberN, additionalProductIdentification, customerPartNumber, madeToOrderVariationNumber, secondarySerialNumber, referenceToSourceEntity, productWeightInKgNoDecimal, productWeightInKgOnceDecimal, productWeightInKgTwoDecimal`
 
 You can add custom application identifiers by adding them to the key / value dictionary:
 ```Swift
@@ -104,15 +105,6 @@ end
 ### Manually
 You can add the project as a git `submodule`. Simply drag the `SwiftGS1Barcode.xcodeproj` file into your Xcode project.  
 **Don't forget to add the framework in your application target**
-
-
-## Deployment Steps
-- Run Unit Tests
-- Lint Podfile using `pod lib lint`
-- Update Version in `Project Settings` and `Pod Specs`
-- Push Code to Git
-- Create Release on Git
-- Push code to CocoaPods using `pod trunk push SwiftGS1Barcode.podspec`
 
 ## Resources
 A couple of resources, used for this project.

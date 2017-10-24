@@ -25,6 +25,7 @@
 		64AE61241F01081800F3B9C0 /* SwiftGS1Barcode.h in Headers */ = {isa = PBXBuildFile; fileRef = 64AE61161F01081800F3B9C0 /* SwiftGS1Barcode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64DD17361F014E1400F10103 /* GS1ApplicationIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DD17351F014E1400F10103 /* GS1ApplicationIdentifier.swift */; };
 		64DD17381F014F8700F10103 /* GS1ApplicationIdentifierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DD17371F014F8700F10103 /* GS1ApplicationIdentifierTests.swift */; };
+		64E3ACA01F14E55D002288EE /* GS1BarcodeSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E3AC9F1F14E55D002288EE /* GS1BarcodeSampleTests.swift */; };
 		E28E99891F01ABC50093C02B /* GS1BarcodeApplicationIdentifierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28E99881F01ABC50093C02B /* GS1BarcodeApplicationIdentifierTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -59,8 +60,10 @@
 		64AE61171F01081800F3B9C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64AE611C1F01081800F3B9C0 /* SwiftGS1BarcodeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftGS1BarcodeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		64AE61231F01081800F3B9C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		64C6F9581F9F1EBC00DC955D /* Deployment.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Deployment.md; sourceTree = "<group>"; };
 		64DD17351F014E1400F10103 /* GS1ApplicationIdentifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GS1ApplicationIdentifier.swift; sourceTree = "<group>"; };
 		64DD17371F014F8700F10103 /* GS1ApplicationIdentifierTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GS1ApplicationIdentifierTests.swift; sourceTree = "<group>"; };
+		64E3AC9F1F14E55D002288EE /* GS1BarcodeSampleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GS1BarcodeSampleTests.swift; sourceTree = "<group>"; };
 		E28E99881F01ABC50093C02B /* GS1BarcodeApplicationIdentifierTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GS1BarcodeApplicationIdentifierTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,6 +97,7 @@
 		64AE61091F01081800F3B9C0 = {
 			isa = PBXGroup;
 			children = (
+				64C6F9581F9F1EBC00DC955D /* Deployment.md */,
 				64754D171F011B9700B22B62 /* README.md */,
 				64754D091F010EFA00B22B62 /* SwiftGS1Barcode.podspec */,
 				64AE61151F01081800F3B9C0 /* SwiftGS1Barcode */,
@@ -130,14 +134,15 @@
 		64AE61201F01081800F3B9C0 /* SwiftGS1BarcodeTests */ = {
 			isa = PBXGroup;
 			children = (
-				641C79151F0B8FC2000357C4 /* BaseTests */,
-				64AE61231F01081800F3B9C0 /* Info.plist */,
 				64754D0B1F01103C00B22B62 /* BarcodeParserTests.swift */,
+				641C79151F0B8FC2000357C4 /* BaseTests */,
 				64754D151F01107B00B22B62 /* DateTests.swift */,
 				64DD17371F014F8700F10103 /* GS1ApplicationIdentifierTests.swift */,
 				6413187B1F023B0700F9C4DF /* GS1BarcodeAdvancedTests.swift */,
 				E28E99881F01ABC50093C02B /* GS1BarcodeApplicationIdentifierTests.swift */,
+				64E3AC9F1F14E55D002288EE /* GS1BarcodeSampleTests.swift */,
 				64754D111F01106D00B22B62 /* GS1BarcodeTests.swift */,
+				64AE61231F01081800F3B9C0 /* Info.plist */,
 				64754D0F1F01106500B22B62 /* SimpleBarcodeTests.swift */,
 				64754D131F01107500B22B62 /* StringTests.swift */,
 			);
@@ -206,13 +211,13 @@
 				TargetAttributes = {
 					64AE61121F01081800F3B9C0 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = T564M5W3X3;
-						LastSwiftMigration = 0830;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					64AE611B1F01081800F3B9C0 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = T564M5W3X3;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -276,6 +281,7 @@
 				64754D161F01107B00B22B62 /* DateTests.swift in Sources */,
 				64754D141F01107500B22B62 /* StringTests.swift in Sources */,
 				64754D0C1F01103C00B22B62 /* BarcodeParserTests.swift in Sources */,
+				64E3ACA01F14E55D002288EE /* GS1BarcodeSampleTests.swift in Sources */,
 				E28E99891F01ABC50093C02B /* GS1BarcodeApplicationIdentifierTests.swift in Sources */,
 				6413187C1F023B0700F9C4DF /* GS1BarcodeAdvancedTests.swift in Sources */,
 				64DD17381F014F8700F10103 /* GS1ApplicationIdentifierTests.swift in Sources */,
@@ -402,7 +408,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = T564M5W3X3;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -414,7 +420,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -424,7 +431,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = T564M5W3X3;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -435,7 +442,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = de.xremix.SwiftGS1Barcode;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -448,7 +456,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.xremix.SwiftGS1BarcodeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -461,7 +470,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.xremix.SwiftGS1BarcodeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
