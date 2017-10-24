@@ -83,12 +83,14 @@ public class GS1Barcode: NSObject, Barcode {
         return lastParseSuccessfull && raw != "" && raw != nil
     }
     
-    private func parseApplicationIdentifier(_ ai: inout GS1ApplicationIdentifier, data: inout String)->Bool{
+    private func parseApplicationIdentifier(_ ai: GS1ApplicationIdentifier, data: inout String)->Bool{
         if(data.startsWith(ai.identifier)){
-            ai = GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: data)
+            let pai = GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: data)
+            //            ai = GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: data)
             // Fixes issue where two AIs have the same identifier (TODO: should maybe get rid of gtinIndicatorDigit)
-            if  ai.identifier == "01"{
-                applicationIdentifiers["gtinIndicatorDigit"] = GS1BarcodeParser.parseGS1ApplicationIdentifier(applicationIdentifiers["gtinIndicatorDigit"]!, data: data)
+            if  pai.identifier == "01"{
+                let digit = GS1BarcodeParser.parseGS1ApplicationIdentifier(self.applicationIdentifiers["gtinIndicatorDigit"]!, data: data)
+                applicationIdentifiers["gtinIndicatorDigit"] = digit
             }
             data =  GS1BarcodeParser.reduce(data: data, by: ai)!
             
@@ -110,11 +112,11 @@ public class GS1Barcode: NSObject, Barcode {
                 
                 // Checking the AIs by it's identifier and passing it to the Barcode Parser to get the value and cut the data
                 var foundOne = false
-                for aiKey in applicationIdentifiers.keys{
+                for (key, applicationIdentifier) in applicationIdentifiers {
                     // Exclude the gtinIndicatorDigit, because it get's added later for the gtin identifier
-                    if aiKey != "gtinIndicatorDigit"{
+                    if key != "gtinIndicatorDigit"{
                         // If could parse ai, continue and do the loop once again
-                        if(parseApplicationIdentifier(&applicationIdentifiers[aiKey]!, data: &data!)){
+                        if(parseApplicationIdentifier(applicationIdentifier, data: &data!)){
                             foundOne = true
                             continue
                         }
@@ -131,3 +133,4 @@ public class GS1Barcode: NSObject, Barcode {
         return true
     }
 }
+
