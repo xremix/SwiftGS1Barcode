@@ -33,7 +33,7 @@ class BarcodeParserTests: GS1BarcodeParserXCTestCase {
         var ai = GS1ApplicationIdentifier("17", length:6, type: .Date)
         //        var ai = GS1ApplicationIdentifier(identifier: "01", type: .Date)
         ai = GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: "17210228")
-        XCTAssertEqual(ai.dateValue, NSDate.from(year: 2021, month: 2, day: 28)) // 17
+        XCTAssertEqual(ai.dateValue, Date.from(year: 2021, month: 2, day: 28)) // 17
     }
     func testDatePraserNotEnoughData(){
         var ai = GS1ApplicationIdentifier("17", length:6, type: .Date)
