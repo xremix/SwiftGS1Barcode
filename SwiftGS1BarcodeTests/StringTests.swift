@@ -45,11 +45,7 @@ class StringTests: XCTestCase {
         XCTAssertEqual(testString.substring(from: testString.length), "")
         XCTAssertEqual(testString, "Hello World") // Test Integration
     }
-    func testSubstringToString() {
-        XCTAssertEqual(testString.substring(to: "World"), "Hello ")
-        XCTAssertEqual(testString.substring(to: "Hello World"), "")
-        XCTAssertEqual(testString, "Hello World") // Test Integration
-    }
+
     func testStartsWith(){
         XCTAssert(testString.startsWith("Hello"))
         XCTAssert(!testString.startsWith("World"))

@@ -45,16 +45,16 @@ public class GS1Barcode: NSObject, Barcode {
     // Mapping for User Friendly Usage
     public var gtin: String?{ get {return applicationIdentifiers["gtin"]!.stringValue} }
     public var lotNumber: String?{ get {return applicationIdentifiers["lotNumber"]!.stringValue} }
-    public var expirationDate: NSDate?{ get {return applicationIdentifiers["expirationDate"]!.dateValue} }
+    public var expirationDate: Date?{ get {return applicationIdentifiers["expirationDate"]!.dateValue} }
     public var serialNumber: String?{ get {return applicationIdentifiers["serialNumber"]!.stringValue} }
     public var countOfItems: Int?{ get {return applicationIdentifiers["countOfItems"]!.intValue} }
     // TODO Order could be changed to fit dictionary above
     public var serialShippingContainerCode: String? {get{return applicationIdentifiers["serialShippingContainerCode"]!.stringValue}}
     public var gtinOfContainedTradeItems: String? {get{return applicationIdentifiers["gtinOfContainedTradeItems"]!.stringValue}}
-    public var productionDate: NSDate? {get{return applicationIdentifiers["productionDate"]!.dateValue}}
-    public var dueDate: NSDate? {get{return applicationIdentifiers["dueDate"]!.dateValue}}
-    public var packagingDate: NSDate? {get{return applicationIdentifiers["packagingDate"]!.dateValue}}
-    public var bestBeforeDate: NSDate? {get{return applicationIdentifiers["bestBeforeDate"]!.dateValue}}
+    public var productionDate: Date? {get{return applicationIdentifiers["productionDate"]!.dateValue}}
+    public var dueDate: Date? {get{return applicationIdentifiers["dueDate"]!.dateValue}}
+    public var packagingDate: Date? {get{return applicationIdentifiers["packagingDate"]!.dateValue}}
+    public var bestBeforeDate: Date? {get{return applicationIdentifiers["bestBeforeDate"]!.dateValue}}
     public var productVariant: String? {get{return applicationIdentifiers["productVariant"]!.stringValue}}
     public var secondaryDataFields: String? {get{return applicationIdentifiers["secondaryDataFields"]!.stringValue}}
     public var numberOfUnitsContained: String? {get{return applicationIdentifiers["numberOfUnitsContained"]!.stringValue}}
@@ -92,7 +92,7 @@ public class GS1Barcode: NSObject, Barcode {
     
     private func parseApplicationIdentifier(_ ai: GS1ApplicationIdentifier, data: inout String)->Bool{
         if(data.startsWith(ai.identifier)){
-            let pai = GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: data)
+            _ = GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: data)
             //            ai = GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: data)
             data =  GS1BarcodeParser.reduce(data: data, by: ai)!
             

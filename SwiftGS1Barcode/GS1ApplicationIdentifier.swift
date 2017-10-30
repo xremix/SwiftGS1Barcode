@@ -32,7 +32,7 @@ public class GS1ApplicationIdentifier: NSObject{
     // The original data from the AI. This will always been set to the content that was trying to be parsed. If Date / Int parsing failed it will still pout the content in there
     public var rawValue: String?
     // This will be set by the Barcode parser, if type is Date
-    public var dateValue: NSDate?
+    public var dateValue: Date?
     // This will be set by the Barcode parser, if type is Numeric
     public var intValue: Int?
     // This will be set by the Barcode parser, if type is AlphaNumeric
