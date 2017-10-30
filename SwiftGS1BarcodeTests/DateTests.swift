@@ -20,7 +20,7 @@ class DateTests: XCTestCase {
     }
     
     func testFrom() {
-        let date = NSDate.from(year: 2017, month: 12, day: 24)
+        let date = Date.from(year: 2017, month: 12, day: 24)
         
         XCTAssert(NSCalendar.current.component(.year, from: date as Date) == 2017)
         XCTAssert(NSCalendar.current.component(.month, from: date as Date) == 12)

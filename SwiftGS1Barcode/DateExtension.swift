@@ -8,8 +8,8 @@
 
 import UIKit
 
-extension NSDate{
-    static func from(year: Int?, month: Int?, day: Int?)->NSDate{
+extension Date{
+    static func from(year: Int?, month: Int?, day: Int?)->Date{
         // Setting paramters to component
         var dateComponents = DateComponents()
         dateComponents.year = year
@@ -20,6 +20,6 @@ extension NSDate{
         let userCalendar = NSCalendar.current
         let someDateTime = userCalendar.date(from: dateComponents)
         // Return Date
-        return someDateTime! as NSDate
+        return someDateTime! as Date
     }
 }

@@ -55,10 +55,10 @@ public class GS1BarcodeParser: NSObject {
         
         // Parsing aiData, based on the ai Type
         if ai.type == GS1ApplicationIdentifierType.Date{ // Check if type is a date type and if there are 6 more chars available
-            // Parsing the next 6 chars to a NSDate
+            // Parsing the next 6 chars to a Date
             // TODO consider supporting multiple lengths here?!
             if aiData.length >= 6{
-                ai.dateValue = NSDate.from(
+                ai.dateValue = Date.from(
                     year: Int("20" + aiData.substring(to: 2)),
                     month: Int(aiData.substring(2, length: 2)),
                     day: Int(aiData.substring(4, length: 2))

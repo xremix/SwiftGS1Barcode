@@ -52,7 +52,7 @@ class GS1BarcodeApplicationIdentifierTests: GS1BarcodeParserXCTestCase {
         // (dateIdentifier: "17"),
         let barcode = GS1Barcode(raw: "17210110")
         XCTAssertNotNil(barcode.expirationDate)
-        XCTAssertEqual(barcode.expirationDate,  NSDate.from(year: 2021, month: 1, day: 10))
+        XCTAssertEqual(barcode.expirationDate,  Date.from(year: 2021, month: 1, day: 10))
     }
     func testserialNumber(){
         // ("21", length: 20, type: .String, dynamicLength: true),
@@ -112,13 +112,13 @@ class GS1BarcodeApplicationIdentifierTests: GS1BarcodeParserXCTestCase {
         // productionDate dateIdentifier
         let barcode = GS1Barcode(raw: "11210110")
         XCTAssertNotNil(barcode.productionDate)
-        XCTAssertEqual(barcode.productionDate, NSDate.from(year: 2021, month: 1, day: 10))
+        XCTAssertEqual(barcode.productionDate, Date.from(year: 2021, month: 1, day: 10))
     }
     func testproductionDateAIExtended(){
         // productionDate dateIdentifier
         let barcode = GS1Barcode(raw: "3088888888811210110")
         XCTAssertNotNil(barcode.productionDate)
-        XCTAssertEqual(barcode.productionDate, NSDate.from(year: 2021, month: 1, day: 10))
+        XCTAssertEqual(barcode.productionDate, Date.from(year: 2021, month: 1, day: 10))
     }
     
     
@@ -126,13 +126,13 @@ class GS1BarcodeApplicationIdentifierTests: GS1BarcodeParserXCTestCase {
         // dueDate dateIdentifier
         let barcode = GS1Barcode(raw: "12210110")
         XCTAssertNotNil(barcode.dueDate)
-        XCTAssertEqual(barcode.dueDate, NSDate.from(year: 2021, month: 1, day: 10))
+        XCTAssertEqual(barcode.dueDate, Date.from(year: 2021, month: 1, day: 10))
     }
     func testdueDateAIExtended(){
         // dueDate dateIdentifier
         let barcode = GS1Barcode(raw: "3088888888812210110")
         XCTAssertNotNil(barcode.dueDate)
-        XCTAssertEqual(barcode.dueDate, NSDate.from(year: 2021, month: 1, day: 10))
+        XCTAssertEqual(barcode.dueDate, Date.from(year: 2021, month: 1, day: 10))
     }
     
     
@@ -140,13 +140,13 @@ class GS1BarcodeApplicationIdentifierTests: GS1BarcodeParserXCTestCase {
         // packagingDate dateIdentifier
         let barcode = GS1Barcode(raw: "13210110")
         XCTAssertNotNil(barcode.packagingDate)
-        XCTAssertEqual(barcode.packagingDate, NSDate.from(year: 2021, month: 1, day: 10))
+        XCTAssertEqual(barcode.packagingDate, Date.from(year: 2021, month: 1, day: 10))
     }
     func testpackagingDateAIExtended(){
         // packagingDate dateIdentifier
         let barcode = GS1Barcode(raw: "3088888888813210110")
         XCTAssertNotNil(barcode.packagingDate)
-        XCTAssertEqual(barcode.packagingDate, NSDate.from(year: 2021, month: 1, day: 10))
+        XCTAssertEqual(barcode.packagingDate, Date.from(year: 2021, month: 1, day: 10))
     }
     
     
@@ -154,13 +154,13 @@ class GS1BarcodeApplicationIdentifierTests: GS1BarcodeParserXCTestCase {
         // bestBeforeDate dateIdentifier
         let barcode = GS1Barcode(raw: "15210110")
         XCTAssertNotNil(barcode.bestBeforeDate)
-        XCTAssertEqual(barcode.bestBeforeDate, NSDate.from(year: 2021, month: 1, day: 10))
+        XCTAssertEqual(barcode.bestBeforeDate, Date.from(year: 2021, month: 1, day: 10))
     }
     func testbestBeforeDateAIExtended(){
         // bestBeforeDate dateIdentifier
         let barcode = GS1Barcode(raw: "3088888888815210110")
         XCTAssertNotNil(barcode.bestBeforeDate)
-        XCTAssertEqual(barcode.bestBeforeDate, NSDate.from(year: 2021, month: 1, day: 10))
+        XCTAssertEqual(barcode.bestBeforeDate, Date.from(year: 2021, month: 1, day: 10))
     }
     
     
