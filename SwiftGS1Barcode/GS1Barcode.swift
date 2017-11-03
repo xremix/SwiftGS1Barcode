@@ -106,7 +106,7 @@ public class GS1Barcode: NSObject, Barcode {
         var data = raw
         
         if data != nil{
-            while data!.characters.count > 0 {
+            while data!.count > 0 {
                 // Removing Group Seperator from the beginning of the string
                 if(data!.startsWith("\u{1D}")){
                     data = data!.substring(from: 1)
