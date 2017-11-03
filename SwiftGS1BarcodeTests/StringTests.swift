@@ -21,7 +21,7 @@ class StringTests: XCTestCase {
     }
     
     func testLength(){
-        XCTAssertEqual(testString.length, 11)
+        XCTAssertEqual(testString.count, 11)
     }
     
     func testSubstringFromLength() {
@@ -42,7 +42,7 @@ class StringTests: XCTestCase {
     func testSubstringTo() {
         XCTAssertEqual(testString.substring(from: 0), testString)
         XCTAssertEqual(testString.substring(from: 6), "World")
-        XCTAssertEqual(testString.substring(from: testString.length), "")
+        XCTAssertEqual(testString.substring(from: testString.count), "")
         XCTAssertEqual(testString, "Hello World") // Test Integration
     }
 

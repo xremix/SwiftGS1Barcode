@@ -19,7 +19,7 @@ extension String{
         return self.substring(from, length: to-from)
     }
     func substring(from: Int)->String{
-        return self.substring(from, length: self.length - from)
+        return self.substring(from, length: self.count - from)
     }
     
     func substring(to: Int)->String{
@@ -32,10 +32,5 @@ extension String{
     
     func startsWith(_ subString: String)->Bool{
         return self.hasPrefix(subString)
-    }
-    var length: Int{
-        get{
-            return self.characters.count
-        }
     }
 }

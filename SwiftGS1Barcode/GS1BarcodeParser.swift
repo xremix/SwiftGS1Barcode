@@ -15,8 +15,8 @@ public class GS1BarcodeParser: NSObject {
             return data
         }
         
-        var length = (ai.rawValue?.length ?? 0) + (ai.identifier.length)
-        if ai.dynamicLength && data!.length > length{
+        var length = (ai.rawValue?.count ?? 0) + (ai.identifier.count)
+        if ai.dynamicLength && data!.count > length{
             length += 1
         }
         return data!.substring(from: length)
@@ -35,7 +35,7 @@ public class GS1BarcodeParser: NSObject {
         
         // Get Pure Data by removing the identifier
         var aiData = data
-        aiData = aiData.substring(from: ai.identifier.length)
+        aiData = aiData.substring(from: ai.identifier.count)
         
         
         // Cut data by Group Seperator, if dynamic length item and has a GS.
@@ -46,7 +46,7 @@ public class GS1BarcodeParser: NSObject {
             aiData = aiData.substring(to: to)
         }
         // Cut to Max Length, if aiData still longer after the previous cutting.
-        if aiData.length > ai.maxLength{
+        if aiData.count > ai.maxLength{
             aiData = aiData.substring(to: ai.maxLength)
         }
         
@@ -57,7 +57,7 @@ public class GS1BarcodeParser: NSObject {
         if ai.type == GS1ApplicationIdentifierType.Date{ // Check if type is a date type and if there are 6 more chars available
             // Parsing the next 6 chars to a Date
             // TODO consider supporting multiple lengths here?!
-            if aiData.length >= 6{
+            if aiData.count >= 6{
                 ai.dateValue = Date.from(
                     year: Int("20" + aiData.substring(to: 2)),
                     month: Int(aiData.substring(2, length: 2)),
