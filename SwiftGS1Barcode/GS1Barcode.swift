@@ -92,11 +92,19 @@ public class GS1Barcode: NSObject, Barcode {
     
     private func parseApplicationIdentifier(_ ai: GS1ApplicationIdentifier, data: inout String)->Bool{
         if(data.startsWith(ai.identifier)){
-            GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: data)
-            //            ai = GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: data)
-            data =  GS1BarcodeParser.reduce(data: data, by: ai)!
-            
-            return true
+            do{
+                try GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: data)
+                //            ai = GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: data)
+                data =  GS1BarcodeParser.reduce(data: data, by: ai)!
+                
+                return true
+                // Catch GS1 Barcode Parse Errors
+            }catch _ as GS1BarcodeParser.ParseError{
+                return false
+                // Catch other errors
+            }catch{
+                return false
+            }
         }
         return false
     }
@@ -116,11 +124,11 @@ public class GS1Barcode: NSObject, Barcode {
                 var foundOne = false
                 for (_, applicationIdentifier) in applicationIdentifiers {
                     // Exclude the gtinIndicatorDigit, because it get's added later for the gtin identifier
-                        // If could parse ai, continue and do the loop once again
-                        if(parseApplicationIdentifier(applicationIdentifier, data: &data!)){
-                            foundOne = true
-                            continue
-                        }
+                    // If could parse ai, continue and do the loop once again
+                    if(parseApplicationIdentifier(applicationIdentifier, data: &data!)){
+                        foundOne = true
+                        continue
+                    }
                 }
                 // If no ai was found return false and keep the lastParseSuccessfull to false -> This will make validate() fail as well
                 if !foundOne{
