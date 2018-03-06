@@ -24,7 +24,7 @@ class SimpleBarcode: NSObject, Barcode {
     func validate() -> Bool {
         return raw != nil && raw! != ""
     }
-    func parse()->Bool {
+    func parse() -> Bool {
         return validate()
     }
     func parse() throws {

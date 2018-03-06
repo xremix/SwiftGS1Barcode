@@ -90,23 +90,17 @@ public class GS1Barcode: NSObject, Barcode {
         return lastParseSuccessfull && raw != "" && raw != nil
     }
     
-    private func parseApplicationIdentifier(_ ai: GS1ApplicationIdentifier, data: inout String)->Bool{
+    private func parseApplicationIdentifier(_ ai: GS1ApplicationIdentifier, data: inout String) throws{
         if(data.startsWith(ai.identifier)){
+            // TODO VERIFY THIS!
+            // This can throw an error! Make sure data setting is like expected
             do{
                 try GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: data)
-                //            ai = GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: data)
                 data =  GS1BarcodeParser.reduce(data: data, by: ai)!
-                
-                return true
-                // Catch GS1 Barcode Parse Errors
-            }catch _ as GS1BarcodeParser.ParseError{
-                return false
-                // Catch other errors
             }catch{
-                return false
+                throw GS1BarcodeErrors.ParseError.THISISWORKINPROGRESS
             }
         }
-        return false
     }
     
     @available(*, deprecated)
@@ -136,22 +130,24 @@ public class GS1Barcode: NSObject, Barcode {
                 for (_, applicationIdentifier) in applicationIdentifiers {
                     // Exclude the gtinIndicatorDigit, because it get's added later for the gtin identifier
                     // If could parse ai, continue and do the loop once again
-                    if(parseApplicationIdentifier(applicationIdentifier, data: &data!)){
-                        foundOne = true
-                        continue
+                    // Keep syntax like that! foundOne should and continue should only be set if no error was thrown
+                    do{
+                        if(data!.startsWith(applicationIdentifier.identifier)){
+                            try parseApplicationIdentifier(applicationIdentifier, data: &data!)
+                            foundOne = true
+                            continue
+                        }
+                        
+                    }catch{
+                        foundOne = false
                     }
                 }
                 // If no ai was found return false and keep the lastParseSuccessfull to false -> This will make validate() fail as well
                 if !foundOne{
-                    print("GS1Barcode Warning: Do not know identifier and cannot parse rest of the Barcode. Canceling barcode parsing")
-                    // TODO
-                    //                    return false
-                    return
+                    throw GS1BarcodeErrors.ParseError.didNotFoundApplicationIdentifier
                 }
             }
         }
         self.lastParseSuccessfull = true
-        // TODO
-        //        return true
     }
 }

@@ -217,7 +217,7 @@ class BarcodeParserTests: GS1BarcodeParserXCTestCase {
         let ai = GS1ApplicationIdentifier("30", length: 8, type: .AlphaNumeric, dynamicLength: true)
         do{
             try GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: "0000")
-        }catch let e as GS1BarcodeParser.ParseError{
+        }catch let e as GS1BarcodeErrors.ParseError{
             switch e {
             case .dataDoesNotStartWithAIIdentifier( _):
                 XCTAssert(true)
@@ -231,7 +231,7 @@ class BarcodeParserTests: GS1BarcodeParserXCTestCase {
         let ai = GS1ApplicationIdentifier("30", length: 8, type: .AlphaNumeric, dynamicLength: true)
         do{
             try GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: "")
-        }catch let e as GS1BarcodeParser.ParseError{
+        }catch let e as GS1BarcodeErrors.ParseError{
             switch e {
             case .emptyData:
                 XCTAssert(true)
