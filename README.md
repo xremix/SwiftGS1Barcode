@@ -8,7 +8,9 @@ A GS1 Barcode Library and Parser written in Swift
 A Library to parse GS1 Barcode strings into a object and allows an easy access to the properties that a GS1 Barcode can have.  
 Supported is a large set of common Application Identifiers (GS1 Barcodes), but it can be easily extended on the fly to support any identifier needed.
 
-Contributions are most welcome.
+**Contributions are most welcome.**
+
+You can also find this project on [CocoaPods](https://cocoapods.org/pods/SwiftGS1Barcode)
 
 ## Getting started
 Parsing is as simple as
@@ -49,6 +51,7 @@ barcode.raw = gs1BarcodeText
 _ = barcode.parse()
 print(barcode.applicationIdentifiers["custom1"]!.stringValue)
 ```
+To see some samples, of how to set up Application Identifiers check out the [GS1Barcode Class](https://github.com/xremix/SwiftGS1Barcode/blob/master/SwiftGS1Barcode/GS1Barcode.swift#L19)
 
 ### Available Properties
 **!Attention!** Currently only the following properties are available and do get parsed
