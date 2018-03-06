@@ -51,6 +51,7 @@ barcode.raw = gs1BarcodeText
 _ = barcode.parse()
 print(barcode.applicationIdentifiers["custom1"]!.stringValue)
 ```
+To see some samples, of how to set up Application Identifiers check out the [GS1Barcode Class](https://github.com/xremix/SwiftGS1Barcode/blob/master/SwiftGS1Barcode/GS1Barcode.swift#L19)
 
 ### Available Properties
 **!Attention!** Currently only the following properties are available and do get parsed
