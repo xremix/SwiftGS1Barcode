@@ -11,7 +11,7 @@ import UIKit
 public enum GS1ApplicationIdentifierType: String{
     case AlphaNumeric
     case Numeric
-//    case NumericFloat
+//    case NumericFloat // Not in use yet
     case Date
     var description: String{
         return self.rawValue
@@ -20,22 +20,22 @@ public enum GS1ApplicationIdentifierType: String{
 }
 
 public class GS1ApplicationIdentifier: NSObject{
-    // Barcode Parser will search for this identifier and will
+    /** Barcode Parser will search for this identifier and will */
     public var identifier: String
-    // Maximum length. The value can be smaller if there are not enough characters available or if dynamic length is active (and a GS character is available)
+    /** Maximum length. The value can be smaller if there are not enough characters available or if dynamic length is active (and a GS character is available) */
     public var maxLength: Int
-    // Seperates by the next GS-character
+    /** Seperates by the next GS-character */
     public var dynamicLength: Bool = false
     
     public var type: GS1ApplicationIdentifierType?
     
-    // The original data from the AI. This will always been set to the content that was trying to be parsed. If Date / Int parsing failed it will still pout the content in there
+    /** The original data from the AI. This will always been set to the content that was trying to be parsed. If Date / Int parsing failed it will still pout the content in there */
     public var rawValue: String?
-    // This will be set by the Barcode parser, if type is Date
+    /** This will be set by the Barcode parser, if type is Date */
     public var dateValue: Date?
-    // This will be set by the Barcode parser, if type is Numeric
+    /** This will be set by the Barcode parser, if type is Numeric */
     public var intValue: Int?
-    // This will be set by the Barcode parser, if type is AlphaNumeric
+    /** This will be set by the Barcode parser, if type is AlphaNumeric */
     public var stringValue: String?
     
     public init(_ identifier: String, length: Int){

@@ -9,28 +9,42 @@
 import UIKit
 
 public class GS1BarcodeParser: NSObject {
-    static var debugOutput = false
+    /** Error cases for Barcode Parser */
+    public enum ParseError: Error {
+        case dataDoesNotStartWithAIIdentifier(data: String)
+        case emptyData
+    }
+    
+    /** Set to true to prints debug information to console */
+    static var printDebugOutput = false
+    
+    /**
+     Takes a data String,removed the GS1 Value and AI and returns the modified String
+     - returns:
+     Modified String without the AI and it's value
+     */
     static func reduce(data: String?, by ai: GS1ApplicationIdentifier)->String?{
         if data == nil{
             return data
         }
-        
+
         var length = (ai.rawValue?.count ?? 0) + (ai.identifier.count)
         if ai.dynamicLength && data!.count > length{
             length += 1
         }
         return data!.substring(from: length)
     }
-    static func parseGS1ApplicationIdentifier(_ ai: GS1ApplicationIdentifier, data: String)->GS1ApplicationIdentifier{
-        if debugOutput{
+    
+    /** Parses and sets the data of the AI, based on it's  identifier */
+    static func parseGS1ApplicationIdentifier(_ ai: GS1ApplicationIdentifier, data: String) throws{
+        if printDebugOutput{
             print("Parsing application identifier with identifier \(ai.identifier) of type \(String(describing: ai.type?.description))")
         }
-        
+        if data.count == 0{
+            throw ParseError.emptyData
+        }
         if !data.startsWith(ai.identifier){
-            if debugOutput{
-                print("Passed invalid Application Identifier with wrong identifier")
-            }
-            return ai
+            throw ParseError.dataDoesNotStartWithAIIdentifier(data: data)
         }
         
         // Get Pure Data by removing the identifier
@@ -56,7 +70,6 @@ public class GS1BarcodeParser: NSObject {
         // Parsing aiData, based on the ai Type
         if ai.type == GS1ApplicationIdentifierType.Date{ // Check if type is a date type and if there are 6 more chars available
             // Parsing the next 6 chars to a Date
-            // TODO consider supporting multiple lengths here?!
             if aiData.count >= 6{
                 ai.dateValue = Date.from(
                     year: Int("20" + aiData.substring(to: 2)),
@@ -69,6 +82,5 @@ public class GS1BarcodeParser: NSObject {
         }else{ // Taking the data left and just putting it into the string value. Expecting that type is not Date and no Numeric. If it is date but not enough chars there, it would still put the content into the string
             ai.stringValue = aiData
         }
-        return ai
     }
 }

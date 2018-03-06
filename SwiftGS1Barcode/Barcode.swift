@@ -9,19 +9,14 @@
 import UIKit
 
 protocol Barcode {
-    // Properties
+    /* *********** Properties *********** */
     var raw: String? {get set}
     
-    // Initializers
+    /* *********** Initializers *********** */
     init()
     init(raw: String)
     
-    // Functions
+    /* *********** Functions *********** */
     func validate() -> Bool
     func parse() -> Bool
-    
-    // Static Functions
-    //    static func tryParse(raw: String) -> Bool
-    //    static func parse(raw:String ) ->Barcode
-    
 }

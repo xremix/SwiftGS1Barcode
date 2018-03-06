@@ -13,7 +13,7 @@ class GS1BarcodeParserXCTestCase: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        GS1BarcodeParser.debugOutput = false
+        GS1BarcodeParser.printDebugOutput = false
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     

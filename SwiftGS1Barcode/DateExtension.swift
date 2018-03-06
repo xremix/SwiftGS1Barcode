@@ -9,6 +9,7 @@
 import UIKit
 
 extension Date{
+    /** Wrapper function to create a date based on a year, month and day */
     static func from(year: Int?, month: Int?, day: Int?)->Date{
         // Setting paramters to component
         var dateComponents = DateComponents()

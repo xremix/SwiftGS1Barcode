@@ -110,6 +110,7 @@ You can add the project as a git `submodule`. Simply drag the `SwiftGS1Barcode.x
 A couple of resources, used for this project.
 
 #### GS1 parsing
+https://www.gs1.org/docs/barcodes/GS1_General_Specifications.pdf
 https://www.activebarcode.de/codes/ean128_ucc128_ai.html
 https://www.gs1.at/fileadmin/user_upload/Liste_GS1_Austria_Application_Identifier.pdf
 
