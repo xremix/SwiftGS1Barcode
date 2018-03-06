@@ -9,6 +9,7 @@
 import UIKit
 
 public class GS1BarcodeParser: NSObject {
+    /** Error cases for Barcode Parser */
     public enum ParseError: Error {
         case dataDoesNotStartWithAIIdentifier(data: String)
         case emptyData
