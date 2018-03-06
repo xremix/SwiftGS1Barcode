@@ -38,18 +38,25 @@ public class GS1ApplicationIdentifier: NSObject{
     /** This will be set by the Barcode parser, if type is AlphaNumeric */
     public var stringValue: String?
     
+    /** Initiates a GS1 AI with a maximum length */
     public init(_ identifier: String, length: Int){
         self.identifier = identifier
         self.maxLength = length
     }
+    
+    /** Initiates a GS1 AI with a maximum length and a type */
     public convenience init(_ identifier: String, length: Int, type: GS1ApplicationIdentifierType){
         self.init(identifier, length: length)
         self.type = type
     }
+    
+    /** Initiates a GS1 AI with a maximum length and dynamic length and a type. The dynamic length is always stronger than the maximum length */
     public convenience init(_ identifier: String, length: Int, type: GS1ApplicationIdentifierType, dynamicLength: Bool){
         self.init(identifier, length: length, type: type)
         self.dynamicLength = dynamicLength
     }
+    
+    /** Initiates a GS1 AI of type date */
     public convenience init(dateIdentifier identifier: String){
         // Defaults the max length to 6 and sets default type to Date
         self.init(identifier, length: 6, type: .Date)
