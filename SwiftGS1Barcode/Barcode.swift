@@ -19,9 +19,4 @@ protocol Barcode {
     // Functions
     func validate() -> Bool
     func parse() -> Bool
-    
-    // Static Functions
-    //    static func tryParse(raw: String) -> Bool
-    //    static func parse(raw:String ) ->Barcode
-    
 }
