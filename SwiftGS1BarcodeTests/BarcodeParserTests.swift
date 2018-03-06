@@ -26,26 +26,34 @@ class BarcodeParserTests: GS1BarcodeParserXCTestCase {
     func testGtinPraser(){
         let ai = GS1ApplicationIdentifier("01", length:14, type: .AlphaNumeric)
         //        let ai = GS1ApplicationIdentifier(identifier: "01", type: .FixedLengthBased, fixedValue: 14)
-        GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: "010012349993333001")
+        do{
+            try GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: "010012349993333001")
+        }catch{}
         XCTAssertEqual(ai.stringValue, "00123499933330")
     }
     func testDatePraser(){
         let ai = GS1ApplicationIdentifier("17", length:6, type: .Date)
         //        let ai = GS1ApplicationIdentifier(identifier: "01", type: .Date)
-        GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: "17210228")
+        do{
+            try GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: "17210228")
+        }catch{}
         XCTAssertEqual(ai.dateValue, Date.from(year: 2021, month: 2, day: 28)) // 17
     }
     func testDatePraserNotEnoughData(){
         let ai = GS1ApplicationIdentifier("17", length:6, type: .Date)
         //        let ai = GS1ApplicationIdentifier(identifier: "01", type: .Date)
-        GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: "172102")
+        do{
+            try GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: "172102")
+        }catch{}
         XCTAssertNil(ai.dateValue)
         XCTAssertEqual(ai.stringValue, nil)
         XCTAssertEqual(ai.rawValue, "2102")
     }
     func testAlphaNumericFixedLength(){
         let ai = GS1ApplicationIdentifier("10", length: 10, type: .AlphaNumeric, dynamicLength: false)
-        GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: "1012345678901")
+        do{
+            try GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: "1012345678901")
+        }catch{}
         XCTAssertEqual(ai.rawValue, "1234567890")
         XCTAssertEqual(ai.stringValue, "1234567890")
         XCTAssertEqual(ai.dateValue, nil)
@@ -53,7 +61,9 @@ class BarcodeParserTests: GS1BarcodeParserXCTestCase {
     }
     func testAlphaNumericFixedLengthTooSmall(){
         let ai = GS1ApplicationIdentifier("10", length: 10, type: .AlphaNumeric, dynamicLength: false)
-        GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: "1012")
+        do{
+            try GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: "1012")
+        }catch{}
         XCTAssertEqual(ai.rawValue, "12")
         XCTAssertEqual(ai.stringValue, "12")
         XCTAssertEqual(ai.dateValue, nil)
@@ -61,7 +71,9 @@ class BarcodeParserTests: GS1BarcodeParserXCTestCase {
     }
     func testAlphaNumericFixedLengthEmpty(){
         let ai = GS1ApplicationIdentifier("10", length: 10, type: .AlphaNumeric, dynamicLength: false)
-        GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: "10")
+        do{
+            try GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: "10")
+        }catch{}
         XCTAssertEqual(ai.rawValue, "")
         XCTAssertEqual(ai.stringValue, "")
         XCTAssertEqual(ai.dateValue, nil)
@@ -69,7 +81,9 @@ class BarcodeParserTests: GS1BarcodeParserXCTestCase {
     }
     func testAlphaNumericDymamicLength(){
         let ai = GS1ApplicationIdentifier("10", length: 5, type: .AlphaNumeric, dynamicLength: true)
-        GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: "101234\u{1D}1")
+        do{
+            try GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: "101234\u{1D}1")
+        }catch{}
         XCTAssertEqual(ai.rawValue, "1234")
         XCTAssertEqual(ai.stringValue, "1234")
         XCTAssertEqual(ai.dateValue, nil)
@@ -77,7 +91,9 @@ class BarcodeParserTests: GS1BarcodeParserXCTestCase {
     }
     func testAlphaNumericDymamicLengthMaxLength(){
         let ai = GS1ApplicationIdentifier("10", length: 5, type: .AlphaNumeric, dynamicLength: true)
-        GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: "1012345\u{1D}1")
+        do{
+            try GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: "1012345\u{1D}1")
+        }catch{}
         XCTAssertEqual(ai.rawValue, "12345")
         XCTAssertEqual(ai.stringValue, "12345")
         XCTAssertEqual(ai.dateValue, nil)
@@ -85,7 +101,9 @@ class BarcodeParserTests: GS1BarcodeParserXCTestCase {
     }
     func testAlphaNumericDymamicLengthTooLarge(){
         let ai = GS1ApplicationIdentifier("10", length: 5, type: .AlphaNumeric, dynamicLength: true)
-        GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: "10123456\u{1D}1")
+        do{
+            try GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: "10123456\u{1D}1")
+        }catch{}
         XCTAssertEqual(ai.rawValue, "12345")
         XCTAssertEqual(ai.stringValue, "12345")
         XCTAssertEqual(ai.dateValue, nil)
@@ -93,14 +111,18 @@ class BarcodeParserTests: GS1BarcodeParserXCTestCase {
     }
     func testGroupSeperatorBasedInt(){
         let ai = GS1ApplicationIdentifier("30", length: 99, type: .Numeric, dynamicLength: true)
-        GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: "3001\u{1D}12341234")
+        do{
+            try GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: "3001\u{1D}12341234")
+        }catch{}
         XCTAssertEqual(ai.rawValue, "01")
         XCTAssertEqual(ai.intValue, 1)
         XCTAssertEqual(ai.dateValue, nil)
     }
     func testNumeric(){
         let ai = GS1ApplicationIdentifier("30", length: 2, type: .Numeric, dynamicLength: false)
-        GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: "3001\u{1D}12341234")
+        do{
+            try GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: "3001\u{1D}12341234")
+        }catch{}
         XCTAssertEqual(ai.rawValue, "01")
         XCTAssertEqual(ai.intValue, 1)
         XCTAssertEqual(ai.dateValue, nil)
@@ -108,7 +130,9 @@ class BarcodeParserTests: GS1BarcodeParserXCTestCase {
     }
     func testNumericWithWrongChars(){
         let ai = GS1ApplicationIdentifier("30", length: 2, type: .Numeric, dynamicLength: false)
-        GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: "30ab")
+        do{
+            try GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: "30ab")
+        }catch{}
         XCTAssertEqual(ai.rawValue, "ab")
         XCTAssertEqual(ai.intValue, nil)
         XCTAssertEqual(ai.dateValue, nil)
@@ -116,7 +140,9 @@ class BarcodeParserTests: GS1BarcodeParserXCTestCase {
     }
     func testGroupSeperatorBased(){
         let ai = GS1ApplicationIdentifier("30", length: 8, type: .AlphaNumeric, dynamicLength: true)
-        GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: "3001\u{1D}12341234")
+        do{
+            try GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: "3001\u{1D}12341234")
+        }catch{}
         XCTAssertEqual(ai.rawValue, "01")
         XCTAssertEqual(ai.stringValue, "01")
         XCTAssertEqual(ai.intValue, nil)
@@ -124,11 +150,43 @@ class BarcodeParserTests: GS1BarcodeParserXCTestCase {
     }
     func testGroupSeperatorBasedEndOfString(){
         let ai = GS1ApplicationIdentifier("30", length: 8, type: .AlphaNumeric, dynamicLength: true)
-        GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: "3001")
+        do{
+            try GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: "3001")
+        }catch{}
         XCTAssertEqual(ai.rawValue, "01")
         XCTAssertEqual(ai.stringValue, "01")
         XCTAssertEqual(ai.intValue, nil)
         XCTAssertEqual(ai.dateValue, nil)
+    }
+    
+    /* ************ Fail tests ************ */
+    
+    func testDataWrongStart(){
+        let ai = GS1ApplicationIdentifier("30", length: 8, type: .AlphaNumeric, dynamicLength: true)
+        do{
+            try GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: "0000")
+        }catch let e as GS1BarcodeParser.ParseError{
+            switch e {
+            case .dataDoesNotStartWithAIIdentifier( _):
+                XCTAssert(true)
+            default:
+                XCTAssert(false)
+            }
+        }catch{XCTAssert(false)}
+    }
+    
+    func testEmptyData(){
+        let ai = GS1ApplicationIdentifier("30", length: 8, type: .AlphaNumeric, dynamicLength: true)
+        do{
+            try GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: "")
+        }catch let e as GS1BarcodeParser.ParseError{
+            switch e {
+            case .emptyData:
+                XCTAssert(true)
+            default:
+                XCTAssert(false)
+            }
+        }catch{XCTAssert(false)}
     }
 }
 

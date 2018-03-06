@@ -10,7 +10,8 @@ import UIKit
 
 public class GS1BarcodeParser: NSObject {
     public enum ParseError: Error {
-        case dataDoesNotStartWithAIIdentifier
+        case dataDoesNotStartWithAIIdentifier(data: String)
+        case emptyData
     }
     
     /**
@@ -34,15 +35,17 @@ public class GS1BarcodeParser: NSObject {
         return data!.substring(from: length)
     }
     /**
-     Parses the data, based on the ai's  identifier
+     Parses and sets the data of the AI, based on it's  identifier
      */
     static func parseGS1ApplicationIdentifier(_ ai: GS1ApplicationIdentifier, data: String) throws{
         if printDebugOutput{
             print("Parsing application identifier with identifier \(ai.identifier) of type \(String(describing: ai.type?.description))")
         }
-        
+        if data.count == 0{
+            throw ParseError.emptyData
+        }
         if !data.startsWith(ai.identifier){
-            throw ParseError.dataDoesNotStartWithAIIdentifier
+            throw ParseError.dataDoesNotStartWithAIIdentifier(data: data)
         }
         
         // Get Pure Data by removing the identifier
