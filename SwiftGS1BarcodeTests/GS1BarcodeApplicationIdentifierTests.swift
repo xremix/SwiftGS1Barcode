@@ -211,6 +211,4 @@ class GS1BarcodeApplicationIdentifierTests: GS1BarcodeParserXCTestCase {
         XCTAssertNotNil(barcode.applicationIdentifiers["lotNumberN"]?.stringValue)
         XCTAssertEqual(barcode.applicationIdentifiers["lotNumberN"]?.stringValue, "1234567890123456789")
     }
-    
-    
 }

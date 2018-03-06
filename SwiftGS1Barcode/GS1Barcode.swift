@@ -37,41 +37,41 @@ public class GS1Barcode: NSObject, Barcode {
         "madeToOrderVariationNumber": GS1ApplicationIdentifier("242", length:6, type: .AlphaNumeric, dynamicLength:true), // TODO add friendly property
         "secondarySerialNumber": GS1ApplicationIdentifier("250", length:30, type: .AlphaNumeric, dynamicLength:true), // TODO add friendly property
         "referenceToSourceEntity": GS1ApplicationIdentifier("251", length:30, type: .AlphaNumeric, dynamicLength:true), // TODO add friendly property
-        "productWeightInKgNoDecimal": GS1ApplicationIdentifier("3100", length: 6, type: .Numeric),// TODO add friendly property
-        "productWeightInKgOnceDecimal": GS1ApplicationIdentifier("3101", length: 6, type: .Numeric),// TODO add friendly property
-        "productWeightInKgTwoDecimal": GS1ApplicationIdentifier("3102", length: 6, type: .Numeric),// TODO add friendly property
+        // TODO write test cases
+        "productWeightInKg": GS1ApplicationIdentifier("310", length: 6, type: .NumericDouble),// TODO add friendly property
     ]
     
     /** Mapping for User Friendly Usage */
-    public var gtin: String?{ get {return applicationIdentifiers["gtin"]!.stringValue} }
-    public var lotNumber: String?{ get {return applicationIdentifiers["lotNumber"]!.stringValue} }
-    public var expirationDate: Date?{ get {return applicationIdentifiers["expirationDate"]!.dateValue} }
-    public var serialNumber: String?{ get {return applicationIdentifiers["serialNumber"]!.stringValue} }
-    public var countOfItems: Int?{ get {return applicationIdentifiers["countOfItems"]!.intValue} }
-    // TODO Order could be changed to fit dictionary above
     public var serialShippingContainerCode: String? {get{return applicationIdentifiers["serialShippingContainerCode"]!.stringValue}}
+    public var gtin: String?{ get {return applicationIdentifiers["gtin"]!.stringValue} }
     public var gtinOfContainedTradeItems: String? {get{return applicationIdentifiers["gtinOfContainedTradeItems"]!.stringValue}}
+    public var lotNumber: String?{ get {return applicationIdentifiers["lotNumber"]!.stringValue} }
     public var productionDate: Date? {get{return applicationIdentifiers["productionDate"]!.dateValue}}
     public var dueDate: Date? {get{return applicationIdentifiers["dueDate"]!.dateValue}}
     public var packagingDate: Date? {get{return applicationIdentifiers["packagingDate"]!.dateValue}}
     public var bestBeforeDate: Date? {get{return applicationIdentifiers["bestBeforeDate"]!.dateValue}}
+    public var expirationDate: Date?{ get {return applicationIdentifiers["expirationDate"]!.dateValue} }
     public var productVariant: String? {get{return applicationIdentifiers["productVariant"]!.stringValue}}
+    public var serialNumber: String?{ get {return applicationIdentifiers["serialNumber"]!.stringValue} }
     public var secondaryDataFields: String? {get{return applicationIdentifiers["secondaryDataFields"]!.stringValue}}
+    public var countOfItems: Int?{ get {return applicationIdentifiers["countOfItems"]!.intValue} }
     public var numberOfUnitsContained: String? {get{return applicationIdentifiers["numberOfUnitsContained"]!.stringValue}}
+    public var productWeightInKg: Double? {get{return applicationIdentifiers["productWeightInKg"]!.doubleValue}}
     
     
     required override public init() {
         super.init()
     }
     
-    // Init barcode with string and parse it
+    /** Init barcode with string and parse it */
     required public init(raw: String) {
         super.init()
         // Setting Original Data
         self.raw = raw
         // Parsing Barcode
-        _ = parse()
+        try? parse()
     }
+    
     required public init(raw: String, customApplicationIdentifiers: [String: GS1ApplicationIdentifier]) {
         super.init()
         // Setting Original Data
@@ -82,10 +82,10 @@ public class GS1Barcode: NSObject, Barcode {
             self.applicationIdentifiers[ai.key] = ai.value
         }
         // Parsing Barcode
-        _ = parse()
+        try? parse()
     }
     
-    // Validating if the barcode got parsed correctly
+    /** Validating if the barcode got parsed correctly **/
     public func validate() -> Bool {
         return lastParseSuccessfull && raw != "" && raw != nil
     }
@@ -109,7 +109,18 @@ public class GS1Barcode: NSObject, Barcode {
         return false
     }
     
-    public func parse() ->Bool{
+    @available(*, deprecated)
+    public func tryParse() -> Bool{
+        do{
+            try parse()
+            return true
+        }catch{
+            return false
+        }
+        
+    }
+    
+    public func parse() throws{
         self.lastParseSuccessfull = false
         var data = raw
         
@@ -133,11 +144,14 @@ public class GS1Barcode: NSObject, Barcode {
                 // If no ai was found return false and keep the lastParseSuccessfull to false -> This will make validate() fail as well
                 if !foundOne{
                     print("GS1Barcode Warning: Do not know identifier and cannot parse rest of the Barcode. Canceling barcode parsing")
-                    return false
+                    // TODO
+                    //                    return false
+                    return
                 }
             }
         }
         self.lastParseSuccessfull = true
-        return true
+        // TODO
+        //        return true
     }
 }

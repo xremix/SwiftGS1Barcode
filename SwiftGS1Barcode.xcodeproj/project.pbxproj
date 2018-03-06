@@ -134,17 +134,17 @@
 		64AE61201F01081800F3B9C0 /* SwiftGS1BarcodeTests */ = {
 			isa = PBXGroup;
 			children = (
+				64AE61231F01081800F3B9C0 /* Info.plist */,
 				64754D0B1F01103C00B22B62 /* BarcodeParserTests.swift */,
-				641C79151F0B8FC2000357C4 /* BaseTests */,
 				64754D151F01107B00B22B62 /* DateTests.swift */,
 				64DD17371F014F8700F10103 /* GS1ApplicationIdentifierTests.swift */,
 				6413187B1F023B0700F9C4DF /* GS1BarcodeAdvancedTests.swift */,
 				E28E99881F01ABC50093C02B /* GS1BarcodeApplicationIdentifierTests.swift */,
 				64E3AC9F1F14E55D002288EE /* GS1BarcodeSampleTests.swift */,
 				64754D111F01106D00B22B62 /* GS1BarcodeTests.swift */,
-				64AE61231F01081800F3B9C0 /* Info.plist */,
 				64754D0F1F01106500B22B62 /* SimpleBarcodeTests.swift */,
 				64754D131F01107500B22B62 /* StringTests.swift */,
+				641C79151F0B8FC2000357C4 /* BaseTests */,
 			);
 			path = SwiftGS1BarcodeTests;
 			sourceTree = "<group>";

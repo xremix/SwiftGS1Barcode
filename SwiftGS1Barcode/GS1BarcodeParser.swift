@@ -27,7 +27,7 @@ public class GS1BarcodeParser: NSObject {
         if data == nil{
             return data
         }
-
+        
         var length = (ai.rawValue?.count ?? 0) + (ai.identifier.count)
         if ai.dynamicLength && data!.count > length{
             length += 1
@@ -77,8 +77,18 @@ public class GS1BarcodeParser: NSObject {
                     day: Int(aiData.substring(4, length: 2))
                 )
             }
-        }else if(ai.type == GS1ApplicationIdentifierType.Numeric){ // Parsing value to Integer
+        }else if ai.type == GS1ApplicationIdentifierType.Numeric{ // Parsing value to Integer
             ai.intValue = Int(aiData)
+        }else if ai.type == GS1ApplicationIdentifierType.NumericDouble{
+            ai.decimalPlaces = Int(aiData.substring(to: 1))
+            aiData = aiData.substring(from: 1)
+            ai.rawValue = aiData
+            
+            ai.doubleValue = Double(aiData)
+            
+            if ai.doubleValue != nil{
+                ai.doubleValue = ai.doubleValue! / pow(10, Double(ai.decimalPlaces ?? 0))
+            }
         }else{ // Taking the data left and just putting it into the string value. Expecting that type is not Date and no Numeric. If it is date but not enough chars there, it would still put the content into the string
             ai.stringValue = aiData
         }
