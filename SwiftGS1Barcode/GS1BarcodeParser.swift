@@ -14,10 +14,9 @@ public class GS1BarcodeParser: NSObject {
         case emptyData
     }
     
-    /**
-     Set to true to prints debug information to console
-     */
+    /** Set to true to prints debug information to console */
     static var printDebugOutput = false
+    
     /**
      Takes a data String,removed the GS1 Value and AI and returns the modified String
      - returns:
@@ -34,9 +33,8 @@ public class GS1BarcodeParser: NSObject {
         }
         return data!.substring(from: length)
     }
-    /**
-     Parses and sets the data of the AI, based on it's  identifier
-     */
+    
+    /** Parses and sets the data of the AI, based on it's  identifier */
     static func parseGS1ApplicationIdentifier(_ ai: GS1ApplicationIdentifier, data: String) throws{
         if printDebugOutput{
             print("Parsing application identifier with identifier \(ai.identifier) of type \(String(describing: ai.type?.description))")

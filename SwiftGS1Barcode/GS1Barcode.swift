@@ -9,12 +9,12 @@
 import UIKit
 
 public class GS1Barcode: NSObject, Barcode {
-    // RAW Data of the barcode in a string
+    /** RAW Data of the barcode in a string */
     public var raw: String?
-    // Stores if the last parsing was successfull
+    /** Stores if the last parsing was successfull */
     private var lastParseSuccessfull: Bool = false
     
-    // Dictionary containing all supported application identifiers
+    /** Dictionary containing all supported application identifiers */
     public var applicationIdentifiers = [
         "serialShippingContainerCode": GS1ApplicationIdentifier("00", length: 18, type: .AlphaNumeric),
         "gtin": GS1ApplicationIdentifier("01", length: 14, type: .AlphaNumeric),
@@ -42,7 +42,7 @@ public class GS1Barcode: NSObject, Barcode {
         "productWeightInKgTwoDecimal": GS1ApplicationIdentifier("3102", length: 6, type: .Numeric),// TODO add friendly property
     ]
     
-    // Mapping for User Friendly Usage
+    /** Mapping for User Friendly Usage */
     public var gtin: String?{ get {return applicationIdentifiers["gtin"]!.stringValue} }
     public var lotNumber: String?{ get {return applicationIdentifiers["lotNumber"]!.stringValue} }
     public var expirationDate: Date?{ get {return applicationIdentifiers["expirationDate"]!.dateValue} }

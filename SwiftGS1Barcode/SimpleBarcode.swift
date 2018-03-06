@@ -8,6 +8,7 @@
 
 import UIKit
 
+/** Sample class for a Barcode **/
 class SimpleBarcode: NSObject, Barcode {
     var raw: String?
     required override init() {
