@@ -9,7 +9,7 @@
 import UIKit
 
 public class GS1BarcodeParser: NSObject {
-    static var debugOutput = false
+    static var printDebugOutput = false
     static func reduce(data: String?, by ai: GS1ApplicationIdentifier)->String?{
         if data == nil{
             return data
@@ -30,7 +30,8 @@ public class GS1BarcodeParser: NSObject {
             if debugOutput{
                 print("Passed invalid Application Identifier with wrong identifier")
             }
-            return ai
+            // TODO
+//            return ai
         }
         
         // Get Pure Data by removing the identifier
@@ -69,6 +70,7 @@ public class GS1BarcodeParser: NSObject {
         }else{ // Taking the data left and just putting it into the string value. Expecting that type is not Date and no Numeric. If it is date but not enough chars there, it would still put the content into the string
             ai.stringValue = aiData
         }
-        return ai
+        // TODO
+//        return ai
     }
 }
