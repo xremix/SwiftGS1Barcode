@@ -104,6 +104,7 @@ public class GS1Barcode: NSObject, Barcode {
     }
     
     @available(*, deprecated)
+    /** Temporary function, to allow a smooth transition of the legacy parse function */
     public func tryParse() -> Bool{
         do{
             try parse()

@@ -27,7 +27,6 @@ class SimpleBarcode: NSObject, Barcode {
     func parse() throws {
         if !validate(){
             throw ParseErrors.validationFailed
-            // TODO throw error here
         }
     }
     
