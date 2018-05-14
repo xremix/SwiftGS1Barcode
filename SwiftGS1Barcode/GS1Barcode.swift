@@ -32,12 +32,13 @@ public class GS1Barcode: NSObject, Barcode {
         "numberOfUnitsContained": GS1ApplicationIdentifier("37", length:8, type: .AlphaNumeric, dynamicLength:true),
         "productWeightInKg": GS1ApplicationIdentifier("310", length: 6, type: .NumericDouble),
         // Experimental Support
-        "lotNumberN": GS1ApplicationIdentifier("23n", length:19, type: .AlphaNumeric, dynamicLength:true), // TODO add friendly property
-        "additionalProductIdentification": GS1ApplicationIdentifier("240", length:30, type: .AlphaNumeric, dynamicLength:true), // TODO add friendly property
-        "customerPartNumber": GS1ApplicationIdentifier("241", length:30, type: .AlphaNumeric, dynamicLength:true), // TODO add friendly property
-        "madeToOrderVariationNumber": GS1ApplicationIdentifier("242", length:6, type: .AlphaNumeric, dynamicLength:true), // TODO add friendly property
-        "secondarySerialNumber": GS1ApplicationIdentifier("250", length:30, type: .AlphaNumeric, dynamicLength:true), // TODO add friendly property
-        "referenceToSourceEntity": GS1ApplicationIdentifier("251", length:30, type: .AlphaNumeric, dynamicLength:true), // TODO add friendly property
+        // TODO add friendly property for the following properties, once they leave experimental support
+        "lotNumberN": GS1ApplicationIdentifier("23n", length:19, type: .AlphaNumeric, dynamicLength:true),
+        "additionalProductIdentification": GS1ApplicationIdentifier("240", length:30, type: .AlphaNumeric, dynamicLength:true),
+        "customerPartNumber": GS1ApplicationIdentifier("241", length:30, type: .AlphaNumeric, dynamicLength:true),
+        "madeToOrderVariationNumber": GS1ApplicationIdentifier("242", length:6, type: .AlphaNumeric, dynamicLength:true),
+        "secondarySerialNumber": GS1ApplicationIdentifier("250", length:30, type: .AlphaNumeric, dynamicLength:true),
+        "referenceToSourceEntity": GS1ApplicationIdentifier("251", length:30, type: .AlphaNumeric, dynamicLength:true),
     ]
     
     /** Mapping for User Friendly Usage */
