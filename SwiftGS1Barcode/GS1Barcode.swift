@@ -30,6 +30,7 @@ public class GS1Barcode: NSObject, Barcode {
         "secondaryDataFields": GS1ApplicationIdentifier("22", length:29, type: .AlphaNumeric, dynamicLength:true),
         "countOfItems": GS1ApplicationIdentifier("30", length: 8, type: .Numeric, dynamicLength: true),
         "numberOfUnitsContained": GS1ApplicationIdentifier("37", length:8, type: .AlphaNumeric, dynamicLength:true),
+        "productWeightInKg": GS1ApplicationIdentifier("310", length: 6, type: .NumericDouble),
         // Experimental Support
         "lotNumberN": GS1ApplicationIdentifier("23n", length:19, type: .AlphaNumeric, dynamicLength:true), // TODO add friendly property
         "additionalProductIdentification": GS1ApplicationIdentifier("240", length:30, type: .AlphaNumeric, dynamicLength:true), // TODO add friendly property
@@ -37,8 +38,6 @@ public class GS1Barcode: NSObject, Barcode {
         "madeToOrderVariationNumber": GS1ApplicationIdentifier("242", length:6, type: .AlphaNumeric, dynamicLength:true), // TODO add friendly property
         "secondarySerialNumber": GS1ApplicationIdentifier("250", length:30, type: .AlphaNumeric, dynamicLength:true), // TODO add friendly property
         "referenceToSourceEntity": GS1ApplicationIdentifier("251", length:30, type: .AlphaNumeric, dynamicLength:true), // TODO add friendly property
-        // TODO write test cases
-        "productWeightInKg": GS1ApplicationIdentifier("310", length: 6, type: .NumericDouble),// TODO add friendly property
     ]
     
     /** Mapping for User Friendly Usage */
@@ -97,8 +96,9 @@ public class GS1Barcode: NSObject, Barcode {
             do{
                 try GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: data)
                 data =  GS1BarcodeParser.reduce(data: data, by: ai)!
-            }catch{
-                throw GS1BarcodeErrors.ParseError.THISISWORKINPROGRESS
+            }catch let error{
+                // Pass error to calling function
+                throw error
             }
         }
     }

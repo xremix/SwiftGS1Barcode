@@ -15,6 +15,5 @@ class GS1BarcodeErrors: NSObject {
         case emptyData
         // GS1 Barcode
         case didNotFoundApplicationIdentifier
-        case THISISWORKINPROGRESS
     }
 }
