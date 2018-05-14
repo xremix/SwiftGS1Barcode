@@ -32,6 +32,7 @@ class GS1BarcodeSampleTests: XCTestCase {
     }
     func testSample3(){
         // 01 3101 10
+        // 01 97350053850012 310 1 000050 10 897A174
         let barcode = GS1Barcode(raw: "0197350053850012310100005010897A174")
         XCTAssertEqual(barcode.gtin, "97350053850012")
         XCTAssertEqual(barcode.lotNumber, "897A174")

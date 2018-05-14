@@ -30,48 +30,48 @@ public class GS1Barcode: NSObject, Barcode {
         "secondaryDataFields": GS1ApplicationIdentifier("22", length:29, type: .AlphaNumeric, dynamicLength:true),
         "countOfItems": GS1ApplicationIdentifier("30", length: 8, type: .Numeric, dynamicLength: true),
         "numberOfUnitsContained": GS1ApplicationIdentifier("37", length:8, type: .AlphaNumeric, dynamicLength:true),
+        "productWeightInKg": GS1ApplicationIdentifier("310", length: 6, type: .NumericDouble),
         // Experimental Support
-        "lotNumberN": GS1ApplicationIdentifier("23n", length:19, type: .AlphaNumeric, dynamicLength:true), // TODO add friendly property
-        "additionalProductIdentification": GS1ApplicationIdentifier("240", length:30, type: .AlphaNumeric, dynamicLength:true), // TODO add friendly property
-        "customerPartNumber": GS1ApplicationIdentifier("241", length:30, type: .AlphaNumeric, dynamicLength:true), // TODO add friendly property
-        "madeToOrderVariationNumber": GS1ApplicationIdentifier("242", length:6, type: .AlphaNumeric, dynamicLength:true), // TODO add friendly property
-        "secondarySerialNumber": GS1ApplicationIdentifier("250", length:30, type: .AlphaNumeric, dynamicLength:true), // TODO add friendly property
-        "referenceToSourceEntity": GS1ApplicationIdentifier("251", length:30, type: .AlphaNumeric, dynamicLength:true), // TODO add friendly property
-        "productWeightInKgNoDecimal": GS1ApplicationIdentifier("3100", length: 6, type: .Numeric),// TODO add friendly property
-        "productWeightInKgOnceDecimal": GS1ApplicationIdentifier("3101", length: 6, type: .Numeric),// TODO add friendly property
-        "productWeightInKgTwoDecimal": GS1ApplicationIdentifier("3102", length: 6, type: .Numeric),// TODO add friendly property
+        // TODO add friendly property for the following properties, once they leave experimental support
+        "lotNumberN": GS1ApplicationIdentifier("23n", length:19, type: .AlphaNumeric, dynamicLength:true),
+        "additionalProductIdentification": GS1ApplicationIdentifier("240", length:30, type: .AlphaNumeric, dynamicLength:true),
+        "customerPartNumber": GS1ApplicationIdentifier("241", length:30, type: .AlphaNumeric, dynamicLength:true),
+        "madeToOrderVariationNumber": GS1ApplicationIdentifier("242", length:6, type: .AlphaNumeric, dynamicLength:true),
+        "secondarySerialNumber": GS1ApplicationIdentifier("250", length:30, type: .AlphaNumeric, dynamicLength:true),
+        "referenceToSourceEntity": GS1ApplicationIdentifier("251", length:30, type: .AlphaNumeric, dynamicLength:true),
     ]
     
     /** Mapping for User Friendly Usage */
-    public var gtin: String?{ get {return applicationIdentifiers["gtin"]!.stringValue} }
-    public var lotNumber: String?{ get {return applicationIdentifiers["lotNumber"]!.stringValue} }
-    public var expirationDate: Date?{ get {return applicationIdentifiers["expirationDate"]!.dateValue} }
-    public var serialNumber: String?{ get {return applicationIdentifiers["serialNumber"]!.stringValue} }
-    public var countOfItems: Int?{ get {return applicationIdentifiers["countOfItems"]!.intValue} }
-    // TODO Order could be changed to fit dictionary above
     public var serialShippingContainerCode: String? {get{return applicationIdentifiers["serialShippingContainerCode"]!.stringValue}}
+    public var gtin: String?{ get {return applicationIdentifiers["gtin"]!.stringValue} }
     public var gtinOfContainedTradeItems: String? {get{return applicationIdentifiers["gtinOfContainedTradeItems"]!.stringValue}}
+    public var lotNumber: String?{ get {return applicationIdentifiers["lotNumber"]!.stringValue} }
     public var productionDate: Date? {get{return applicationIdentifiers["productionDate"]!.dateValue}}
     public var dueDate: Date? {get{return applicationIdentifiers["dueDate"]!.dateValue}}
     public var packagingDate: Date? {get{return applicationIdentifiers["packagingDate"]!.dateValue}}
     public var bestBeforeDate: Date? {get{return applicationIdentifiers["bestBeforeDate"]!.dateValue}}
+    public var expirationDate: Date?{ get {return applicationIdentifiers["expirationDate"]!.dateValue} }
     public var productVariant: String? {get{return applicationIdentifiers["productVariant"]!.stringValue}}
+    public var serialNumber: String?{ get {return applicationIdentifiers["serialNumber"]!.stringValue} }
     public var secondaryDataFields: String? {get{return applicationIdentifiers["secondaryDataFields"]!.stringValue}}
+    public var countOfItems: Int?{ get {return applicationIdentifiers["countOfItems"]!.intValue} }
     public var numberOfUnitsContained: String? {get{return applicationIdentifiers["numberOfUnitsContained"]!.stringValue}}
+    public var productWeightInKg: Double? {get{return applicationIdentifiers["productWeightInKg"]!.doubleValue}}
     
     
     required override public init() {
         super.init()
     }
     
-    // Init barcode with string and parse it
+    /** Init barcode with string and parse it */
     required public init(raw: String) {
         super.init()
         // Setting Original Data
         self.raw = raw
         // Parsing Barcode
-        _ = parse()
+        try? parse()
     }
+    
     required public init(raw: String, customApplicationIdentifiers: [String: GS1ApplicationIdentifier]) {
         super.init()
         // Setting Original Data
@@ -82,34 +82,41 @@ public class GS1Barcode: NSObject, Barcode {
             self.applicationIdentifiers[ai.key] = ai.value
         }
         // Parsing Barcode
-        _ = parse()
+        try? parse()
     }
     
-    // Validating if the barcode got parsed correctly
+    /** Validating if the barcode got parsed correctly **/
     public func validate() -> Bool {
         return lastParseSuccessfull && raw != "" && raw != nil
     }
     
-    private func parseApplicationIdentifier(_ ai: GS1ApplicationIdentifier, data: inout String)->Bool{
+    private func parseApplicationIdentifier(_ ai: GS1ApplicationIdentifier, data: inout String) throws{
         if(data.startsWith(ai.identifier)){
+            // TODO VERIFY THIS!
+            // This can throw an error! Make sure data setting is like expected
             do{
                 try GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: data)
-                //            ai = GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: data)
                 data =  GS1BarcodeParser.reduce(data: data, by: ai)!
-                
-                return true
-                // Catch GS1 Barcode Parse Errors
-            }catch _ as GS1BarcodeParser.ParseError{
-                return false
-                // Catch other errors
-            }catch{
-                return false
+            }catch let error{
+                // Pass error to calling function
+                throw error
             }
         }
-        return false
     }
     
-    public func parse() ->Bool{
+    @available(*, deprecated)
+    /** Temporary function, to allow a smooth transition of the legacy parse function */
+    public func tryParse() -> Bool{
+        do{
+            try parse()
+            return true
+        }catch{
+            return false
+        }
+        
+    }
+    
+    public func parse() throws{
         self.lastParseSuccessfull = false
         var data = raw
         
@@ -125,19 +132,24 @@ public class GS1Barcode: NSObject, Barcode {
                 for (_, applicationIdentifier) in applicationIdentifiers {
                     // Exclude the gtinIndicatorDigit, because it get's added later for the gtin identifier
                     // If could parse ai, continue and do the loop once again
-                    if(parseApplicationIdentifier(applicationIdentifier, data: &data!)){
-                        foundOne = true
-                        continue
+                    // Keep syntax like that! foundOne should and continue should only be set if no error was thrown
+                    do{
+                        if(data!.startsWith(applicationIdentifier.identifier)){
+                            try parseApplicationIdentifier(applicationIdentifier, data: &data!)
+                            foundOne = true
+                            continue
+                        }
+                        
+                    }catch{
+                        foundOne = false
                     }
                 }
                 // If no ai was found return false and keep the lastParseSuccessfull to false -> This will make validate() fail as well
                 if !foundOne{
-                    print("GS1Barcode Warning: Do not know identifier and cannot parse rest of the Barcode. Canceling barcode parsing")
-                    return false
+                    throw GS1BarcodeErrors.ParseError.didNotFoundApplicationIdentifier
                 }
             }
         }
         self.lastParseSuccessfull = true
-        return true
     }
 }

@@ -9,12 +9,6 @@
 import UIKit
 
 public class GS1BarcodeParser: NSObject {
-    /** Error cases for Barcode Parser */
-    public enum ParseError: Error {
-        case dataDoesNotStartWithAIIdentifier(data: String)
-        case emptyData
-    }
-    
     /** Set to true to prints debug information to console */
     static var printDebugOutput = false
     
@@ -27,9 +21,12 @@ public class GS1BarcodeParser: NSObject {
         if data == nil{
             return data
         }
-
+        
         var length = (ai.rawValue?.count ?? 0) + (ai.identifier.count)
         if ai.dynamicLength && data!.count > length{
+            length += 1
+        }
+        if ai.type == .NumericDouble{
             length += 1
         }
         return data!.substring(from: length)
@@ -41,16 +38,20 @@ public class GS1BarcodeParser: NSObject {
             print("Parsing application identifier with identifier \(ai.identifier) of type \(String(describing: ai.type?.description))")
         }
         if data.count == 0{
-            throw ParseError.emptyData
+            throw GS1BarcodeErrors.ParseError.emptyData
         }
         if !data.startsWith(ai.identifier){
-            throw ParseError.dataDoesNotStartWithAIIdentifier(data: data)
+            throw GS1BarcodeErrors.ParseError.dataDoesNotStartWithAIIdentifier(data: data)
         }
         
         // Get Pure Data by removing the identifier
         var aiData = data
         aiData = aiData.substring(from: ai.identifier.count)
         
+        if ai.type == .NumericDouble{
+            ai.decimalPlaces = Int(aiData.substring(to: 1))
+            aiData = aiData.substring(from: 1)
+        }
         
         // Cut data by Group Seperator, if dynamic length item and has a GS.
         if ai.dynamicLength && aiData.index(of: "\u{1D}") != nil {
@@ -77,8 +78,17 @@ public class GS1BarcodeParser: NSObject {
                     day: Int(aiData.substring(4, length: 2))
                 )
             }
-        }else if(ai.type == GS1ApplicationIdentifierType.Numeric){ // Parsing value to Integer
+        }else if ai.type == GS1ApplicationIdentifierType.Numeric{ // Parsing value to Integer
             ai.intValue = Int(aiData)
+        }else if ai.type == GS1ApplicationIdentifierType.NumericDouble{
+            
+            ai.rawValue = aiData
+            
+            ai.doubleValue = Double(aiData)
+            
+            if ai.doubleValue != nil{
+                ai.doubleValue = ai.doubleValue! / pow(10, Double(ai.decimalPlaces ?? 0))
+            }
         }else{ // Taking the data left and just putting it into the string value. Expecting that type is not Date and no Numeric. If it is date but not enough chars there, it would still put the content into the string
             ai.stringValue = aiData
         }

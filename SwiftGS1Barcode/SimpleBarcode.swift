@@ -10,6 +10,10 @@ import UIKit
 
 /** Sample class for a Barcode **/
 class SimpleBarcode: NSObject, Barcode {
+    enum ParseErrors: Error{
+        case validationFailed
+    }
+    
     var raw: String?
     required override init() {
         super.init()
@@ -20,8 +24,10 @@ class SimpleBarcode: NSObject, Barcode {
     func validate() -> Bool {
         return raw != nil && raw! != ""
     }
-    func parse()->Bool {
-        return validate()
+    func parse() throws {
+        if !validate(){
+            throw ParseErrors.validationFailed
+        }
     }
     
 }
