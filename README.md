@@ -3,6 +3,8 @@ A GS1 Barcode Library and Parser written in Swift
 
 [![Language](https://img.shields.io/badge/language-swift%204-1b7cb9.svg)](https://img.shields.io/badge/language-swift%204-1b7cb9.svg)
 [![iOS](https://img.shields.io/badge/iOS-8.0%2B-1b7cb9.svg)](https://img.shields.io/badge/iOS-9.0%2B-1b7cb9.svg)
+[![Code Coverage](https://img.shields.io/badge/Code%20Coverage-97%25-green.svg)](https://img.shields.io/badge/Code%20Coverage-97%25-green.svg)
+
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/xremix/SwiftGS1Barcode/master/LICENSE)
 
 A Library to parse GS1 Barcode strings into a object and allows an easy access to the properties that a GS1 Barcode can have.  

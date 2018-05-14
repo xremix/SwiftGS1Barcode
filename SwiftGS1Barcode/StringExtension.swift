@@ -36,7 +36,7 @@ extension String{
     }
     
     /** checks if the string contains a certain substring */
-    func startsWith(_ subString: String)->Bool{
+    func startsWith(_ subString: String) -> Bool{
         return self.hasPrefix(subString)
     }
 }

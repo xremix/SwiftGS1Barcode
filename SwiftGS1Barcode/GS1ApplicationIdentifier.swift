@@ -11,12 +11,11 @@ import UIKit
 public enum GS1ApplicationIdentifierType: String{
     case AlphaNumeric
     case Numeric
-//    case NumericFloat // Not in use yet
+    case NumericDouble // TODO document this in the readme
     case Date
     var description: String{
         return self.rawValue
     }
-    public init(){self.init()}
 }
 
 public class GS1ApplicationIdentifier: NSObject{
@@ -35,8 +34,12 @@ public class GS1ApplicationIdentifier: NSObject{
     public var dateValue: Date?
     /** This will be set by the Barcode parser, if type is Numeric */
     public var intValue: Int?
+    /** This will be set by the Barcode parser, if type is NumericDouble */
+    public var doubleValue: Double?
     /** This will be set by the Barcode parser, if type is AlphaNumeric */
     public var stringValue: String?
+    
+    public var decimalPlaces: Int?
     
     /** Initiates a GS1 AI with a maximum length */
     public init(_ identifier: String, length: Int){
