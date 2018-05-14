@@ -27,6 +27,7 @@
 		64DD17361F014E1400F10103 /* GS1ApplicationIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DD17351F014E1400F10103 /* GS1ApplicationIdentifier.swift */; };
 		64DD17381F014F8700F10103 /* GS1ApplicationIdentifierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DD17371F014F8700F10103 /* GS1ApplicationIdentifierTests.swift */; };
 		64E3ACA01F14E55D002288EE /* GS1BarcodeSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E3AC9F1F14E55D002288EE /* GS1BarcodeSampleTests.swift */; };
+		64EFE1F320A96F2200DE3E7F /* GS1ApplicationIdentifierTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EFE1F220A96F2200DE3E7F /* GS1ApplicationIdentifierTypeTests.swift */; };
 		E28E99891F01ABC50093C02B /* GS1BarcodeApplicationIdentifierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28E99881F01ABC50093C02B /* GS1BarcodeApplicationIdentifierTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +67,7 @@
 		64DD17351F014E1400F10103 /* GS1ApplicationIdentifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GS1ApplicationIdentifier.swift; sourceTree = "<group>"; };
 		64DD17371F014F8700F10103 /* GS1ApplicationIdentifierTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GS1ApplicationIdentifierTests.swift; sourceTree = "<group>"; };
 		64E3AC9F1F14E55D002288EE /* GS1BarcodeSampleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GS1BarcodeSampleTests.swift; sourceTree = "<group>"; };
+		64EFE1F220A96F2200DE3E7F /* GS1ApplicationIdentifierTypeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GS1ApplicationIdentifierTypeTests.swift; sourceTree = "<group>"; };
 		E28E99881F01ABC50093C02B /* GS1BarcodeApplicationIdentifierTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GS1BarcodeApplicationIdentifierTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -148,6 +150,7 @@
 				64754D0F1F01106500B22B62 /* SimpleBarcodeTests.swift */,
 				64754D131F01107500B22B62 /* StringTests.swift */,
 				641C79151F0B8FC2000357C4 /* BaseTests */,
+				64EFE1F220A96F2200DE3E7F /* GS1ApplicationIdentifierTypeTests.swift */,
 			);
 			path = SwiftGS1BarcodeTests;
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 			files = (
 				641C79171F0B8FDF000357C4 /* GS1BarcodeParserXCTestCase.swift in Sources */,
 				64754D161F01107B00B22B62 /* DateTests.swift in Sources */,
+				64EFE1F320A96F2200DE3E7F /* GS1ApplicationIdentifierTypeTests.swift in Sources */,
 				64754D141F01107500B22B62 /* StringTests.swift in Sources */,
 				64754D0C1F01103C00B22B62 /* BarcodeParserTests.swift in Sources */,
 				64E3ACA01F14E55D002288EE /* GS1BarcodeSampleTests.swift in Sources */,

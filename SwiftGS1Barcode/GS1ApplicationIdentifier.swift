@@ -16,7 +16,6 @@ public enum GS1ApplicationIdentifierType: String{
     var description: String{
         return self.rawValue
     }
-    public init(){self.init()}
 }
 
 public class GS1ApplicationIdentifier: NSObject{

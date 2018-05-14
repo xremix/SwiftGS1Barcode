@@ -40,4 +40,27 @@ class SimpleBarcodeTests: XCTestCase {
         simpleBarcode?.raw = nil
         XCTAssert(!simpleBarcode!.validate())
     }
+    
+    func testManual(){
+        simpleBarcode = SimpleBarcode()
+        simpleBarcode!.raw = "0123"
+        do{
+            try simpleBarcode?.parse()
+        }catch{
+            XCTAssertTrue(false)
+        }
+        
+        XCTAssertNotNil(simpleBarcode)
+    }
+    func testManualThrowsError(){
+        simpleBarcode = SimpleBarcode()
+        simpleBarcode!.raw = ""
+        do{
+            try simpleBarcode?.parse()
+        }catch{
+            XCTAssertTrue(true)
+        }
+        
+        XCTAssertNotNil(simpleBarcode)
+    }
 }

@@ -23,6 +23,16 @@ class BarcodeParserTests: GS1BarcodeParserXCTestCase {
         super.tearDown()
     }
     
+    func testDebugOutput(){
+        GS1BarcodeParser.printDebugOutput = true
+        let ai = GS1ApplicationIdentifier("01", length:14, type: .AlphaNumeric)
+        //        let ai = GS1ApplicationIdentifier(identifier: "01", type: .FixedLengthBased, fixedValue: 14)
+        do{
+            try GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: "010012349993333001")
+        }catch{}
+        GS1BarcodeParser.printDebugOutput = false
+        XCTAssertEqual(ai.stringValue, "00123499933330")
+    }
     func testGtinPraser(){
         let ai = GS1ApplicationIdentifier("01", length:14, type: .AlphaNumeric)
         //        let ai = GS1ApplicationIdentifier(identifier: "01", type: .FixedLengthBased, fixedValue: 14)
