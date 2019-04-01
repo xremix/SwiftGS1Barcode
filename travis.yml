@@ -1,0 +1,4 @@
+language: swift
+xcode_project: SwiftGS1Barcode.xcodeproj
+xcode_scheme: SwiftGS1Barcode
+xcode_destination: platform=iOS Simulator,OS=12.2,name=iPhone Xs
