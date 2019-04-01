@@ -1,2 +1,2 @@
 language: swift
-xcode_project: SwiftGS1Barcode.xcodeproj
+script: xcodebuild -project SwiftGS1Barcode.xcodeproj
