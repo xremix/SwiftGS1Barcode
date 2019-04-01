@@ -14,4 +14,3 @@
 - [ ] I have performed a self-review of my own code
 - [ ] I have commented code in hard-to-understand areas
 - [ ] I wrote automated Tests, if needed
-- [ ] No Development variables have been checked in
