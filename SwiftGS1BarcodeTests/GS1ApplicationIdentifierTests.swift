@@ -10,7 +10,7 @@ import XCTest
 
 @testable import SwiftGS1Barcode
 class GS1ApplicationIdentifierTests: GS1BarcodeParserXCTestCase {
-    
+    // Tests Max Length
     func testInitIdMaxLength() {
         let ai = GS1ApplicationIdentifier("id", length: 1)
         XCTAssertEqual(ai.identifier, "id")

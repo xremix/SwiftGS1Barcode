@@ -11,19 +11,19 @@ import XCTest
 
 class GS1ApplicationIdentifierTypeTests: XCTestCase {
     func testAlphaNumericType(){
-        var type = GS1ApplicationIdentifierType.AlphaNumeric
+        let type = GS1ApplicationIdentifierType.AlphaNumeric
         XCTAssertEqual(type.description, "AlphaNumeric")
     }
     func testNumericType(){
-        var type = GS1ApplicationIdentifierType.Numeric
+        let type = GS1ApplicationIdentifierType.Numeric
         XCTAssertEqual(type.description, "Numeric")
     }
     func testNumericDoubleType(){
-        var type = GS1ApplicationIdentifierType.NumericDouble
+        let type = GS1ApplicationIdentifierType.NumericDouble
         XCTAssertEqual(type.description, "NumericDouble")
     }
     func testDateType(){
-        var type = GS1ApplicationIdentifierType.Date
+        let type = GS1ApplicationIdentifierType.Date
         XCTAssertEqual(type.description, "Date")
     }
 }
