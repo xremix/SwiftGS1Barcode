@@ -1,4 +1,4 @@
 language: swift
 xcode_project: SwiftGS1Barcode.xcodeproj # path to your xcodeproj folder
 xcode_scheme: SwiftGS1Barcode
-xcode_destination: platform=platform=iOS Simulator,name=iPhone Xs,OS=12.2
+xcode_destination: platform=iOS Simulator,name=iPhone Xs,OS=12.2
