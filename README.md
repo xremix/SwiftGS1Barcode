@@ -2,7 +2,7 @@
 A GS1 Barcode Library and Parser written in Swift
 
 [![Badge w/ Version](https://cocoapod-badges.herokuapp.com/v/SwiftGS1Barcode/badge.png)](https://cocoadocs.org/docsets/SwiftGS1Barcode)
-[![Language](https://img.shields.io/badge/language-swift%204-1b7cb9.svg)](https://img.shields.io/badge/language-swift%204-1b7cb9.svg)
+[![Language](https://img.shields.io/badge/language-swift%205-1b7cb9.svg)](https://img.shields.io/badge/language-swift%205-1b7cb9.svg)
 [![iOS](https://img.shields.io/badge/iOS-8.0%2B-1b7cb9.svg)](https://img.shields.io/badge/iOS-9.0%2B-1b7cb9.svg)
 [![Code Coverage](https://img.shields.io/badge/Code%20Coverage-97%25-green.svg)](https://img.shields.io/badge/Code%20Coverage-97%25-green.svg)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/xremix/SwiftGS1Barcode/master/LICENSE)
