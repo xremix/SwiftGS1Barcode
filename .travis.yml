@@ -1,3 +1,4 @@
+osx_image: xcode10.2
 language: swift
 xcode_project: SwiftGS1Barcode.xcodeproj # path to your xcodeproj folder
 xcode_scheme: SwiftGS1Barcode
