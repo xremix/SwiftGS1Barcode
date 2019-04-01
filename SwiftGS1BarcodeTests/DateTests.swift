@@ -18,7 +18,8 @@ class DateTests: XCTestCase {
     override func tearDown() {
         super.tearDown()
     }
-    
+
+    // Date Tests
     func testFrom() {
         let date = Date.from(year: 2017, month: 12, day: 24)
         

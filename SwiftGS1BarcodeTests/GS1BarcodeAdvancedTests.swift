@@ -13,6 +13,7 @@ import XCTest
 
 class GS1BarcodeAdvancedTests: GS1BarcodeParserXCTestCase {
     
+    // Parse Tests
     func testParseLater(){
         let gs1BarcodeText = "01101234670417283002\u{1D}1721103110S123456"
         let barcode = GS1Barcode()
@@ -35,22 +36,6 @@ class GS1BarcodeAdvancedTests: GS1BarcodeParserXCTestCase {
         XCTAssertFalse(barcode.validate())
     }
     
-    func testTryParseLaterWithNilBarcode(){
-        let barcode = GS1Barcode()
-        XCTAssert(barcode.tryParse())
-        XCTAssertFalse(barcode.validate())
-    }
-    func testTryParseLaterWithBarcode(){
-        let barcode = GS1Barcode(raw: "01101234670417283002\u{1D}1721103110S123456")
-        XCTAssert(barcode.tryParse())
-        XCTAssert(barcode.validate())
-    }
-    
-    func testTryParseLaterWithBarcodeButThrowsError(){
-        let barcode = GS1Barcode(raw: "abc")
-        XCTAssertFalse(barcode.tryParse())
-        XCTAssertFalse(barcode.validate())
-    }
     func testParseLaterWithBarcodeButThrowsError(){
         let barcode = GS1Barcode(raw: "abc")
         do{
@@ -64,6 +49,26 @@ class GS1BarcodeAdvancedTests: GS1BarcodeParserXCTestCase {
         XCTAssertFalse(barcode.validate())
     }
     
+    // Tests Try Parse
+    func testTryParseLaterWithNilBarcode(){
+        let barcode = GS1Barcode()
+        XCTAssert(barcode.tryParse())
+        XCTAssertFalse(barcode.validate())
+    }
+    
+    func testTryParseLaterWithBarcode(){
+        let barcode = GS1Barcode(raw: "01101234670417283002\u{1D}1721103110S123456")
+        XCTAssert(barcode.tryParse())
+        XCTAssert(barcode.validate())
+    }
+    
+    func testTryParseLaterWithBarcodeButThrowsError(){
+        let barcode = GS1Barcode(raw: "abc")
+        XCTAssertFalse(barcode.tryParse())
+        XCTAssertFalse(barcode.validate())
+    }
+    
+    // Tests Add Application Identifier
     func testAddApplicationIdentifier(){
         let gs1BarcodeText = "90HelloWorld\u{1D}01101234670417283002\u{1D}1721103110S123456"
         let barcode = GS1Barcode()
@@ -93,6 +98,5 @@ class GS1BarcodeAdvancedTests: GS1BarcodeParserXCTestCase {
         XCTAssert(barcode.validate())
         XCTAssertEqual(barcode.applicationIdentifiers["custom1"]!.stringValue, "HelloWorld")
         XCTAssertEqual(barcode.applicationIdentifiers["custom2"]!.stringValue, "WorldHello")
-    }
-    
+    }    
 }
