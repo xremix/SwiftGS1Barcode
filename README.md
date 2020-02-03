@@ -57,27 +57,34 @@ print(barcode.applicationIdentifiers["custom1"]!.stringValue)
 To see some samples, of how to set up Application Identifiers check out the [GS1Barcode Class](https://github.com/xremix/SwiftGS1Barcode/blob/master/SwiftGS1Barcode/GS1Barcode.swift#L19)
 
 ### Available Properties
-**!Attention!** Currently only the following properties are available and do get parsed
+The following properties are currently supported:
 
 
-| Application Identifier | ID           |
-| ------------------ |:-------------:|
-| serialShippingContainerCode |  00 |
-| gtin               | 01  |
-| gtinOfContainedTradeItems | 02  |
-| lotNumber (batchNumber) | 10  |
-| productionDate     | 11  |
-| dueDate            | 12  |
-| packagingDate      | 13  |
-| bestBeforeDate     | 15  |
-| expirationDate     | 17  |
-| productVariant     | 20  |
-| serialNumber       | 21  |
-| secondaryDataFields | 22  |
-| countOfItems  | 30  |
-| numberOfUnitsContained | 37  |
+| ID | Application Identifier | Experimental Support |
+|----|:-------------:|:-------------:|
+| 00 | serialShippingContainerCode |          |
+| 01 | gtin               |          |
+| 02 | gtinOfContainedTradeItems |          |
+| 10 | lotNumber (batchNumber) |          |
+| 11 | productionDate     |          |
+| 12 | dueDate            |          |
+| 13 | packagingDate      |          |
+| 15 | bestBeforeDate     |          |
+| 17 | expirationDate     |          |
+| 20 | productVariant     |          |
+| 21 | serialNumber       |          |
+| 22 | secondaryDataFields |          |
+| 30 | countOfItems  |          |
+| 37 | numberOfUnitsContained |          |
+| 310 | productWeightInKG |          |
+| 23n | lotNumberN | Yes |
+| 240 | additionalProductIdentification | Yes |
+| 241 | customerPartNumber | Yes |
+| 242 | madeToOrderVariationNumber | Yes |
+| 250 | secondarySerialNumber | Yes |
+| 251 | referenceToSourceEntity | Yes |
 
-Experimental Support for `lotNumberN, additionalProductIdentification, customerPartNumber, madeToOrderVariationNumber, secondarySerialNumber, referenceToSourceEntity, productWeightInKgNoDecimal, productWeightInKgOnceDecimal, productWeightInKgTwoDecimal`
+*Experimental Support means that these are getting parsed, but there are no getter for this. You can get the value by calling e.g.* `myGs1Barcode.applicationIdentifiers["additionalProductIdentification"]`. *Also the implementation can change if any issues come up with the parsing.*
 
 You can add custom application identifiers by adding them to the key / value dictionary:
 ```Swift
