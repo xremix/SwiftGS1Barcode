@@ -11,7 +11,7 @@ import UIKit
 public enum GS1ApplicationIdentifierType: String{
     case AlphaNumeric
     case Numeric
-    case NumericDouble // TODO document this in the readme
+    case NumericDouble
     case Date
     var description: String{
         return self.rawValue

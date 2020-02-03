@@ -92,7 +92,6 @@ public class GS1Barcode: NSObject, Barcode {
     
     private func parseApplicationIdentifier(_ ai: GS1ApplicationIdentifier, data: inout String) throws{
         if(data.startsWith(ai.identifier)){
-            // TODO VERIFY THIS!
             // This can throw an error! Make sure data setting is like expected
             do{
                 try GS1BarcodeParser.parseGS1ApplicationIdentifier(ai, data: data)
@@ -101,6 +100,8 @@ public class GS1Barcode: NSObject, Barcode {
                 // Pass error to calling function
                 throw error
             }
+        }else{
+            print("The data didn't start with the expected Application Identifier \(ai.identifier)")
         }
     }
     
