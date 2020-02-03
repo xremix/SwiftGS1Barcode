@@ -84,7 +84,7 @@ The following properties are currently supported:
 | 250 | secondarySerialNumber | Yes |
 | 251 | referenceToSourceEntity | Yes |
 
-*Experimental Support means that these are getting parsed, but there are no getter for this. You can get the value by calling e.g.* `myGs1Barcode.applicationIdentifiers["additionalProductIdentification"]`. *Also the implementation can change if any issues come up with the parsing.*
+*Experimental Support means that these are getting parsed, but there are no getter for this. You can get the value by calling e.g.* `myGs1Barcode.applicationIdentifiers["additionalProductIdentification"]`. *Also the implementation can change if any parsing issues come up.*
 
 You can add custom application identifiers by adding them to the key / value dictionary:
 ```Swift
