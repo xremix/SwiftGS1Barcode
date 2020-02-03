@@ -105,7 +105,7 @@ public class GS1Barcode: NSObject, Barcode {
         }
     }
     
-    @available(*, deprecated)
+    @available(*, deprecated, message: "Please use the function parse() to parse a barcode")
     /** Temporary function, to allow a smooth transition of the legacy parse function */
     public func tryParse() -> Bool{
         do{
