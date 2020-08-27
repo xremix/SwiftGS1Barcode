@@ -33,6 +33,7 @@ class BarcodeParserTests: GS1BarcodeParserXCTestCase {
         GS1BarcodeParser.printDebugOutput = false
         XCTAssertEqual(ai.stringValue, "00123499933330")
     }
+    
     func testGtinPraser(){
         let ai = GS1ApplicationIdentifier("01", length:14, type: .AlphaNumeric)
         //        let ai = GS1ApplicationIdentifier(identifier: "01", type: .FixedLengthBased, fixedValue: 14)
@@ -41,6 +42,7 @@ class BarcodeParserTests: GS1BarcodeParserXCTestCase {
         }catch{}
         XCTAssertEqual(ai.stringValue, "00123499933330")
     }
+    
     func testDatePraser(){
         let ai = GS1ApplicationIdentifier("17", length:6, type: .Date)
         //        let ai = GS1ApplicationIdentifier(identifier: "01", type: .Date)
@@ -49,6 +51,7 @@ class BarcodeParserTests: GS1BarcodeParserXCTestCase {
         }catch{}
         XCTAssertEqual(ai.dateValue, Date.from(year: 2021, month: 2, day: 28)) // 17
     }
+    
     func testDatePraserNotEnoughData(){
         let ai = GS1ApplicationIdentifier("17", length:6, type: .Date)
         //        let ai = GS1ApplicationIdentifier(identifier: "01", type: .Date)
@@ -59,6 +62,7 @@ class BarcodeParserTests: GS1BarcodeParserXCTestCase {
         XCTAssertEqual(ai.stringValue, nil)
         XCTAssertEqual(ai.rawValue, "2102")
     }
+    
     func testAlphaNumericFixedLength(){
         let ai = GS1ApplicationIdentifier("10", length: 10, type: .AlphaNumeric, dynamicLength: false)
         do{
