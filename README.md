@@ -23,6 +23,7 @@ import SwiftGS1Barcode
 // ...
 let gs1Barcode = "01101234670417283002\u{1D}1721103110S123456"
 let barcode = GS1Barcode(raw: gs1Barcode)
+barcode.validate() // To check if you barcode is valid
 
 print(barcode.gtin) // 10123467041728
 print(barcode.countOfItems) // 2
