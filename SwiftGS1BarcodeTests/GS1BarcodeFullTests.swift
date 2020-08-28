@@ -27,7 +27,8 @@ class GS1BarcodeFullTests: XCTestCase {
         XCTAssertEqual(barcode.productionDate, Date.from(year: 2008, month: 09, day: 06))
         XCTAssertEqual(barcode.lotNumber, "02")
         XCTAssertEqual(barcode.serialNumber, "027-32")
-        XCTAssert(barcode.validate())
+    
+        XCTAssert(try barcode.validate())
 
     }
     func testFullSample3(){
@@ -36,7 +37,7 @@ class GS1BarcodeFullTests: XCTestCase {
         let barcode = GS1Barcode(raw: "0197350053850012310100005010897A174")
         XCTAssertEqual(barcode.gtin, "97350053850012")
         XCTAssertEqual(barcode.lotNumber, "897A174")
-        XCTAssert(barcode.validate())
+        XCTAssert(try barcode.validate())
     }
 
     func testFullSample4() {
