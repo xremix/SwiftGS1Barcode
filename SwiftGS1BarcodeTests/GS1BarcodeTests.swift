@@ -47,7 +47,7 @@ class GS1BarcodeTests: GS1BarcodeParserXCTestCase {
         XCTAssertNil(barcode.countOfItems)
         XCTAssertEqual(barcode.raw, "")
         XCTAssertThrowsError(try !barcode.validate()){ error in
-            XCTAssertEqual(error as! GS1BarcodeErrors.ValidationError, GS1BarcodeErrors.ValidationError.rawEmpty)
+            XCTAssertEqual(error as! GS1BarcodeErrors.ValidationError, GS1BarcodeErrors.ValidationError.barcodeEmpty)
         }
     }
     
@@ -76,7 +76,7 @@ class GS1BarcodeTests: GS1BarcodeParserXCTestCase {
         XCTAssertNotNil(barcode.expirationDate)
         XCTAssertEqual(barcode.expirationDate, Date.from(year: 2021, month: 1, day: 31))
     }
-
+    
     func testGETINEmptyBarcode(){
         barcode = GS1Barcode(raw: "")
         XCTAssertNil(barcode.gtin)
@@ -88,11 +88,15 @@ class GS1BarcodeTests: GS1BarcodeParserXCTestCase {
     
     func testValidateNewBarcode(){
         let barcode = GS1Barcode()
-        XCTAssertFalse(try barcode.validate())
+        XCTAssertThrowsError(try barcode.validate()){ error in
+            XCTAssertEqual(error as! GS1BarcodeErrors.ValidationError, GS1BarcodeErrors.ValidationError.barcodeNil)
+        }
     }
     func testValidateEmptyBarcode(){
         let barcode = GS1Barcode(raw: "")
-        XCTAssertFalse(try barcode.validate())
+        XCTAssertThrowsError(try barcode.validate()){ error in
+            XCTAssertEqual(error as! GS1BarcodeErrors.ValidationError, GS1BarcodeErrors.ValidationError.barcodeEmpty)
+        }
     }
     
     func testPerformanceOfBarcodeParsing(){

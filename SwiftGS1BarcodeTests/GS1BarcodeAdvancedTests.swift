@@ -26,16 +26,6 @@ class GS1BarcodeAdvancedTests: GS1BarcodeParserXCTestCase {
         XCTAssert(try barcode.validate())
     }
     
-    func testParseLaterWithNilBarcode(){
-        let barcode = GS1Barcode()
-        do{
-            _ = try barcode.parse()
-        }catch{
-            XCTFail("Catch")
-        }
-        XCTAssertFalse(try barcode.validate())
-    }
-    
     func testParseLaterWithBarcodeButThrowsError(){
         let barcode = GS1Barcode(raw: "abc")
         do{
@@ -46,14 +36,18 @@ class GS1BarcodeAdvancedTests: GS1BarcodeParserXCTestCase {
         }catch{
             XCTFail("Catch")
         }
-        XCTAssertFalse(try barcode.validate())
+        XCTAssertThrowsError(try barcode.validate()){ error in
+            XCTAssertEqual(error as! GS1BarcodeErrors.ValidationError, GS1BarcodeErrors.ValidationError.unallowedCharacter)
+        }
     }
     
     // Tests Try Parse
     func testTryParseLaterWithNilBarcode(){
         let barcode = GS1Barcode()
         XCTAssert(barcode.tryParse())
-        XCTAssertFalse(try barcode.validate())
+         XCTAssertThrowsError(try barcode.validate()){ error in
+                   XCTAssertEqual(error as! GS1BarcodeErrors.ValidationError, GS1BarcodeErrors.ValidationError.barcodeNil)
+               }
     }
     
     func testTryParseLaterWithBarcode(){
@@ -65,7 +59,9 @@ class GS1BarcodeAdvancedTests: GS1BarcodeParserXCTestCase {
     func testTryParseLaterWithBarcodeButThrowsError(){
         let barcode = GS1Barcode(raw: "abc")
         XCTAssertFalse(barcode.tryParse())
-        XCTAssertFalse(try barcode.validate())
+         XCTAssertThrowsError(try barcode.validate()){ error in
+                   XCTAssertEqual(error as! GS1BarcodeErrors.ValidationError, GS1BarcodeErrors.ValidationError.unallowedCharacter)
+               }
     }
     
     // Tests Add Application Identifier
@@ -127,5 +123,47 @@ class GS1BarcodeAdvancedTests: GS1BarcodeParserXCTestCase {
     func testValidationWithDash(){
         let barcode = GS1Barcode(raw: "0112345678900101\u{1D}110809061002\u{1D}21027-32")
         XCTAssert(try barcode.validate())
+    }
+    
+    func testValidationFailCharAtBegin(){
+        let barcode = GS1Barcode(raw: "a0112345678900101\u{1D}110809061002\u{1D}21027-32")
+        XCTAssertThrowsError(try barcode.validate()){ error in
+            XCTAssertEqual(error as! GS1BarcodeErrors.ValidationError, GS1BarcodeErrors.ValidationError.unallowedCharacter)
+        }
+    }
+    
+    func testValidationFailNil(){
+        var barcode = GS1Barcode()
+        XCTAssertThrowsError(try barcode.validate()){ error in
+            XCTAssertEqual(error as! GS1BarcodeErrors.ValidationError, GS1BarcodeErrors.ValidationError.barcodeNil)
+        }
+        
+        // Second test
+        barcode = GS1Barcode(raw: "")
+        barcode.raw = nil
+        XCTAssertThrowsError(try barcode.validate()){ error in
+            XCTAssertEqual(error as! GS1BarcodeErrors.ValidationError, GS1BarcodeErrors.ValidationError.barcodeNil)
+        }
+    }
+    
+    func testValidationFailEmpty(){
+        let barcode = GS1Barcode(raw: "")
+        XCTAssertThrowsError(try barcode.validate()){ error in
+            XCTAssertEqual(error as! GS1BarcodeErrors.ValidationError, GS1BarcodeErrors.ValidationError.barcodeEmpty)
+        }
+    }
+    
+    func testValidationFailUnallowedCharacter(){
+        let barcode = GS1Barcode(raw: "01$2345678900101\u{1D}110809061002\u{1D}21027-32")
+        XCTAssertThrowsError(try barcode.validate()){ error in
+            XCTAssertEqual(error as! GS1BarcodeErrors.ValidationError, GS1BarcodeErrors.ValidationError.unallowedCharacter)
+        }
+    }
+    
+    func testValidationWithParseUnsuccessful(){
+        let barcode = GS1Barcode(raw: "12345678903495876548390958748930598")
+        XCTAssertThrowsError(try barcode.validate()){ error in
+            XCTAssertEqual(error as! GS1BarcodeErrors.ValidationError, GS1BarcodeErrors.ValidationError.parseUnsucessfull)
+        }
     }
 }
