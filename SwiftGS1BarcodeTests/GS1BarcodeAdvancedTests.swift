@@ -108,4 +108,24 @@ class GS1BarcodeAdvancedTests: GS1BarcodeParserXCTestCase {
         XCTAssertEqual(barcode.gtin, "03608419025705")
         XCTAssertEqual(barcode.serialNumber, "000000961845")
     }
+    
+    func testValidationWithDigits(){
+        let barcode = GS1Barcode(raw: "010360841902570521000000961845")
+        XCTAssert(barcode.validate())
+    }
+    
+    func testValidationWithDigitsWords(){
+        let barcode = GS1Barcode(raw: "011aB234670417283002")
+        XCTAssert(barcode.validate())
+    }
+    
+    func testValidationWithSeperators(){
+        let barcode = GS1Barcode(raw: "01101234670417283002\u{1D}1721103110S123456")
+        XCTAssert(barcode.validate())
+    }
+    
+    func testValidationWithDash(){
+        let barcode = GS1Barcode(raw: "0112345678900101\u{1D}110809061002\u{1D}21027-32")
+        XCTAssert(barcode.validate())
+    }
 }

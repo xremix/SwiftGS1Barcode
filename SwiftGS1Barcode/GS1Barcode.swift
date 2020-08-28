@@ -87,7 +87,13 @@ public class GS1Barcode: NSObject, Barcode {
     
     /** Validating if the barcode got parsed correctly **/
     public func validate() -> Bool {
-        return lastParseSuccessfull && raw != "" && raw != nil
+        return
+            lastParseSuccessfull &&
+                raw != nil &&
+                raw != "" &&
+                raw!.replacingOccurrences(of: "\u{1d}", with: "")
+                    .range(of: #"^\d+[a-zA-Z0-9äöüÄÖU@#\-]*$"#, options: .regularExpression) != nil // true
+
     }
     
     private func parseApplicationIdentifier(_ ai: GS1ApplicationIdentifier, data: inout String) throws{
