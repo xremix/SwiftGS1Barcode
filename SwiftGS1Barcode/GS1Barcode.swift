@@ -86,7 +86,7 @@ public class GS1Barcode: NSObject, Barcode {
     }
     
     /** Validating if the barcode got parsed correctly **/
-    public func validate() -> Bool {
+    public func validate() throws -> Bool {
         return
             lastParseSuccessfull &&
                 raw != nil &&
