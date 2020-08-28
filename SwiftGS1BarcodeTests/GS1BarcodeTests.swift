@@ -24,7 +24,7 @@ class GS1BarcodeTests: GS1BarcodeParserXCTestCase {
     
     func testExample() {
         let barcode = GS1Barcode(raw: "01001234670210133001\u{1D}2110066600")
-        XCTAssert(barcode.validate())
+        XCTAssert(try barcode.validate())
         
         XCTAssertNotNil(barcode.gtin)
         XCTAssertEqual(barcode.gtin, "00123467021013")
@@ -46,7 +46,9 @@ class GS1BarcodeTests: GS1BarcodeParserXCTestCase {
         XCTAssertNil(barcode.serialNumber)
         XCTAssertNil(barcode.countOfItems)
         XCTAssertEqual(barcode.raw, "")
-        XCTAssert(!barcode.validate())
+        XCTAssertThrowsError(try !barcode.validate()){ error in
+            XCTAssertEqual(error as! GS1BarcodeErrors.ValidationError, GS1BarcodeErrors.ValidationError.barcodeEmpty)
+        }
     }
     
     func testGTIN() {
@@ -74,23 +76,27 @@ class GS1BarcodeTests: GS1BarcodeParserXCTestCase {
         XCTAssertNotNil(barcode.expirationDate)
         XCTAssertEqual(barcode.expirationDate, Date.from(year: 2021, month: 1, day: 31))
     }
-
+    
     func testGETINEmptyBarcode(){
         barcode = GS1Barcode(raw: "")
         XCTAssertNil(barcode.gtin)
     }
     
     func testValidate(){
-        XCTAssert(barcode.validate())
+        XCTAssert(try barcode.validate())
     }
     
     func testValidateNewBarcode(){
-        let b = GS1Barcode()
-        XCTAssertFalse(b.validate())
+        let barcode = GS1Barcode()
+        XCTAssertThrowsError(try barcode.validate()){ error in
+            XCTAssertEqual(error as! GS1BarcodeErrors.ValidationError, GS1BarcodeErrors.ValidationError.barcodeNil)
+        }
     }
     func testValidateEmptyBarcode(){
-        let b = GS1Barcode(raw: "")
-        XCTAssertFalse(b.validate())
+        let barcode = GS1Barcode(raw: "")
+        XCTAssertThrowsError(try barcode.validate()){ error in
+            XCTAssertEqual(error as! GS1BarcodeErrors.ValidationError, GS1BarcodeErrors.ValidationError.barcodeEmpty)
+        }
     }
     
     func testPerformanceOfBarcodeParsing(){

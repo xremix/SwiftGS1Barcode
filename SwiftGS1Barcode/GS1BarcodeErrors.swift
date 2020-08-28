@@ -16,4 +16,10 @@ class GS1BarcodeErrors: NSObject {
         // GS1 Barcode
         case didNotFoundApplicationIdentifier
     }
+    public enum ValidationError: Error{
+        case parseUnsucessfull
+        case barcodeNil
+        case barcodeEmpty
+        case unallowedCharacter
+    }
 }

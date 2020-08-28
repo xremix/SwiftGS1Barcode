@@ -17,6 +17,6 @@ protocol Barcode {
     init(raw: String)
     
     /* *********** Functions *********** */
-    func validate() -> Bool
+    func validate() throws -> Bool
     func parse() throws
 }

@@ -86,14 +86,21 @@ public class GS1Barcode: NSObject, Barcode {
     }
     
     /** Validating if the barcode got parsed correctly **/
-    public func validate() -> Bool {
-        return
-            lastParseSuccessfull &&
-                raw != nil &&
-                raw != "" &&
-                raw!.replacingOccurrences(of: "\u{1d}", with: "")
-                    .range(of: #"^\d+[a-zA-Z0-9äöüÄÖU@#\-]*$"#, options: .regularExpression) != nil // true
-
+    public func validate() throws -> Bool {
+        if raw == nil{
+            throw GS1BarcodeErrors.ValidationError.barcodeNil
+        }
+        // TODO check for whitespaces
+        if raw == "" {
+            throw GS1BarcodeErrors.ValidationError.barcodeEmpty
+        }
+        if raw!.replacingOccurrences(of: "\u{1d}", with: "").range(of: #"^\d+[a-zA-Z0-9äöüÄÖU@#\-]*$"#, options: .regularExpression) == nil {
+            throw GS1BarcodeErrors.ValidationError.unallowedCharacter
+        }
+        if !lastParseSuccessfull{
+            throw GS1BarcodeErrors.ValidationError.parseUnsucessfull
+        }
+        return true
     }
     
     private func parseApplicationIdentifier(_ ai: GS1ApplicationIdentifier, data: inout String) throws{
