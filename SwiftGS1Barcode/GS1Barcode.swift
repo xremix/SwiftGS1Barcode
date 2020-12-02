@@ -6,7 +6,7 @@
 //  Copyright © 2017 Toni Hoffmann. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 public class GS1Barcode: NSObject, Barcode {
     /** RAW Data of the barcode in a string */
