@@ -6,7 +6,7 @@
 //  Copyright © 2017 Toni Hoffmann. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 public enum GS1ApplicationIdentifierType: String{
     case AlphaNumeric

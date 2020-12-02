@@ -6,7 +6,7 @@
 //  Copyright © 2018 Toni Hoffmann. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 class GS1BarcodeErrors: NSObject {
     /** Error cases for Barcode Parser */

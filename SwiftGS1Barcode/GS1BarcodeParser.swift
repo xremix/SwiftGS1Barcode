@@ -6,7 +6,7 @@
 //  Copyright © 2017 Toni Hoffmann. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 public class GS1BarcodeParser: NSObject {
     /** Set to true to prints debug information to console */

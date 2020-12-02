@@ -6,7 +6,7 @@
 //  Copyright © 2017 Toni Hoffmann. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 extension Date{
     /** Wrapper function to create a date based on a year, month and day */
