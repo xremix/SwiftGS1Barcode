@@ -4,6 +4,8 @@ A GS1 Barcode Library and Parser written in Swift
 [![Badge w/ Version](https://cocoapod-badges.herokuapp.com/v/SwiftGS1Barcode/badge.png)](https://cocoadocs.org/docsets/SwiftGS1Barcode)
 [![Language](https://img.shields.io/badge/language-swift%205-1b7cb9.svg)](https://img.shields.io/badge/language-swift%205-1b7cb9.svg)
 [![iOS](https://img.shields.io/badge/iOS-8.0%2B-1b7cb9.svg)](https://img.shields.io/badge/iOS-9.0%2B-1b7cb9.svg)
+[![macOS](https://img.shields.io/badge/macOS-Yes-1b7cb9.svg)](https://img.shields.io/badge/iOS-9.0%2B-1b7cb9.svg)
+[![Linux](https://img.shields.io/badge/Linux-Yes-1b7cb9.svg)](https://img.shields.io/badge/iOS-9.0%2B-1b7cb9.svg)
 [![Code Coverage](https://img.shields.io/badge/Code%20Coverage-97%25-green.svg)](https://img.shields.io/badge/Code%20Coverage-97%25-green.svg)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/xremix/SwiftGS1Barcode/master/LICENSE)
 [![Build Status](https://travis-ci.org/xremix/SwiftGS1Barcode.svg?branch=master)](https://travis-ci.org/xremix/SwiftGS1Barcode)
@@ -13,7 +15,7 @@ Supported is a large set of common Application Identifiers (GS1 Barcodes), but i
 
 **Contributions are most welcome.**
 
-You can also find this project on [CocoaPods](https://cocoapods.org/pods/SwiftGS1Barcode)
+You can also find this project on [CocoaPods](https://cocoapods.org/pods/SwiftGS1Barcode) or can use Swift Package Manager.
 
 ## Getting started
 Parsing is as simple as
@@ -96,6 +98,11 @@ They'll automatically get parsed by the `parse()` function.
 **You can also simply contribute by yourself and add them to the `GS1BarcodeParser.swift` class**, or open an [issue](https://github.com/xremix/SwiftGS1Barcode/issues/new) if there is something missing for you.
 
 ## Installation
+
+### Swift Package Manager (recommended)
+
+Open your project and Xcode and click *File -> Swift Packages -> Add Package Dependency* and enter `git@github.com:xremix/SwiftGS1Barcode.git`
+
 ### CocoaPods
 You can install [the library](https://cocoapods.org/pods/SwiftGS1Barcode) to your project by using [CocoaPods](https://cocoapods.org). Add the following code to your `Podfile`:
 ```
