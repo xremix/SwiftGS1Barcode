@@ -64,4 +64,35 @@ public class GS1ApplicationIdentifier: NSObject{
         // Defaults the max length to 6 and sets default type to Date
         self.init(identifier, length: 6, type: .Date)
     }
+    
+    var readableValue: String{
+        get{
+            // TODO check ! and ?
+            if self.type == GS1ApplicationIdentifierType.AlphaNumeric{
+                return self.stringValue ?? ""
+            }
+            if self.type == GS1ApplicationIdentifierType.NumericDouble{
+                if self.doubleValue == nil {
+                    return ""
+                }
+                return String(self.doubleValue!)
+            }
+            if self.type == GS1ApplicationIdentifierType.AlphaNumeric{
+                if self.intValue == nil {
+                    return ""
+                }
+                return String(self.intValue!)
+            }
+            if self.type == GS1ApplicationIdentifierType.Date{
+                if self.dateValue == nil {
+                    return ""
+                }
+                let formatter = DateFormatter()
+                formatter.dateStyle = .short
+                return formatter.string(for: self.dateValue!)!
+            }
+            return ""
+        }
+    }
+    
 }
