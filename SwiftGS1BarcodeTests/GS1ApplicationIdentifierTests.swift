@@ -34,7 +34,7 @@ class GS1ApplicationIdentifierTests: GS1BarcodeParserXCTestCase {
     }
     func testReadableValue() {
         let ai = GS1ApplicationIdentifier("id", length: 1, type: .NumericDouble, dynamicLength: true)
-        ai.rawValue = "0.1"
+        ai.doubleValue = 0.1
         XCTAssertEqual(ai.readableValue, "0.1")
     }
 }

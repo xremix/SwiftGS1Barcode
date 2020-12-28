@@ -90,7 +90,7 @@ public class GS1ApplicationIdentifier: NSObject{
                 formatter.dateStyle = .short
                 return formatter.string(for: self.dateValue!)!
             }
-            return ""
+            return self.rawValue ?? ""
         }
     }
     
