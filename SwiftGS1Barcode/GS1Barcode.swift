@@ -14,6 +14,7 @@ public class GS1Barcode: NSObject, Barcode {
     /** Stores if the last parsing was successfull */
     private var lastParseSuccessfull: Bool = false
     
+    // TODO move values to a enum
     /** Dictionary containing all supported application identifiers */
     public var applicationIdentifiers = [
         "serialShippingContainerCode": GS1ApplicationIdentifier("00", length: 18, type: .AlphaNumeric),

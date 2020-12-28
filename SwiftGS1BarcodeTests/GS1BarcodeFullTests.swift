@@ -38,6 +38,13 @@ class GS1BarcodeFullTests: XCTestCase {
         XCTAssertEqual(barcode.gtin, "97350053850012")
         XCTAssertEqual(barcode.lotNumber, "897A174")
         XCTAssert(try barcode.validate())
+        
+        XCTAssertEqual(barcode.filledApplicationIdentifiers.filter{ barcode.applicationIdentifiers[$0.key]?.identifier == "01"}.count, 1)
+        XCTAssertEqual(barcode.filledApplicationIdentifiers.filter{ barcode.applicationIdentifiers[$0.key]?.identifier == "10"}.count, 1)
+        XCTAssertEqual(barcode.filledApplicationIdentifiers.filter{ barcode.applicationIdentifiers[$0.key]?.identifier == "310"}.count, 1)
+        XCTAssertEqual(barcode.filledApplicationIdentifiers.filter{ barcode.applicationIdentifiers[$0.key]?.identifier == "01"}.first!.value.readableValue, barcode.gtin)
+        XCTAssertEqual(barcode.filledApplicationIdentifiers.filter{ barcode.applicationIdentifiers[$0.key]?.identifier == "10"}.first!.value.readableValue, barcode.lotNumber)
+        XCTAssertEqual(barcode.filledApplicationIdentifiers.filter{ barcode.applicationIdentifiers[$0.key]?.identifier == "310"}.first!.value.readableValue, String(barcode.filledApplicationIdentifiers.filter{ barcode.applicationIdentifiers[$0.key]?.identifier == "310"}.first!.value.doubleValue!))
     }
 
     func testFullSample4() {
