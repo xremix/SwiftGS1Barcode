@@ -14,6 +14,7 @@ public class GS1Barcode: NSObject, Barcode {
     /** Stores if the last parsing was successfull */
     private var lastParseSuccessfull: Bool = false
     
+    // TODO move values to a enum
     /** Dictionary containing all supported application identifiers */
     public var applicationIdentifiers = [
         "serialShippingContainerCode": GS1ApplicationIdentifier("00", length: 18, type: .AlphaNumeric),
@@ -40,6 +41,12 @@ public class GS1Barcode: NSObject, Barcode {
         "secondarySerialNumber": GS1ApplicationIdentifier("250", length:30, type: .AlphaNumeric, dynamicLength:true),
         "referenceToSourceEntity": GS1ApplicationIdentifier("251", length:30, type: .AlphaNumeric, dynamicLength:true),
     ]
+    /** Dictionary containing all application identifiers that have a value  */
+    var filledApplicationIdentifiers: [String: GS1ApplicationIdentifier]{
+        get{
+            return self.applicationIdentifiers.filter{ $0.value.rawValue != nil }
+        }
+    }
     
     /** Mapping for User Friendly Usage */
     public var serialShippingContainerCode: String? {get{return applicationIdentifiers["serialShippingContainerCode"]!.stringValue}}

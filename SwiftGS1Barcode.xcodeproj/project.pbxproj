@@ -28,6 +28,7 @@
 		64DD17381F014F8700F10103 /* GS1ApplicationIdentifierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DD17371F014F8700F10103 /* GS1ApplicationIdentifierTests.swift */; };
 		64E3ACA01F14E55D002288EE /* GS1BarcodeFullTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E3AC9F1F14E55D002288EE /* GS1BarcodeFullTests.swift */; };
 		64EFE1F320A96F2200DE3E7F /* GS1ApplicationIdentifierTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EFE1F220A96F2200DE3E7F /* GS1ApplicationIdentifierTypeTests.swift */; };
+		E21A5933259A75B100F4E902 /* GS1ApplicationIdentifierReadableIdentifierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21A5932259A75B100F4E902 /* GS1ApplicationIdentifierReadableIdentifierTests.swift */; };
 		E28E99891F01ABC50093C02B /* GS1BarcodeApplicationIdentifierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28E99881F01ABC50093C02B /* GS1BarcodeApplicationIdentifierTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +69,7 @@
 		64DD17371F014F8700F10103 /* GS1ApplicationIdentifierTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GS1ApplicationIdentifierTests.swift; sourceTree = "<group>"; };
 		64E3AC9F1F14E55D002288EE /* GS1BarcodeFullTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GS1BarcodeFullTests.swift; sourceTree = "<group>"; };
 		64EFE1F220A96F2200DE3E7F /* GS1ApplicationIdentifierTypeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GS1ApplicationIdentifierTypeTests.swift; sourceTree = "<group>"; };
+		E21A5932259A75B100F4E902 /* GS1ApplicationIdentifierReadableIdentifierTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GS1ApplicationIdentifierReadableIdentifierTests.swift; sourceTree = "<group>"; };
 		E28E99881F01ABC50093C02B /* GS1BarcodeApplicationIdentifierTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GS1BarcodeApplicationIdentifierTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,6 +145,8 @@
 				64754D0B1F01103C00B22B62 /* BarcodeParserTests.swift */,
 				64754D151F01107B00B22B62 /* DateTests.swift */,
 				64DD17371F014F8700F10103 /* GS1ApplicationIdentifierTests.swift */,
+				E21A5932259A75B100F4E902 /* GS1ApplicationIdentifierReadableIdentifierTests.swift */,
+				64EFE1F220A96F2200DE3E7F /* GS1ApplicationIdentifierTypeTests.swift */,
 				6413187B1F023B0700F9C4DF /* GS1BarcodeAdvancedTests.swift */,
 				E28E99881F01ABC50093C02B /* GS1BarcodeApplicationIdentifierTests.swift */,
 				64E3AC9F1F14E55D002288EE /* GS1BarcodeFullTests.swift */,
@@ -150,7 +154,6 @@
 				64754D0F1F01106500B22B62 /* SimpleBarcodeTests.swift */,
 				64754D131F01107500B22B62 /* StringTests.swift */,
 				641C79151F0B8FC2000357C4 /* BaseTests */,
-				64EFE1F220A96F2200DE3E7F /* GS1ApplicationIdentifierTypeTests.swift */,
 			);
 			path = SwiftGS1BarcodeTests;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				64E3ACA01F14E55D002288EE /* GS1BarcodeFullTests.swift in Sources */,
 				E28E99891F01ABC50093C02B /* GS1BarcodeApplicationIdentifierTests.swift in Sources */,
 				6413187C1F023B0700F9C4DF /* GS1BarcodeAdvancedTests.swift in Sources */,
+				E21A5933259A75B100F4E902 /* GS1ApplicationIdentifierReadableIdentifierTests.swift in Sources */,
 				64DD17381F014F8700F10103 /* GS1ApplicationIdentifierTests.swift in Sources */,
 				64754D121F01106D00B22B62 /* GS1BarcodeTests.swift in Sources */,
 				64754D101F01106500B22B62 /* SimpleBarcodeTests.swift in Sources */,
@@ -441,7 +445,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MARKETING_VERSION = 0.5.0;
+				MARKETING_VERSION = 0.5.2;
 				PRODUCT_BUNDLE_IDENTIFIER = de.xremix.SwiftGS1Barcode;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -466,7 +470,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MARKETING_VERSION = 0.5.0;
+				MARKETING_VERSION = 0.5.2;
 				PRODUCT_BUNDLE_IDENTIFIER = de.xremix.SwiftGS1Barcode;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
