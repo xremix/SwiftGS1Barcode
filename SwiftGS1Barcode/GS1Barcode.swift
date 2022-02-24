@@ -101,7 +101,7 @@ public class GS1Barcode: NSObject, Barcode {
         if raw == "" {
             throw GS1BarcodeErrors.ValidationError.barcodeEmpty
         }
-        if raw!.replacingOccurrences(of: "\u{1d}", with: "").range(of: #"^\d+[a-zA-Z0-9äöüÄÖU@#\-]*$"#, options: .regularExpression) == nil {
+        if raw!.replacingOccurrences(of: "\u{1d}", with: "").range(of: #"^\d+[a-zA-Z0-9äöüÄÖU/\\@#\-]*$"#, options: .regularExpression) == nil {
             throw GS1BarcodeErrors.ValidationError.unallowedCharacter
         }
         if !lastParseSuccessfull{
