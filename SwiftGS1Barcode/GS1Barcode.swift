@@ -31,15 +31,23 @@ public class GS1Barcode: NSObject, Barcode {
         "secondaryDataFields": GS1ApplicationIdentifier("22", length:29, type: .AlphaNumeric, dynamicLength:true),
         "countOfItems": GS1ApplicationIdentifier("30", length: 8, type: .Numeric, dynamicLength: true),
         "numberOfUnitsContained": GS1ApplicationIdentifier("37", length:8, type: .AlphaNumeric, dynamicLength:true),
+        // 310n
         "productWeightInKg": GS1ApplicationIdentifier("310", length: 6, type: .NumericDouble),
-        // Experimental Support
-        // TODO add friendly property for the following properties, once they leave experimental support
-        "lotNumberN": GS1ApplicationIdentifier("23n", length:19, type: .AlphaNumeric, dynamicLength:true),
+    
         "additionalProductIdentification": GS1ApplicationIdentifier("240", length:30, type: .AlphaNumeric, dynamicLength:true),
         "customerPartNumber": GS1ApplicationIdentifier("241", length:30, type: .AlphaNumeric, dynamicLength:true),
         "madeToOrderVariationNumber": GS1ApplicationIdentifier("242", length:6, type: .AlphaNumeric, dynamicLength:true),
         "secondarySerialNumber": GS1ApplicationIdentifier("250", length:30, type: .AlphaNumeric, dynamicLength:true),
         "referenceToSourceEntity": GS1ApplicationIdentifier("251", length:30, type: .AlphaNumeric, dynamicLength:true),
+        "additionalID": GS1ApplicationIdentifier("240", length:30, type: .AlphaNumeric, dynamicLength:true),
+        // 392n
+        "priceSingleMonetaryArea": GS1ApplicationIdentifier("392", length:15, type: .NumericDouble, dynamicLength:true),
+        // 393n
+        "priceAndISO": GS1ApplicationIdentifier("393", length:18, type: .NumericDouble, dynamicLength:true),
+        // 395n
+        "pricePerUOM": GS1ApplicationIdentifier("395", length:6, type: .NumericDouble, dynamicLength:true),
+        "countryOfOrigin": GS1ApplicationIdentifier("422", length:3, type: .AlphaNumeric, dynamicLength:true),
+        
     ]
     /** Dictionary containing all application identifiers that have a value  */
     var filledApplicationIdentifiers: [String: GS1ApplicationIdentifier]{
@@ -64,6 +72,17 @@ public class GS1Barcode: NSObject, Barcode {
     public var countOfItems: Int?{ get {return applicationIdentifiers["countOfItems"]!.intValue} }
     public var numberOfUnitsContained: String? {get{return applicationIdentifiers["numberOfUnitsContained"]!.stringValue}}
     public var productWeightInKg: Double? {get{return applicationIdentifiers["productWeightInKg"]!.doubleValue}}
+    
+    public var additionalProductIdentification: String? {get{return applicationIdentifiers["additionalProductIdentification"]!.stringValue}}
+    public var customerPartNumber: String? {get{return applicationIdentifiers["customerPartNumber"]!.stringValue}}
+    public var madeToOrderVariationNumber: String? {get{return applicationIdentifiers["madeToOrderVariationNumber"]!.stringValue}}
+    public var secondarySerialNumber: String? {get{return applicationIdentifiers["secondarySerialNumber"]!.stringValue}}
+    public var referenceToSourceEntity: String? {get{return applicationIdentifiers["referenceToSourceEntity"]!.stringValue}}
+    public var additionalID: String? {get{return applicationIdentifiers["additionalID"]!.stringValue}}
+    public var priceSingleMonetaryArea: Double? {get{return applicationIdentifiers["priceSingleMonetaryArea"]!.doubleValue}}
+    public var priceAndISO: Double? {get{return applicationIdentifiers["priceAndISO"]!.doubleValue}}
+    public var pricePerUOM: Double? {get{return applicationIdentifiers["pricePerUOM"]!.doubleValue}}
+    public var countryOfOrigin: String? {get{return applicationIdentifiers["countryOfOrigin"]!.stringValue}}
     
     
     required override public init() {
