@@ -177,10 +177,10 @@ public class GS1Barcode: NSObject, Barcode {
                             foundOne = true
                             continue
                         }
-                        
                     }catch{
                         foundOne = false
                     }
+                    if data!.count == 0 { break }
                 }
                 // If no ai was found return false and keep the lastParseSuccessfull to false -> This will make validate() fail as well
                 if !foundOne{
