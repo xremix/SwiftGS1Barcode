@@ -23,12 +23,14 @@ public class GS1BarcodeParser: NSObject {
         }
         
         var length = (ai.rawValue?.count ?? 0) + (ai.identifier.count)
-        if ai.dynamicLength && data!.count > length{
-            length += 1
-        }
+        
         if ai.type == .NumericDouble{
             length += 1
         }
+        if ai.dynamicLength && data!.count > length{
+            length += 1
+        }
+    
         return data!.substring(from: length)
     }
     
