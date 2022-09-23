@@ -39,7 +39,6 @@ public class GS1Barcode: NSObject, Barcode {
         "madeToOrderVariationNumber": GS1ApplicationIdentifier("242", length:6, type: .AlphaNumeric, dynamicLength:true),
         "secondarySerialNumber": GS1ApplicationIdentifier("250", length:30, type: .AlphaNumeric, dynamicLength:true),
         "referenceToSourceEntity": GS1ApplicationIdentifier("251", length:30, type: .AlphaNumeric, dynamicLength:true),
-        "additionalID": GS1ApplicationIdentifier("240", length:30, type: .AlphaNumeric, dynamicLength:true),
         // 392n
         "priceSingleMonetaryArea": GS1ApplicationIdentifier("392", length:15, type: .NumericDouble, dynamicLength:true),
         // 393n
@@ -78,7 +77,6 @@ public class GS1Barcode: NSObject, Barcode {
     public var madeToOrderVariationNumber: String? {get{return applicationIdentifiers["madeToOrderVariationNumber"]!.stringValue}}
     public var secondarySerialNumber: String? {get{return applicationIdentifiers["secondarySerialNumber"]!.stringValue}}
     public var referenceToSourceEntity: String? {get{return applicationIdentifiers["referenceToSourceEntity"]!.stringValue}}
-    public var additionalID: String? {get{return applicationIdentifiers["additionalID"]!.stringValue}}
     public var priceSingleMonetaryArea: Double? {get{return applicationIdentifiers["priceSingleMonetaryArea"]!.doubleValue}}
     public var priceAndISO: Double? {get{return applicationIdentifiers["priceAndISO"]!.doubleValue}}
     public var pricePerUOM: Double? {get{return applicationIdentifiers["pricePerUOM"]!.doubleValue}}
