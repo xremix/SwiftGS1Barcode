@@ -119,10 +119,10 @@ public class GS1ApplicationIdentifier: NSObject{
             else if identifier == "242" { return "Made to Order Variation Number" }
             else if identifier == "250" { return "Secondary Serial Number" }
             else if identifier == "251" { return "Reference to Source Entity" }
-            else if identifier == "392" { return "priceSingleMonetaryArea" }
-            else if identifier == "393" { return "priceAndISO" }
-            else if identifier == "395" { return "pricePerUOM" }
-            else if identifier == "422" { return "countryOfOrigin" }
+            else if identifier == "392" { return "Price - Single Monetary Area" }
+            else if identifier == "393" { return "Price and ISO" }
+            else if identifier == "395" { return "Price per UOM" }
+            else if identifier == "422" { return "Country of Origin" }
             else { return identifier }
         }
     }
