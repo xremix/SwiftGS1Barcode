@@ -4,7 +4,7 @@ The following steps need to be done to deploy the Library to `Github` and `Cocoa
 
 - Run Unit Tests
 - Lint Podfile using `pod lib lint`
-- Update Version in `Project Settings` and `Pod Specs`
+- Update Version in `Pod Specs`
 - Push Code to Git
 - Create Release on Git
   - `git tag -a 0.5.5 -m "0.5.6"`
