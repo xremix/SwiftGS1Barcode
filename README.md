@@ -17,6 +17,8 @@ Supported is a large set of common Application Identifiers (GS1 Barcodes), but i
 
 You can also find this project on [CocoaPods](https://cocoapods.org/pods/SwiftGS1Barcode) or can use Swift Package Manager.
 
+**CocoaPods** currently might be out of date. Please compare with latest version of the git tags.
+
 ## Getting started
 Parsing is as simple as
 
