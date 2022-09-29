@@ -20,6 +20,7 @@ public class GS1Barcode: NSObject, Barcode {
         "serialShippingContainerCode": GS1ApplicationIdentifier("00", length: 18, type: .AlphaNumeric),
         "gtin": GS1ApplicationIdentifier("01", length: 14, type: .AlphaNumeric),
         "gtinOfContainedTradeItems": GS1ApplicationIdentifier("02", length: 14, type: .AlphaNumeric),
+        // N2+X..20 (FNC1)
         "lotNumber": GS1ApplicationIdentifier("10", length: 20, type: .AlphaNumeric, dynamicLength: true),
         "productionDate": GS1ApplicationIdentifier(dateIdentifier: "11"),
         "dueDate": GS1ApplicationIdentifier(dateIdentifier: "12"),
@@ -46,6 +47,11 @@ public class GS1Barcode: NSObject, Barcode {
         // 395n
         "pricePerUOM": GS1ApplicationIdentifier("395", length:6, type: .NumericDouble, dynamicLength:true),
         "countryOfOrigin": GS1ApplicationIdentifier("422", length:3, type: .AlphaNumeric, dynamicLength:true),
+        // N3+X..20 (FNC1)
+        "nhrnAIM": GS1ApplicationIdentifier("714", length:20, type: .AlphaNumeric, dynamicLength:true),
+        
+        
+        
         
     ]
     /** Dictionary containing all application identifiers that have a value  */
@@ -81,6 +87,9 @@ public class GS1Barcode: NSObject, Barcode {
     public var priceAndISO: Double? {get{return applicationIdentifiers["priceAndISO"]!.doubleValue}}
     public var pricePerUOM: Double? {get{return applicationIdentifiers["pricePerUOM"]!.doubleValue}}
     public var countryOfOrigin: String? {get{return applicationIdentifiers["countryOfOrigin"]!.stringValue}}
+    public var nationalHealthcareReimbursementNumberAIM: String? {get{return applicationIdentifiers["nhrnAIM"]!.stringValue}}
+    
+    
     
     
     required override public init() {
