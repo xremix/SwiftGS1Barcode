@@ -190,7 +190,18 @@ public class GS1Barcode: NSObject, Barcode {
                         foundOne = false
                     }
                     if data!.count == 0 { break }
+                    
                 }
+                
+                // If didn't find anything, remove the whole string until the next group seperator
+                // Then do one more iteration
+                if data!.count != 0 && !foundOne && data!.contains("\u{1D}"){
+                    if let index = data!.index(of: "\u{1D}"){
+                        data = String(data!.suffix(from: index))
+                        foundOne = true
+                    }
+                }
+                
                 // If no ai was found return false and keep the lastParseSuccessfull to false -> This will make validate() fail as well
                 if !foundOne{
                     throw GS1BarcodeErrors.ParseError.didNotFoundApplicationIdentifier
