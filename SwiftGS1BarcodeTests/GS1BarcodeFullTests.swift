@@ -62,4 +62,46 @@ class GS1BarcodeFullTests: XCTestCase {
         XCTAssertEqual(barcode.lotNumber, "123456789")
         XCTAssertEqual(barcode.countOfItems, 1)
     }
+    
+    func testButasButora() {
+        let gs1Barcode = "0105600360015567172409307149908319\u{1D}10J051P0171081P\u{1D}210RP7FW9KXP"
+        let barcode = GS1Barcode(raw: gs1Barcode)
+        XCTAssertNotNil(barcode.gtin) // 01
+        XCTAssertNotNil(barcode.expirationDate) // 17
+        XCTAssertNotNil(barcode.lotNumber) // 10
+        XCTAssertNotNil(barcode.nationalHealthcareReimbursementNumberAIM) // 714
+        XCTAssertNotNil(barcode.serialNumber) // 21
+
+        XCTAssertEqual(barcode.gtin, "05600360015567")
+        XCTAssertEqual(barcode.expirationDate, Date.from(year: 2024, month: 9, day: 30))
+        XCTAssertEqual(barcode.lotNumber, "J051P0171081P")
+        XCTAssertEqual(barcode.nationalHealthcareReimbursementNumberAIM, "9908319")
+        XCTAssertEqual(barcode.serialNumber, "0RP7FW9KXP")
+    }
+    
+    func testWithWrongIdentifier() {
+        let gs1Barcode = "0105600360015567172409307139908319\u{1D}10J051P0171081P\u{1D}210RP7FW9KXP"
+        let barcode = GS1Barcode(raw: gs1Barcode)
+        XCTAssertNotNil(barcode.gtin) // 01
+        XCTAssertNotNil(barcode.expirationDate) // 17
+        XCTAssertNotNil(barcode.lotNumber) // 10
+        XCTAssertNotNil(barcode.serialNumber) // 21
+
+        XCTAssertEqual(barcode.gtin, "05600360015567")
+        XCTAssertEqual(barcode.expirationDate, Date.from(year: 2024, month: 9, day: 30))
+        XCTAssertEqual(barcode.lotNumber, "J051P0171081P")
+        XCTAssertEqual(barcode.serialNumber, "0RP7FW9KXP")
+    }
+    
+    func testWithWrongIdentifierIgnoreIfNoGS() {
+        let gs1Barcode = "010560036001556717240930713990831910J051P0171081P210RP7FW9KXP"
+        let barcode = GS1Barcode(raw: gs1Barcode)
+        XCTAssertNotNil(barcode.gtin) // 01
+        XCTAssertNotNil(barcode.expirationDate) // 17
+
+        XCTAssertEqual(barcode.gtin, "05600360015567")
+        XCTAssertEqual(barcode.expirationDate, Date.from(year: 2024, month: 9, day: 30))
+    }
+    
+    
 }
