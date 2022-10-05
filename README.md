@@ -71,11 +71,11 @@ The following properties are currently supported:
 | 01 | gtin | No |
 | 02 | gtinOfContainedTradeItems | No |
 | 10 | lotNumber | No |
-| ateIdentifier | productionDate | No |
-| ateIdentifier | dueDate | No |
-| ateIdentifier | packagingDate | No |
-| ateIdentifier | bestBeforeDate | No |
-| ateIdentifier | expirationDate | No |
+| 11 | productionDate | No |
+| 12 | dueDate | No |
+| 13 | packagingDate | No |
+| 15 | bestBeforeDate | No |
+| 17 | expirationDate | No |
 | 20 | productVariant | No |
 | 21 | serialNumber | No |
 | 22 | secondaryDataFields | No |
