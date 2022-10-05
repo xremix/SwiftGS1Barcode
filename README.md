@@ -67,27 +67,32 @@ The following properties are currently supported:
 
 | ID | Application Identifier | Experimental Support |
 |----|:-------------:|:-------------:|
-| 00 | serialShippingContainerCode |          |
-| 01 | gtin               |          |
-| 02 | gtinOfContainedTradeItems |          |
-| 10 | lotNumber (batchNumber) |          |
-| 11 | productionDate     |          |
-| 12 | dueDate            |          |
-| 13 | packagingDate      |          |
-| 15 | bestBeforeDate     |          |
-| 17 | expirationDate     |          |
-| 20 | productVariant     |          |
-| 21 | serialNumber       |          |
-| 22 | secondaryDataFields |          |
-| 30 | countOfItems  |          |
-| 37 | numberOfUnitsContained |          |
-| 310 | productWeightInKG |          |
-| 23n | lotNumberN | Yes |
-| 240 | additionalProductIdentification | Yes |
-| 241 | customerPartNumber | Yes |
-| 242 | madeToOrderVariationNumber | Yes |
-| 250 | secondarySerialNumber | Yes |
-| 251 | referenceToSourceEntity | Yes |
+| 00 | serialShippingContainerCode | No |
+| 01 | gtin | No |
+| 02 | gtinOfContainedTradeItems | No |
+| 10 | lotNumber | No |
+| ateIdentifier | productionDate | No |
+| ateIdentifier | dueDate | No |
+| ateIdentifier | packagingDate | No |
+| ateIdentifier | bestBeforeDate | No |
+| ateIdentifier | expirationDate | No |
+| 20 | productVariant | No |
+| 21 | serialNumber | No |
+| 22 | secondaryDataFields | No |
+| 30 | countOfItems | No |
+| 37 | numberOfUnitsContained | No |
+| 310 | productWeightInKg | No |
+| 240 | additionalProductIdentification | No |
+| 241 | customerPartNumber | No |
+| 242 | madeToOrderVariationNumber | No |
+| 250 | secondarySerialNumber | No |
+| 251 | referenceToSourceEntity | No |
+| 392 | priceSingleMonetaryArea | No |
+| 393 | priceAndISO | No |
+| 395 | pricePerUOM | No |
+| 422 | countryOfOrigin | No |
+| 714 | nhrnAIM | No |
+
 
 *Experimental Support means that these are getting parsed, but there are no getter for this. You can get the value by calling e.g.* `myGs1Barcode.applicationIdentifiers["additionalProductIdentification"]`. *Also the implementation can change if any parsing issues come up.*
 
