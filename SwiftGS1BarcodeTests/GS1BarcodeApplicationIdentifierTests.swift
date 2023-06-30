@@ -281,6 +281,13 @@ class GS1BarcodeApplicationIdentifierTests: GS1BarcodeParserXCTestCase {
     }
     
 
+    func testExtendedPackagingURL() {
+        let gs1Barcode = "8200https://ssb-battery.com/sbl9-12l"
+        let barcode = GS1Barcode(raw: gs1Barcode)
+        XCTAssertNotNil(barcode.extendedPackagingURL) // 8200
+
+        XCTAssertEqual(barcode.extendedPackagingURL, "https://ssb-battery.com/sbl9-12l")
+    }
     
 
 }

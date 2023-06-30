@@ -103,5 +103,18 @@ class GS1BarcodeFullTests: XCTestCase {
         XCTAssertEqual(barcode.expirationDate, Date.from(year: 2024, month: 9, day: 30))
     }
     
+    func testExtendedPackagingURL() {
+        let gs1Barcode = "11230815\u{1D}21L00001\u{1D}8200https://ssb-battery.com/sbl9-12l"
+        let barcode = GS1Barcode(raw: gs1Barcode)
+        XCTAssertNotNil(barcode.productionDate) // 11
+        XCTAssertNotNil(barcode.serialNumber) // 21
+        XCTAssertNotNil(barcode.extendedPackagingURL) // 8200
+
+        
+        XCTAssertEqual(barcode.productionDate, Date.from(year: 2023, month: 8, day: 15))
+        XCTAssertEqual(barcode.serialNumber, "L00001")
+        XCTAssertEqual(barcode.extendedPackagingURL, "https://ssb-battery.com/sbl9-12l")
+    }
+    
     
 }
