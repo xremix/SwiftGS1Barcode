@@ -122,6 +122,7 @@ public class GS1ApplicationIdentifier: NSObject{
             else if identifier == "392" { return "Price - Single Monetary Area" }
             else if identifier == "393" { return "Price and ISO" }
             else if identifier == "395" { return "Price per UOM" }
+            else if identifier == "400" { return "Order Number of Customer" }
             else if identifier == "422" { return "Country of Origin" }
             else { return identifier }
         }

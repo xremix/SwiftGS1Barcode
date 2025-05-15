@@ -34,7 +34,7 @@ public class GS1Barcode: NSObject, Barcode {
         "numberOfUnitsContained": GS1ApplicationIdentifier("37", length:8, type: .AlphaNumeric, dynamicLength:true),
         // 310n
         "productWeightInKg": GS1ApplicationIdentifier("310", length: 6, type: .NumericDouble),
-    
+        // 240 N3+X..30
         "additionalProductIdentification": GS1ApplicationIdentifier("240", length:30, type: .AlphaNumeric, dynamicLength:true),
         "customerPartNumber": GS1ApplicationIdentifier("241", length:30, type: .AlphaNumeric, dynamicLength:true),
         "madeToOrderVariationNumber": GS1ApplicationIdentifier("242", length:6, type: .AlphaNumeric, dynamicLength:true),
@@ -46,6 +46,8 @@ public class GS1Barcode: NSObject, Barcode {
         "priceAndISO": GS1ApplicationIdentifier("393", length:18, type: .NumericDouble, dynamicLength:true),
         // 395n
         "pricePerUOM": GS1ApplicationIdentifier("395", length:6, type: .NumericDouble, dynamicLength:true),
+        //400 FNC1     240-> N3+X...30
+        "orderNumber": GS1ApplicationIdentifier("400", length:30, type: .AlphaNumeric, dynamicLength:true),
         "countryOfOrigin": GS1ApplicationIdentifier("422", length:3, type: .AlphaNumeric, dynamicLength:true),
         // N3+X..20 (FNC1)
         "nhrnAIM": GS1ApplicationIdentifier("714", length:20, type: .AlphaNumeric, dynamicLength:true),
