@@ -124,6 +124,7 @@ public class GS1ApplicationIdentifier: NSObject{
             else if identifier == "395" { return "Price per UOM" }
             else if identifier == "400" { return "Order Number of Customer" }
             else if identifier == "422" { return "Country of Origin" }
+            else if identifier == "90" { return "Information Mutually Agreed" }
             else { return identifier }
         }
     }

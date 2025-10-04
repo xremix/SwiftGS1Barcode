@@ -53,6 +53,8 @@ public class GS1Barcode: NSObject, Barcode {
         "nhrnAIM": GS1ApplicationIdentifier("714", length:20, type: .AlphaNumeric, dynamicLength:true),
         // N4+X..70 (FNC1)
         "extendedPackagingURL": GS1ApplicationIdentifier("8200", length: 70, type: .AlphaNumeric, dynamicLength: true),
+        // 90 N3+X..30 (FNC1)
+        "informationMutuallyAgreed": GS1ApplicationIdentifier("90", length: 30, type: .AlphaNumeric, dynamicLength: true),
     ]
     /** Dictionary containing all application identifiers that have a value  */
     var filledApplicationIdentifiers: [String: GS1ApplicationIdentifier]{
@@ -89,6 +91,7 @@ public class GS1Barcode: NSObject, Barcode {
     public var countryOfOrigin: String? {get{return applicationIdentifiers["countryOfOrigin"]!.stringValue}}
     public var nationalHealthcareReimbursementNumberAIM: String? {get{return applicationIdentifiers["nhrnAIM"]!.stringValue}}
     public var extendedPackagingURL: String?{ get {return applicationIdentifiers["extendedPackagingURL"]!.stringValue} }
+    public var informationMutuallyAgreed: String? {get{return applicationIdentifiers["informationMutuallyAgreed"]!.stringValue}}
     
     
     
