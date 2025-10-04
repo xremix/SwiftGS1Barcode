@@ -24,4 +24,11 @@ class GS1ApplicationIdentifierReadableIdentifierTests: XCTestCase {
         XCTAssertEqual(barcode.filledApplicationIdentifiers.filter{ barcode.applicationIdentifiers[$0.key]?.identifier == "310"}.first!.value.readableIdentifier, "Product Weight in KG")
     }
     
+    func testReadableAI90() {
+        // Test AI 90 readable identifier
+        let barcode = GS1Barcode(raw: "90CustomTradingPartnerData")
+        XCTAssertEqual(barcode.informationMutuallyAgreed, "CustomTradingPartnerData")
+        XCTAssertEqual(barcode.filledApplicationIdentifiers.filter{ barcode.applicationIdentifiers[$0.key]?.identifier == "90"}.first!.value.readableIdentifier, "Information Mutually Agreed")
+    }
+    
 }

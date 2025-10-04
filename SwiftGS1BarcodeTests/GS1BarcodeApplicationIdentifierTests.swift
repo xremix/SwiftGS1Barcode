@@ -289,5 +289,56 @@ class GS1BarcodeApplicationIdentifierTests: GS1BarcodeParserXCTestCase {
         XCTAssertEqual(barcode.extendedPackagingURL, "https://ssb-battery.com/sbl9-12l")
     }
     
+    // AI 90 - Information Mutually Agreed Tests
+    func testInformationMutuallyAgreedShort() {
+        // AI 90 with short data
+        let barcode = GS1Barcode(raw: "90CustomData123")
+        XCTAssertNotNil(barcode.informationMutuallyAgreed)
+        XCTAssertEqual(barcode.informationMutuallyAgreed, "CustomData123")
+    }
+    
+    func testInformationMutuallyAgreedEmpty() {
+        // AI 90 with empty data (terminated by GS)
+        let barcode = GS1Barcode(raw: "90\u{1D}678901234567890")
+        XCTAssertNotNil(barcode.informationMutuallyAgreed)
+        XCTAssertEqual(barcode.informationMutuallyAgreed, "")
+    }
+    
+    func testInformationMutuallyAgreedWithGS() {
+        // AI 90 with data terminated by GS character
+        let barcode = GS1Barcode(raw: "90CustomInfo\u{1D}678901234567890")
+        XCTAssertNotNil(barcode.informationMutuallyAgreed)
+        XCTAssertEqual(barcode.informationMutuallyAgreed, "CustomInfo")
+    }
+    
+    func testInformationMutuallyAgreedMaxLength() {
+        // AI 90 with maximum length data (30 characters)
+        let maxData = "123456789012345678901234567890"
+        let barcode = GS1Barcode(raw: "90\(maxData)")
+        XCTAssertNotNil(barcode.informationMutuallyAgreed)
+        XCTAssertEqual(barcode.informationMutuallyAgreed, maxData)
+    }
+    
+    func testInformationMutuallyAgreedExceedsMaxLength() {
+        // AI 90 with data exceeding maximum length (should be truncated)
+        let longData = "123456789012345678901234567890123"
+        let barcode = GS1Barcode(raw: "90\(longData)")
+        XCTAssertNotNil(barcode.informationMutuallyAgreed)
+        XCTAssertEqual(barcode.informationMutuallyAgreed, "123456789012345678901234567890")
+    }
+    
+    func testInformationMutuallyAgreedAlphanumeric() {
+        // AI 90 with alphanumeric data including special characters
+        let barcode = GS1Barcode(raw: "90ABC123@#$%^&*()")
+        XCTAssertNotNil(barcode.informationMutuallyAgreed)
+        XCTAssertEqual(barcode.informationMutuallyAgreed, "ABC123@#$%^&*()")
+    }
+    
+    func testInformationMutuallyAgreedExtended() {
+        // AI 90 with other AIs in the barcode
+        let barcode = GS1Barcode(raw: "3088888888890CustomData\u{1D}678901234567890")
+        XCTAssertNotNil(barcode.informationMutuallyAgreed)
+        XCTAssertEqual(barcode.informationMutuallyAgreed, "CustomData")
+    }
 
 }
