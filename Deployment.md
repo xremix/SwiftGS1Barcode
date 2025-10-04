@@ -9,4 +9,5 @@ The following steps need to be done to deploy the Library to `Github` and `Cocoa
 - Create Release on Git
   - `git tag -a 0.5.5 -m "0.5.6"`
   - `git push origin 0.5.6`
+- If not authenticated, run `pod trunk register EMAIL`
 - Push code to CocoaPods using `pod trunk push SwiftGS1Barcode.podspec`
