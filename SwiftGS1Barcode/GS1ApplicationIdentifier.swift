@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SwiftUI
 
 public enum GS1ApplicationIdentifierType: String{
     case AlphaNumeric
@@ -97,7 +96,7 @@ public class GS1ApplicationIdentifier: NSObject{
     
     // Think about moving this logic to GS1 Barcode
     /** Get a readable english string to display in the user interface */
-    public var readableIdentifier: LocalizedStringKey{
+    public var readableIdentifier: String{
         get{
             if identifier == "00" { return "Serial Shipping Container Code" }
             else if identifier == "01" { return "GTIN" }
