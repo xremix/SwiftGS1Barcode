@@ -94,38 +94,43 @@ public class GS1ApplicationIdentifier: NSObject{
         }
     }
     
+    public var readableIdentifierLocalizationKey: String {
+        if identifier == "00" { return "Serial Shipping Container Code" }
+        else if identifier == "01" { return "GTIN" }
+        else if identifier == "02" { return "GTIN of contained Trade Items" }
+        else if identifier == "10" { return "Lot Number" }
+        else if identifier == "11" { return "Production Date" }
+        else if identifier == "12" { return "Due Date" }
+        else if identifier == "13" { return "Packaging Date" }
+        else if identifier == "15" { return "Best Before Date" }
+        else if identifier == "17" { return "Expiration Date" }
+        else if identifier == "20" { return "Product Variant" }
+        else if identifier == "21" { return "Serial Number" }
+        else if identifier == "22" { return "Secondary Data Fields" }
+        else if identifier == "30" { return "Count of Items" }
+        else if identifier == "37" { return "Number of Units Contained" }
+        else if identifier == "310" { return "Product Weight in KG" }
+        else if identifier == "23n" { return "Lot Number of N" }
+        else if identifier == "240" { return "Additional Product Identification" }
+        else if identifier == "241" { return "Customer Part Number" }
+        else if identifier == "242" { return "Made to Order Variation Number" }
+        else if identifier == "250" { return "Secondary Serial Number" }
+        else if identifier == "251" { return "Reference to Source Entity" }
+        else if identifier == "392" { return "Price - Single Monetary Area" }
+        else if identifier == "393" { return "Price and ISO" }
+        else if identifier == "395" { return "Price per UOM" }
+        else if identifier == "400" { return "Order Number of Customer" }
+        else if identifier == "422" { return "Country of Origin" }
+        else if identifier == "90" { return "Information Mutually Agreed" }
+        else { return identifier }
+    }
+
     // Think about moving this logic to GS1 Barcode
-    /** Get a readable english string to display in the user interface */
+    /** Get a readable localized string to display in the user interface */
     public var readableIdentifier: String{
         get{
-            if identifier == "00" { return "Serial Shipping Container Code" }
-            else if identifier == "01" { return "GTIN" }
-            else if identifier == "02" { return "GTIN of contained Trade Items" }
-            else if identifier == "10" { return "Lot Number" }
-            else if identifier == "11" { return "Production Date" }
-            else if identifier == "12" { return "Due Date" }
-            else if identifier == "13" { return "Packaging Date" }
-            else if identifier == "15" { return "Best Before Date" }
-            else if identifier == "17" { return "Expiration Date" }
-            else if identifier == "20" { return "Product Variant" }
-            else if identifier == "21" { return "Serial Number" }
-            else if identifier == "22" { return "Secondary Data Fields" }
-            else if identifier == "30" { return "Count of Items" }
-            else if identifier == "37" { return "Number of Units Contained" }
-            else if identifier == "310" { return "Product Weight in KG" }
-            else if identifier == "23n" { return "Lot Number of N" }
-            else if identifier == "240" { return "Additional Product Identification" }
-            else if identifier == "241" { return "Customer Part Number" }
-            else if identifier == "242" { return "Made to Order Variation Number" }
-            else if identifier == "250" { return "Secondary Serial Number" }
-            else if identifier == "251" { return "Reference to Source Entity" }
-            else if identifier == "392" { return "Price - Single Monetary Area" }
-            else if identifier == "393" { return "Price and ISO" }
-            else if identifier == "395" { return "Price per UOM" }
-            else if identifier == "400" { return "Order Number of Customer" }
-            else if identifier == "422" { return "Country of Origin" }
-            else if identifier == "90" { return "Information Mutually Agreed" }
-            else { return identifier }
+            let localizationKey = readableIdentifierLocalizationKey
+            return Bundle.main.localizedString(forKey: localizationKey, value: localizationKey, table: nil)
         }
     }
 }
