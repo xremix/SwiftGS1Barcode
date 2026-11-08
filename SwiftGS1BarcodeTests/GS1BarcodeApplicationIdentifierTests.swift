@@ -223,6 +223,14 @@ class GS1BarcodeApplicationIdentifierTests: GS1BarcodeParserXCTestCase {
         XCTAssertEqual(barcode.productWeightInKg, 2.34567)
         XCTAssertEqual(barcode.applicationIdentifiers["productWeightInKg"]?.decimalPlaces, 5)
     }
+
+    func testGrossWeightInKg(){
+        let barcode = GS1Barcode(raw: "3301123456")
+        XCTAssertNotNil(barcode.grossWeightInKg)
+        XCTAssertEqual(barcode.grossWeightInKg, 12345.6)
+        XCTAssertEqual(barcode.applicationIdentifiers["grossWeightInKg"]?.decimalPlaces, 1)
+        XCTAssertTrue(try barcode.validate())
+    }
     
     func testAdditionalProductIdentification(){
         let barcode = GS1Barcode(raw: "240123456789012345678901234567890")

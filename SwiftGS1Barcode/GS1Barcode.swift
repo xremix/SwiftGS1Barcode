@@ -34,6 +34,8 @@ public class GS1Barcode: NSObject, Barcode {
         "numberOfUnitsContained": GS1ApplicationIdentifier("37", length:8, type: .AlphaNumeric, dynamicLength:true),
         // 310n
         "productWeightInKg": GS1ApplicationIdentifier("310", length: 6, type: .NumericDouble),
+        // 330n
+        "grossWeightInKg": GS1ApplicationIdentifier("330", length: 6, type: .NumericDouble),
         // 240 N3+X..30
         "additionalProductIdentification": GS1ApplicationIdentifier("240", length:30, type: .AlphaNumeric, dynamicLength:true),
         "customerPartNumber": GS1ApplicationIdentifier("241", length:30, type: .AlphaNumeric, dynamicLength:true),
@@ -79,6 +81,7 @@ public class GS1Barcode: NSObject, Barcode {
     public var countOfItems: Int?{ get {return applicationIdentifiers["countOfItems"]!.intValue} }
     public var numberOfUnitsContained: String? {get{return applicationIdentifiers["numberOfUnitsContained"]!.stringValue}}
     public var productWeightInKg: Double? {get{return applicationIdentifiers["productWeightInKg"]!.doubleValue}}
+    public var grossWeightInKg: Double? {get{return applicationIdentifiers["grossWeightInKg"]!.doubleValue}}
     
     public var additionalProductIdentification: String? {get{return applicationIdentifiers["additionalProductIdentification"]!.stringValue}}
     public var customerPartNumber: String? {get{return applicationIdentifiers["customerPartNumber"]!.stringValue}}

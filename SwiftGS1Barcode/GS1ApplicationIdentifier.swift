@@ -110,6 +110,7 @@ public class GS1ApplicationIdentifier: NSObject{
         else if identifier == "30" { return "Count of Items" }
         else if identifier == "37" { return "Number of Units Contained" }
         else if identifier == "310" { return "Product Weight in KG" }
+        else if identifier == "330" { return "Gross Weight in KG" }
         else if identifier == "23n" { return "Lot Number of N" }
         else if identifier == "240" { return "Additional Product Identification" }
         else if identifier == "241" { return "Customer Part Number" }
