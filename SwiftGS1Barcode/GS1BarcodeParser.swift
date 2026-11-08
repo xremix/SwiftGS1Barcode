@@ -27,6 +27,9 @@ public class GS1BarcodeParser: NSObject {
         if ai.type == .NumericDouble{
             length += 1
         }
+        if ai.identifier == "391" || ai.identifier == "393" {
+            length += 3
+        }
         if ai.dynamicLength && data!.count > length{
             length += 1
         }
@@ -53,6 +56,10 @@ public class GS1BarcodeParser: NSObject {
         if ai.type == .NumericDouble{
             ai.decimalPlaces = Int(aiData.substring(to: 1))
             aiData = aiData.substring(from: 1)
+            if (ai.identifier == "391" || ai.identifier == "393") && aiData.count >= 3 {
+                ai.isoCurrencyCode = aiData.substring(to: 3)
+                aiData = aiData.substring(from: 3)
+            }
         }
         
         // Cut data by Group Seperator, if dynamic length item and has a GS.

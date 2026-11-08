@@ -270,10 +270,22 @@ class GS1BarcodeApplicationIdentifierTests: GS1BarcodeParserXCTestCase {
     }
     
     func testpriceAndISO(){
-        let barcode = GS1Barcode(raw: "3931123456789012345678")
+        let barcode = GS1Barcode(raw: "3932840123456")
         XCTAssertNotNil(barcode.priceAndISO)
-        XCTAssertEqual(barcode.priceAndISO, 12345678901234567.8)
-        XCTAssertEqual(barcode.applicationIdentifiers["priceAndISO"]?.decimalPlaces, 1)
+        XCTAssertEqual(barcode.priceAndISO, 1234.56)
+        XCTAssertEqual(barcode.priceAndISOCurrencyCode, "840")
+        XCTAssertEqual(barcode.applicationIdentifiers["priceAndISO"]?.decimalPlaces, 2)
+    }
+
+    func testAmountPayableWithISO(){
+        let barcode = GS1Barcode(raw: "3912840123456")
+        XCTAssertEqual(barcode.amountPayableWithISO, 1234.56)
+        XCTAssertEqual(barcode.amountPayableWithISOCurrencyCode, "840")
+    }
+
+    func testPercentageDiscount(){
+        let barcode = GS1Barcode(raw: "3941250")
+        XCTAssertEqual(barcode.percentageDiscount, 25.0)
     }
     
     func testpricePerUOM(){
@@ -286,6 +298,55 @@ class GS1BarcodeApplicationIdentifierTests: GS1BarcodeParserXCTestCase {
         let barcode = GS1Barcode(raw: "422GER")
         XCTAssertNotNil(barcode.countryOfOrigin)
         XCTAssertEqual(barcode.countryOfOrigin, "GER")
+    }
+
+    func testNewCommonApplicationIdentifiers(){
+        let cases: [(String, String)] = [
+            ("sellByDate", "16123125"),
+            ("lengthInMeters", "3111123456"),
+            ("widthInMeters", "3121123456"),
+            ("heightInMeters", "3131123456"),
+            ("areaInSquareMeters", "3141123456"),
+            ("netVolumeInLiters", "3151123456"),
+            ("netVolumeInCubicMeters", "3161123456"),
+            ("netWeightInPounds", "3201123456"),
+            ("grossWeightInPounds", "3401123456"),
+            ("amountPayable", "3901123456"),
+            ("amountPayableWithISO", "3912840123456"),
+            ("percentageDiscount", "3941250"),
+            ("consignmentNumber", "401AB123"),
+            ("shipmentIdentificationNumber", "40212345678901234"),
+            ("routingCode", "403ROUTE1"),
+            ("shipToLocationGLN", "4101234567890128"),
+            ("billToGLN", "4111234567890128"),
+            ("purchaseFromGLN", "4121234567890128"),
+            ("shipForLocationGLN", "4131234567890128"),
+            ("physicalLocationGLN", "4141234567890128"),
+            ("payToGLN", "4151234567890128"),
+            ("productionOrServiceLocationGLN", "4161234567890128"),
+            ("partyGLN", "4171234567890128"),
+            ("shipToPostalCode", "42012345"),
+            ("shipToPostalCodeWithCountry", "42184012345"),
+            ("countriesOfInitialProcessing", "423276840"),
+            ("countryOfProcessing", "424276"),
+            ("countriesOfDisassembly", "425276840"),
+            ("countryOfFullProcessing", "426276"),
+            ("originSubdivision", "427CA"),
+            ("expirationDateTime", "70032312312359"),
+            ("nhrnPZN", "71012345678"),
+            ("nhrnCIP", "71112345678"),
+            ("nhrnCN", "71212345678"),
+            ("nhrnDRN", "71312345678"),
+            ("nhrnNDC", "71512345678"),
+            ("nhrnAIC", "71612345678"),
+            ("nhrnSRN", "71712345678")
+        ]
+
+        for (key, raw) in cases {
+            let barcode = GS1Barcode(raw: raw)
+            XCTAssertNoThrow(try barcode.validate(), "Failed to validate AI \(key)")
+            XCTAssertNotNil(barcode.applicationIdentifiers[key]?.rawValue, "AI \(key) was not parsed")
+        }
     }
     
 

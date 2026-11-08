@@ -36,6 +36,7 @@ public class GS1ApplicationIdentifier: NSObject{
     public var intValue: Int?
     /** This will be set by the Barcode parser, if type is NumericDouble */
     public var doubleValue: Double?
+    public var isoCurrencyCode: String?
     /** This will be set by the Barcode parser, if type is AlphaNumeric */
     public var stringValue: String?
     
@@ -103,6 +104,7 @@ public class GS1ApplicationIdentifier: NSObject{
         else if identifier == "12" { return "Due Date" }
         else if identifier == "13" { return "Packaging Date" }
         else if identifier == "15" { return "Best Before Date" }
+        else if identifier == "16" { return "Sell By Date" }
         else if identifier == "17" { return "Expiration Date" }
         else if identifier == "20" { return "Product Variant" }
         else if identifier == "21" { return "Serial Number" }
@@ -110,18 +112,56 @@ public class GS1ApplicationIdentifier: NSObject{
         else if identifier == "30" { return "Count of Items" }
         else if identifier == "37" { return "Number of Units Contained" }
         else if identifier == "310" { return "Product Weight in KG" }
+        else if identifier == "311" { return "Length in Meters" }
+        else if identifier == "312" { return "Width in Meters" }
+        else if identifier == "313" { return "Height in Meters" }
+        else if identifier == "314" { return "Area in Square Meters" }
+        else if identifier == "315" { return "Net Volume in Liters" }
+        else if identifier == "316" { return "Net Volume in Cubic Meters" }
+        else if identifier == "320" { return "Net Weight in Pounds" }
         else if identifier == "330" { return "Gross Weight in KG" }
+        else if identifier == "340" { return "Gross Weight in Pounds" }
         else if identifier == "23n" { return "Lot Number of N" }
         else if identifier == "240" { return "Additional Product Identification" }
         else if identifier == "241" { return "Customer Part Number" }
         else if identifier == "242" { return "Made to Order Variation Number" }
         else if identifier == "250" { return "Secondary Serial Number" }
         else if identifier == "251" { return "Reference to Source Entity" }
+        else if identifier == "390" { return "Amount Payable" }
+        else if identifier == "391" { return "Amount Payable and ISO Currency" }
         else if identifier == "392" { return "Price - Single Monetary Area" }
         else if identifier == "393" { return "Price and ISO" }
+        else if identifier == "394" { return "Percentage Discount" }
         else if identifier == "395" { return "Price per UOM" }
         else if identifier == "400" { return "Order Number of Customer" }
+        else if identifier == "401" { return "Consignment Number" }
+        else if identifier == "402" { return "Shipment Identification Number" }
+        else if identifier == "403" { return "Routing Code" }
+        else if identifier == "410" { return "Ship To Location GLN" }
+        else if identifier == "411" { return "Bill To GLN" }
+        else if identifier == "412" { return "Purchase From GLN" }
+        else if identifier == "413" { return "Ship For Location GLN" }
+        else if identifier == "414" { return "Physical Location GLN" }
+        else if identifier == "415" { return "Pay To GLN" }
+        else if identifier == "416" { return "Production or Service Location GLN" }
+        else if identifier == "417" { return "Party GLN" }
+        else if identifier == "420" { return "Ship To Postal Code" }
+        else if identifier == "421" { return "Ship To Postal Code with Country" }
         else if identifier == "422" { return "Country of Origin" }
+        else if identifier == "423" { return "Countries of Initial Processing" }
+        else if identifier == "424" { return "Country of Processing" }
+        else if identifier == "425" { return "Countries of Disassembly" }
+        else if identifier == "426" { return "Country of Full Processing" }
+        else if identifier == "427" { return "Origin Subdivision" }
+        else if identifier == "7003" { return "Expiration Date and Time" }
+        else if identifier == "710" { return "NHRN PZN" }
+        else if identifier == "711" { return "NHRN CIP" }
+        else if identifier == "712" { return "NHRN CN" }
+        else if identifier == "713" { return "NHRN DRN" }
+        else if identifier == "714" { return "NHRN AIM" }
+        else if identifier == "715" { return "NHRN NDC" }
+        else if identifier == "716" { return "NHRN AIC" }
+        else if identifier == "717" { return "NHRN SRN" }
         else if identifier == "90" { return "Information Mutually Agreed" }
         else { return identifier }
     }
